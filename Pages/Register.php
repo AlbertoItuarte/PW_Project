@@ -9,14 +9,14 @@
 <body>
     <div>
         <form action="../Logic/Register.php" method="post">
-            <input type="text" name="username" placeholder="Nombre de usuario" required>
+            <input type="text" name="nombre_usuario" placeholder="Nombre de usuario" required>
             <input type="text" name="nombre" placeholder="Nombre" required>
             <input type="text" name="apellido_paterno" placeholder="Apellido paterno" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-            <input type="submit" value="Register">
-            <p>Already have an account? <a href="Login.php">Login here</a></p>
+            <input type="email" name="correo" placeholder="Ingresa tu correo" required>
+            <input type="password" name="contrasena" placeholder="Ingresa tu contraseña" required>
+            <input type="password" name="confirma_contrasena" placeholder="Confirma contraseña" required>
+            <input type="submit" value="Regístrate">
+            <p>Ya tienes cuenta? <a href="Login.php">Inicia sesión aquí</a></p>
         </form>
     </div>
 </body>

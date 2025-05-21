@@ -3,10 +3,11 @@ require_once '../Config/dbConection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $username = $conn->real_escape_string($_POST['username']);
-    $email = $conn->real_escape_string($_POST['email']);
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
+    $username = $conn->real_escape_string($_POST['nombre_usuario']);
+    $email = $conn->real_escape_string($_POST['correo']);
+    $password = $_POST['constrasena'];
+    $confirm_password = $_POST['confirma_contrasena'];
+    echo $username, $email, $password, $confirm_password;
     
     // Valores por defecto para los campos adicionales
     $nombre = $conn->real_escape_string($_POST['nombre'] ?? $username);
