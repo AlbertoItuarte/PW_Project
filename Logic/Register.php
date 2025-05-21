@@ -13,8 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
     
-    $sql = "SELECT id FROM users WHERE user_name = '$username' OR email = '$email'";
-    $result = $conn->query($sql);
+    $sql = "SELECT id FROM users WHERE user_name = ? OR email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $username, $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
     
     if ($result->num_rows > 0) {
         header("Location: ../Pages/Register.php?error=user_exists");
