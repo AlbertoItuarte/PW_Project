@@ -7,13 +7,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $conn->real_escape_string($_POST['email']);
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
+    
+    // Valores por defecto para los campos adicionales
+    $nombre = $conn->real_escape_string($_POST['nombre'] ?? $username);
+    $apellido_paterno = $conn->real_escape_string($_POST['apellido_paterno'] ?? '');
 
     if ($password !== $confirm_password) {
         header("Location: ../Pages/Register.php?error=password_mismatch");
         exit();
     }
     
-    $sql = "SELECT id FROM users WHERE user_name = ? OR email = ?";
+    $sql = "SELECT id FROM usuario WHERE nombre_usuario = ? OR correo = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $username, $email);
     $stmt->execute();
@@ -26,8 +30,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO users (user_name, email, password) VALUES ('$username', '$email', '$hashed_password')";
-    if ($conn->query($sql) === TRUE) {
+    $sql = "INSERT INTO usuario (nombre_usuario, nombre, apellido_paterno, correo, contrasena) 
+            VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sssss", $username, $nombre, $apellido_paterno, $email, $hashed_password);
+    
+    if ($stmt->execute()) {
         header("Location: ../Pages/Login.php?success=registered");
         exit();
     } else {

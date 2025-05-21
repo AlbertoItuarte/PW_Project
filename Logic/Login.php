@@ -1,26 +1,23 @@
 <?php
 session_start();
-
-// Incluir archivo de conexión
 require_once '../Config/dbConection.php';
 
-// Verificar si el formulario fue enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener datos del formulario
-    $username = $conn->real_escape_string($_POST['user_name']);
-    $password = $_POST['password'];
+    $username = $conn->real_escape_string($_POST['nombre_usuario']);
+    $password = $_POST['contrasena'];
     
     // Consulta para verificar las credenciales
-    $sql = "SELECT id, user_name, password FROM users WHERE user_name = '$username'";
+    $sql = "SELECT id, nombre_usuario, contrasena FROM usuario WHERE nombre_usuario = '$username'";
     $result = $conn->query($sql);
     
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
         // Verificar contraseña
-        if (password_verify($password, $row['password'])) {
+        if (password_verify($password, $row['contrasena'])) {
             // Contraseña correcta, iniciar sesión
             $_SESSION['user_id'] = $row['id'];
-            $_SESSION['username'] = $row['user_name'];
+            $_SESSION['username'] = $row['nombre_usuario'];
             
             // Redirigir a la página de inicio
             header("Location: ../Pages/Home.php");

@@ -9,7 +9,9 @@
 <body>
     <div>
         <form action="../Logic/Register.php" method="post">
-            <input type="text" name="username" placeholder="Username" required>
+            <input type="text" name="username" placeholder="Nombre de usuario" required>
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="text" name="apellido_paterno" placeholder="Apellido paterno" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <input type="password" name="confirm_password" placeholder="Confirm Password" required>
