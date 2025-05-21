@@ -1,0 +1,146 @@
+/* Fondo general y fuente base */
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #D1EDED; /* fondo suave */
+  color: #043333;
+}
+
+/* Encabezados */
+h1, h2, h3, h4, h5, h6 {
+  color: #114343;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #5A9999;
+  padding-bottom: 4px;
+}
+
+/* Etiquetas de formulario */
+label {
+  font-weight: bold;
+  color: #2E6E6E;
+  margin-top: 10px;
+  display: block;
+}
+
+/* Inputs y textareas */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  padding: 8px;
+  margin: 8px 0 15px 0;
+  border: 1px solid #93C3C3;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #043333;
+  box-sizing: border-box;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #5A9999;
+  box-shadow: 0 0 4px #93C3C3;
+}
+
+/* Botones */
+button {
+  background-color: #2E6E6E;
+  color: #ffffff;
+  border: none;
+  padding: 10px 16px;
+  margin: 5px 10px 15px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #114343;
+}
+
+button:disabled {
+  background-color: #93C3C3;
+  cursor: not-allowed;
+}
+
+/* Separadores */
+hr {
+  border: none;
+  border-top: 1px solid #5A9999;
+  margin: 30px 0;
+}
+
+/* Contenedores comunes */
+.container,
+.section,
+.card {
+  background-color: #f5fafa;
+  border: 1px solid #93C3C3;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+/* Enlaces */
+a {
+  color: #2E6E6E;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Tablas */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+  background-color: #ffffff;
+  border: 1px solid #93C3C3;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #93C3C3;
+}
+
+th {
+  background-color: #5A9999;
+  color: #ffffff;
+}
+
+/* Estilo para input tipo submit para que se vea igual que los <button> */
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  background-color: #2E6E6E;
+  color: #ffffff;
+  border: none;
+  padding: 10px 16px;
+  margin: 5px 10px 15px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
+  font-family: inherit;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover {
+  background-color: #114343;
+}
+
