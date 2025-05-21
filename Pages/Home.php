@@ -19,7 +19,7 @@ if (!isset($_SESSION['user_id'])) {
     <div>
         <h1>Bienvenido, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
         <p>Has iniciado sesión correctamente.</p>
-        <a href="../Logic/Logout.php">Cerrar sesión</a>
+        <a href="../Logic/LogOut.php">Cerrar sesión</a>
     </div>
 </body>
 </html>
