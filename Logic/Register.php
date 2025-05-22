@@ -5,8 +5,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $username = $conn->real_escape_string($_POST['nombre_usuario']);
     $email = $conn->real_escape_string($_POST['correo']);
-    $password = $_POST['contrasena'];
-    $confirm_password = $_POST['confirma_contrasena'];
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
     // Removed echo statement to prevent exposing sensitive information.
     
     // Valores por defecto para los campos adicionales

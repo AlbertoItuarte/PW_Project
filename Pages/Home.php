@@ -17,9 +17,17 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
     <div>
+        <nav>
+            <ul>
+                <li><a href="Home.php">Inicio</a></li>
+               <li><a href="./PlanSubject.php">Seleccionar materia</a></li>
+                <li><a href="../Logic/LogOut.php">Cerrar sesión</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div>
         <h1>Bienvenido, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
         <p>Has iniciado sesión correctamente.</p>
-        <a href="../Logic/LogOut.php">Cerrar sesión</a>
     </div>
 </body>
 </html>
