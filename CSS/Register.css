@@ -1,0 +1,24 @@
+form{
+    background: #043333;
+    padding: 2rem;
+    border-radius: 4rem;
+}
+
+form h2 {
+  text-align: center;
+  color: #93C3C3; /* Puedes cambiar el color si deseas */
+  margin-bottom: 20px;
+}
+
+form a{
+    color: #93C3C3;
+}
+form p{
+    color: #93C3C3;
+}
+form input[type="submit"] {
+  display: block;
+  margin: 20px auto; /* Centra horizontalmente */
+}
+
+
