@@ -11,9 +11,9 @@
     <div>
         <form action="../Logic/Login.php" method="post">
             <input type="text" name="nombre_usuario" placeholder="Ingresa tu usuario" required>
-            <input type="password" name="contraseña" placeholder="Ingresa tu contraseña" required>
+            <input type="password" name="contrasena" placeholder="Ingresa tu contraseña" required>
             <input type="submit" value="Login">
-            <p>Don't have an account? <a href="Register.php">Register here</a></p>
+            <p>No tienes cuenta? <a href="Register.php">Regístrate aquí</a></p>
         </form>
     </div>
 </body>
