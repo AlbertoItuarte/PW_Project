@@ -10,6 +10,7 @@
 <body>
     <div>
         <form action="../Logic/Login.php" method="post">
+            <h1>SmartSchedule</h1>
             <input type="text" name="nombre_usuario" placeholder="Ingresa tu usuario" required>
             <input type="password" name="contrasena" placeholder="Ingresa tu contraseña" required>
             <input type="submit" value="Login">
