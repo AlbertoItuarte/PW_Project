@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="../CSS/auth.css">
+    <link rel="stylesheet" href="../CSS/Global.css">
+    <link rel="stylesheet" href="../CSS/Register.css">
 </head>
 <body>
     <div>
-        <form action="../Logic/Register.php" method="post">
+        <form action="../Logic/Register.php" id="formulario" method="post">
+            <h2>Regístrate</h2>
             <input type="text" name="nombre_usuario" placeholder="Nombre de usuario" required>
+
             <input type="text" name="nombre" placeholder="Nombre" required>
             <input type="text" name="apellido_paterno" placeholder="Apellido paterno" required>
             <input type="email" name="correo" placeholder="Ingresa tu correo" required>
