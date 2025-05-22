@@ -21,7 +21,9 @@ if (!isset($_SESSION['user_id'])) {
         <nav>
             <ul>
                 <li><a href="Home.php">Inicio</a></li>
-                <li><a href="./PlanSubject.php">Seleccionar materia</a></li>
+
+               <li><a href="./PlanSubject.php">Crear materia</a></li>
+
                 <li><a href="../Logic/LogOut.php">Cerrar sesión</a></li>
             </ul>
         </nav>
