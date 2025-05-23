@@ -5,6 +5,9 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: Login.php");
     exit();
 }
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
 
 if (isset($_GET['success'])) {
     echo '<div class="alert alert-success">¡Materia guardada correctamente!</div>';
@@ -43,6 +46,13 @@ if (isset($_GET['error'])) {
   </form>
 
   <script>
+      if (window.location.search.includes("success=1")) {
+    // Limpiar los campos del formulario
+    document.getElementById("programaForm").reset();
+
+    // Opcional: Mostrar un mensaje de éxito (si no se muestra ya en PHP)
+    console.log("Formulario enviado correctamente. Campos limpiados.");
+  }
     let contadorUnidades = 0;
 
     const unidadesContainer = document.getElementById("unidadesContainer");
