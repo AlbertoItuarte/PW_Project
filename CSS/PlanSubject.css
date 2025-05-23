@@ -1,15 +1,73 @@
- body { font-family: Arial, sans-serif; padding: 20px; }
+ body { font-family: Arial, sans-serif; padding: 20px; align-content: center; text-align: center; }
     .unidad-container {
       border: 1px solid #ccc;
       padding: 10px;
       margin-top: 10px;
       border-radius: 5px;
+      align-content: center;
+      text-align: center;
     }
     .tema-container {
-      margin-left: 20px;
-      margin-top: 10px;
-      border-left: 3px solid #eee;
-      padding-left: 10px;
-    }
-    input { margin: 5px 0; display: block; }
+    border-left: 3px solid #eee;
+    padding-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+    input { margin: 5px 0; display: block; align-content: center; text-align: center; align-items: center; }
+    
     button { margin: 5px 5px 15px 0; }
+    
+    .unidad-container,
+    .tema-container {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #f8f8f8;
+      border-radius: 5px;
+      align-content: center;
+      text-align: center;
+    }
+    #btnEliminarUnidad,
+    #btnEliminarTema {
+      margin-top: 10px;
+      background-color: #af1200;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+      padding: 10px 16px;
+      margin: 5px 10px 15px 0;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+      font-weight: bold;
+    }
+    form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 300px; /* puedes ajustar el ancho según necesites */
+      padding: 8px;
+      margin: 5px 0;
+      text-align: center;
+    }
+
+    .temaDiv{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+    }

@@ -71,12 +71,11 @@ if (!isset($_SESSION['user_id'])) {
     </div>
     <div>
         <h1>Bienvenido, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
-        <p>Has iniciado sesión correctamente.</p>
-    </div>
 
-    <div>
         <h2>Tus materias</h2>
-        <?php
+    <?php
+
+
         require_once '../Config/dbConection.php';
         
         $user_id = $_SESSION['user_id'];
