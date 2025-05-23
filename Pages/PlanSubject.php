@@ -1,11 +1,9 @@
 <?php
 session_start();
-// Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['user_id'])) {
     header("Location: Login.php");
     exit();
 }
-
 if (isset($_GET['success'])) {
     echo '<div class="alert alert-success">¡Materia guardada correctamente!</div>';
 }
@@ -28,12 +26,9 @@ if (isset($_GET['error'])) {
     <label>Nombre de la Materia:</label>
     <input type="text" id="materiaNombre" name="materiaNombre" placeholder="Ej. Matemáticas" required />
 
-    <label>Horas teóricas:</label>
+    <label>Horas Necesarias:</label>
     <input type="number" id="horasTeoricas" name="horasTeoricas" placeholder="Ej. 3" min="0" required />
     
-    <label>Horas prácticas:</label>
-    <input type="number" id="horasPracticas" name="horasPracticas" placeholder="Ej. 1" min="0" required />
-
     <div id="unidadesContainer"></div>
 
     <button type="button" id="btnAgregarUnidad">➕ Añadir Unidad</button> 
@@ -62,12 +57,19 @@ if (isset($_GET['error'])) {
         <div class="temas-container" id="temas-container-${contadorUnidades}"></div>
 
         <button type="button" class="btnAgregarTema" data-unidad="${contadorUnidades}">➕ Añadir Tema</button>
+        <button type="button" id="btnEliminarUnidad" class="btnEliminarUnidad">✘ Eliminar Unidad</button>
+        <hr />
       `;
 
       unidadesContainer.appendChild(unidadDiv);
 
       const btnTema = unidadDiv.querySelector(".btnAgregarTema");
       btnTema.addEventListener("click", (e) => agregarTema(e.target.dataset.unidad));
+
+      const btnEliminarUnidad = unidadDiv.querySelector(".btnEliminarUnidad");
+      btnEliminarUnidad.addEventListener("click", () => {
+        unidadDiv.remove();
+      });
     });
 
     function agregarTema(unidadId) {
@@ -83,20 +85,26 @@ if (isset($_GET['error'])) {
 
         <label>Horas necesarias para cubrir el tema:</label>
         <input type="number" name="unidades[${unidadId}][temas][${temaCount}][horas]" class="tema-horas" placeholder="Ej. 2" min="1" required />
+
+        <button type="button" id="btnEliminarTema" class="btnEliminarTema">✘ Eliminar Tema</button>
       `;
+
       temasContainer.appendChild(temaDiv);
+
+      const btnEliminarTema = temaDiv.querySelector(".btnEliminarTema");
+      btnEliminarTema.addEventListener("click", () => {
+        temaDiv.remove();
+      });
     }
 
     programaForm.addEventListener("submit", function(e) {
-      // Validación básica
-      if (contadorUnidades === 0) {
+      const unidadDivs = document.querySelectorAll(".unidad-container");
+      if (unidadDivs.length === 0) {
         e.preventDefault();
         alert("⚠️ Debes agregar al menos una unidad.");
         return false;
       }
-      
-      // Verificar que cada unidad tenga al menos un tema
-      const unidadDivs = document.querySelectorAll(".unidad-container");
+
       for (let i = 0; i < unidadDivs.length; i++) {
         const temas = unidadDivs[i].querySelectorAll(".tema-container");
         if (temas.length === 0) {
@@ -105,7 +113,7 @@ if (isset($_GET['error'])) {
           return false;
         }
       }
-      
+
       return true;
     });
   </script>

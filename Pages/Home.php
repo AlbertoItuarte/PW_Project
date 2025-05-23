@@ -30,11 +30,7 @@ if (!isset($_SESSION['user_id'])) {
     </div>
     <div>
         <h1>Bienvenido, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
-        <p>Has iniciado sesión correctamente.</p>
-    </div>
-
-   <div>
-    <h2>Tus materias</h2>
+        <h2>Tus materias</h2>
     <?php
     // Consulta de materias
         require_once '../Config/dbConection.php';
