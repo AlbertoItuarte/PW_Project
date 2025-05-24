@@ -20,7 +20,7 @@ $user_id = $_SESSION['user_id'];
 // Verificar que la materia pertenezca al usuario actual
 $sql = "SELECT p.id 
         FROM programa p 
-        INNER JOIN plan_usuario pu ON p.id = pu.programa_id 
+        INNER JOIN programa_admin pu ON p.id = pu.programa_id 
         WHERE p.id = ? AND pu.usuario_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ii", $materia_id, $user_id);
@@ -63,7 +63,7 @@ try {
     $stmt->execute();
 
     // Eliminar relación del plan de usuario
-    $sql = "DELETE FROM plan_usuario WHERE programa_id = ?";
+    $sql = "DELETE FROM programa_admin WHERE programa_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $materia_id);
     $stmt->execute();

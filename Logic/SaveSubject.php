@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $userId = $_SESSION['user_id'];
         $fechaHoy = date('Y-m-d');
         
-        $sql = "INSERT INTO plan_usuario (usuario_id, programa_id, fecha_evaluacion) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO programa_admin (admin_id, programa_id, fecha_creacion) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("iis", $userId, $programaId, $fechaHoy);
         $stmt->execute();

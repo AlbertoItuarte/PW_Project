@@ -81,10 +81,10 @@ if (!isset($_SESSION['user_id'])) {
         
         $user_id = $_SESSION['user_id'];
         
-        $sql = "SELECT p.id, p.materia, p.horas_teoricas, p.horas_practicas, pu.fecha_evaluacion 
+        $sql = "SELECT p.id, p.materia, p.horas_teoricas, p.horas_practicas, pu.fecha_creacion
                 FROM programa p 
-                INNER JOIN plan_usuario pu ON p.id = pu.programa_id 
-                WHERE pu.usuario_id = ?";
+                INNER JOIN programa_admin pu ON p.id = pu.programa_id 
+                WHERE pu.admin_id = ?";
                 
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $user_id);
@@ -109,7 +109,7 @@ if (!isset($_SESSION['user_id'])) {
                         <td>' . htmlspecialchars($row['materia']) . '</td>
                         <td>' . $row['horas_teoricas'] . '</td>
                         <td>' . $row['horas_practicas'] . '</td>
-                        <td>' . $row['fecha_evaluacion'] . '</td>
+                        <td>' . $row['fecha_creacion'] . '</td>
                         <td class="actions">
                             <a href="ViewSubject.php?id=' . $row['id'] . '">Ver</a>
                             <a href="#" class="btn-eliminar" data-id="' . $row['id'] . '" data-materia="' . htmlspecialchars($row['materia']) . '">Eliminar</a>
