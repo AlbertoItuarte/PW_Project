@@ -25,7 +25,13 @@ if (isset($_GET['error'])) {
   
   <form id="programaForm" method="post" action="../Logic/SaveSubject.php">
     <label>Nombre de la Materia:</label>
-    <input type="text" id="materiaNombre" name="materiaNombre" placeholder="Ej. Matemáticas" required />
+    <input type="text" id="materiaNombre" name="nombreMateria" placeholder="Ej. Matemáticas" required />
+
+    <label>Código de la materia:</label>
+    <input type="text" id="codigoMateria" name="codigoMateria" placeholder="Ej. MAT101" required />
+
+    <label>Descripción de la materia:</label>
+    <textarea id="descripcionMateria" name="descripcionMateria" rows="4" placeholder="Descripción de la materia..." required></textarea>
 
     <label>Horas Necesarias:</label>
     <input type="number" id="horasTeoricas" name="horasTeoricas" placeholder="Ej. 3" min="0" required />

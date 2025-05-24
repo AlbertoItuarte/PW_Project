@@ -6,6 +6,26 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: Login.php");
     exit();
 }
+
+// Verificar si el usuario es administrador
+if ($_SESSION['user_type'] != "Admin") {
+    header("Location: HomeUser.php");
+    exit();
+}
+
+// Conectar a la base de datos
+require_once '../Config/dbConection.php';
+
+// Verificar si existen ciclos
+$sql = "SELECT COUNT(*) AS total FROM ciclo";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+
+if ($row['total'] == 0) {
+    // Redirigir al administrador a la página de gestión de ciclos
+    header("Location: ManageCycles.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +54,8 @@ if (!isset($_SESSION['user_id'])) {
             border-radius: 8px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
         }
         .modal-content h3 {
             margin-bottom: 20px;
@@ -50,12 +72,28 @@ if (!isset($_SESSION['user_id'])) {
             cursor: pointer;
         }
         .btn-confirm {
-            background-color: #f44336;
+            background-color: #4CAF50;
             color: white;
         }
         .btn-cancel {
             background-color: #607d8b;
             color: white;
+        }
+        .cycle-info {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .cycle-info table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .cycle-info th, .cycle-info td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .cycle-info th {
+            background-color: #f2f2f2;
+            text-align: left;
         }
     </style>
 </head>
@@ -64,7 +102,7 @@ if (!isset($_SESSION['user_id'])) {
         <nav>
             <ul>
                 <li><a href="Home.php">Inicio</a></li>
-                <li><a href="./PlanSubject.php">Crear materia</a></li>
+                <li><a href="#" id="btn-create-materia">Crear materia</a></li>
                 <li><a href="../Logic/LogOut.php">Cerrar sesión</a></li>
             </ul>
         </nav>
@@ -73,110 +111,67 @@ if (!isset($_SESSION['user_id'])) {
         <h1>Bienvenido, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
 
         <h2>Tus materias</h2>
-    <?php
 
-
-        require_once '../Config/dbConection.php';
-        
-        $user_id = $_SESSION['user_id'];
-        
-        $sql = "SELECT p.id, p.materia, p.horas_teoricas, p.horas_practicas, pu.fecha_evaluacion 
-                FROM programa p 
-                INNER JOIN plan_usuario pu ON p.id = pu.programa_id 
-                WHERE pu.usuario_id = ?";
-                
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        
-        if ($result->num_rows > 0) {
-            echo '<table>
-                    <thead>
-                        <tr>
-                            <th>Materia</th>
-                            <th>Horas Teóricas</th>
-                            <th>Horas Prácticas</th>
-                            <th>Fecha de Creación</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>';
-            
-            while ($row = $result->fetch_assoc()) {
-                echo '<tr>
-                        <td>' . htmlspecialchars($row['materia']) . '</td>
-                        <td>' . $row['horas_teoricas'] . '</td>
-                        <td>' . $row['horas_practicas'] . '</td>
-                        <td>' . $row['fecha_evaluacion'] . '</td>
-                        <td class="actions">
-                            <a href="ViewSubject.php?id=' . $row['id'] . '">Ver</a>
-                            <a href="#" class="btn-eliminar" data-id="' . $row['id'] . '" data-materia="' . htmlspecialchars($row['materia']) . '">Eliminar</a>
-                            <a href="EditSubject.php?id=' . $row['id'] . '">Editar</a>
-                        </td>
-                      </tr>';
-            }
-            echo '</tbody></table>';
-        } else {
-            echo '<div class="no-materias">
-                    <p>No tienes materias registradas aún.</p>
-                    <p>Haz clic en "Crear nueva materia" para empezar a organizar tu plan de estudios.</p>
-                  </div>';
-        }
-        ?>
-    </div>
-
-    <!-- Ventana emergente -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <h3 id="modal-text"></h3>
-            <div class="modal-buttons">
-                <button id="btn-confirm" class="btn-confirm">Aceptar</button>
-                <button id="btn-cancel" class="btn-cancel">Cancelar</button>
-            </div>
+        <div id="materias-container">
+            <p>Cargando materias...</p>
         </div>
     </div>
-
     <script>
-            // Detectar si la página fue cargada desde el historial del navegador
-        window.addEventListener('pageshow', function (event) {
-        if (event.persisted) {
-            // Si la página fue cargada desde la caché, recargarla
-            window.location.reload();
-        }
-        });
-        // Obtener elementos del DOM
-        const modal = document.getElementById('modal');
-        const modalText = document.getElementById('modal-text');
-        const btnConfirm = document.getElementById('btn-confirm');
-        const btnCancel = document.getElementById('btn-cancel');
-        let deleteUrl = '';
+        // Cargar materias
+        const materiasContainer = document.getElementById('materias-container');
+        fetch('../API/AdminSubjects/GetAdminSubjects.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.length > 0) {
+                    let table = `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Materia</th>
+                                    <th>Horas Teóricas</th>
+                                    <th>Horas Prácticas</th>
+                                    <th>Fecha de Creación</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
 
-        // Manejar clic en "Eliminar"
-        document.querySelectorAll('.btn-eliminar').forEach(button => {
-            button.addEventListener('click', function (e) {
-                e.preventDefault();
-                const materia = this.dataset.materia;
-                const id = this.dataset.id;
+                    data.forEach(materia => {
+                        table += `
+                            <tr>
+                                <td>${materia.materia}</td>
+                                <td>${materia.horas_teoricas}</td>
+                                <td>${materia.horas_practicas}</td>
+                                <td>${materia.fecha_asignacion}</td>
+                                <td class="actions">
+                                    <a href="ViewSubject.php?id=${materia.materia_id}">Ver</a>
+                                    <a href="#" class="btn-eliminar" data-id="${materia.materia_id}" data-materia="${materia.materia}">Eliminar</a>
+                                    <a href="EditSubject.php?id=${materia.materia_id}">Editar</a>
+                                </td>
+                            </tr>
+                        `;
+                    });
 
-                // Configurar texto y URL de eliminación
-                modalText.textContent = `¿Seguro que desea eliminar la materia "${materia}"?`;
-                deleteUrl = `../Logic/DeleteSubject.php?id=${id}`;
-
-                // Mostrar ventana emergente
-                modal.style.display = 'flex';
+                    table += '</tbody></table>';
+                    materiasContainer.innerHTML = table;
+                } else {
+                    materiasContainer.innerHTML = `
+                        <div class="no-materias">
+                            <p>No tienes materias registradas aún.</p>
+                            <p>Haz clic en "Crear materia" para empezar a organizar tu plan de estudios.</p>
+                        </div>
+                    `;
+                }
+            })
+            .catch(error => {
+                console.error('Error al cargar las materias:', error);
+                materiasContainer.innerHTML = `
+                    <div class="error">
+                        <p>Error al cargar las materias. Intenta nuevamente más tarde.</p>
+                    </div>
+                `;
             });
-        });
-
-        // Confirmar eliminación
-        btnConfirm.addEventListener('click', function () {
-            window.location.href = deleteUrl;
-        });
-
-        // Cancelar eliminación
-        btnCancel.addEventListener('click', function () {
-            modal.style.display = 'none';
-        });
     </script>
 </body>
 </html>
