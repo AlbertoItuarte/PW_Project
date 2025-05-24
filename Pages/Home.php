@@ -116,9 +116,9 @@ if ($row['total'] == 0) {
             <p>Cargando materias...</p>
         </div>
     </div>
-    <div id="modal-eliminar" class="modal">
+    <div id="modal-eliminar" class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
         <div class="modal-content">
-            <h3>¿Estás seguro de que deseas eliminar esta materia?</h3>
+            <h3 id="modal-title">¿Estás seguro de que deseas eliminar esta materia?</h3>
             <p id="modal-materia-info"></p> 
             <p>Esta acción no se puede deshacer.</p>
             <div class="modal-buttons">
