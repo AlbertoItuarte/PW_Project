@@ -76,55 +76,9 @@ if (!isset($_SESSION['user_id'])) {
 
     <div>
         <h2>Tus materias</h2>
-        <?php
-        require_once '../Config/dbConection.php';
-        
-        $user_id = $_SESSION['user_id'];
-        
-        $sql = "SELECT p.id, p.materia, p.horas_teoricas, p.horas_practicas, pu.fecha_creacion
-                FROM programa p 
-                INNER JOIN programa_admin pu ON p.id = pu.programa_id 
-                WHERE pu.admin_id = ?";
-                
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        
-        if ($result->num_rows > 0) {
-            echo '<table>
-                    <thead>
-                        <tr>
-                            <th>Materia</th>
-                            <th>Horas Teóricas</th>
-                            <th>Horas Prácticas</th>
-                            <th>Fecha de Creación</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>';
-            
-            while ($row = $result->fetch_assoc()) {
-                echo '<tr>
-                        <td>' . htmlspecialchars($row['materia']) . '</td>
-                        <td>' . $row['horas_teoricas'] . '</td>
-                        <td>' . $row['horas_practicas'] . '</td>
-                        <td>' . $row['fecha_creacion'] . '</td>
-                        <td class="actions">
-                            <a href="ViewSubject.php?id=' . $row['id'] . '">Ver</a>
-                            <a href="#" class="btn-eliminar" data-id="' . $row['id'] . '" data-materia="' . htmlspecialchars($row['materia']) . '">Eliminar</a>
-                            <a href="EditSubject.php?id=' . $row['id'] . '">Editar</a>
-                        </td>
-                      </tr>';
-            }
-            echo '</tbody></table>';
-        } else {
-            echo '<div class="no-materias">
-                    <p>No tienes materias registradas aún.</p>
-                    <p>Haz clic en "Crear nueva materia" para empezar a organizar tu plan de estudios.</p>
-                  </div>';
-        }
-        ?>
+        <div id="materias-container">
+            <p>Cargando materias...</p>
+        </div>
     </div>
 
     <!-- Ventana emergente -->
@@ -139,7 +93,7 @@ if (!isset($_SESSION['user_id'])) {
     </div>
 
     <script>
-            // Detectar si la página fue cargada desde el historial del navegador
+        // Detectar si la página fue cargada desde el historial del navegador
         window.addEventListener('pageshow', function (event) {
         if (event.persisted) {
             // Si la página fue cargada desde la caché, recargarla
@@ -178,6 +132,64 @@ if (!isset($_SESSION['user_id'])) {
         btnCancel.addEventListener('click', function () {
             modal.style.display = 'none';
         });
+
+        // Obtener el contenedor donde se mostrarán las materias
+        const materiasContainer = document.getElementById('materias-container');
+
+        // Realizar la solicitud a GetAdminSubjects.php
+        fetch('../Logic/GetAdminSubjects.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.length > 0) {
+                    let table = `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Materia</th>
+                                    <th>Horas Teóricas</th>
+                                    <th>Horas Prácticas</th>
+                                    <th>Fecha de Creación</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+
+                    data.forEach(materia => {
+                        table += `
+                            <tr>
+                                <td>${materia.materia}</td>
+                                <td>${materia.horas_teoricas}</td>
+                                <td>${materia.horas_practicas}</td>
+                                <td>${materia.fecha_asignacion}</td>
+                                <td class="actions">
+                                    <a href="ViewSubject.php?id=${materia.materia_id}">Ver</a>
+                                    <a href="#" class="btn-eliminar" data-id="${materia.materia_id}" data-materia="${materia.materia}">Eliminar</a>
+                                    <a href="EditSubject.php?id=${materia.materia_id}">Editar</a>
+                                </td>
+                            </tr>
+                        `;
+                    });
+
+                    table += '</tbody></table>';
+                    materiasContainer.innerHTML = table;
+                } else {
+                    materiasContainer.innerHTML = `
+                        <div class="no-materias">
+                            <p>No tienes materias registradas aún.</p>
+                            <p>Haz clic en "Crear materia" para empezar a organizar tu plan de estudios.</p>
+                        </div>
+                    `;
+                }
+            })
+            .catch(error => {
+                console.error('Error al cargar las materias:', error);
+                materiasContainer.innerHTML = `
+                    <div class="error">
+                        <p>Error al cargar las materias. Intenta nuevamente más tarde.</p>
+                    </div>
+                `;
+            });
     </script>
 </body>
 </html>

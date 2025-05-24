@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['user_id'])) {
+        header("Location: Login.php");
+        exit();
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +19,7 @@
         <ul>
             <li><a href="HomeUser.php">Inicio</a></li>
             <li><a href="SelectSubject.php">Seleccionar Materias</a></li>
+            <li><a href="../Logic/LogOut.php">Cerrar sesión</a></li>
         </ul>
     </nav>
 
