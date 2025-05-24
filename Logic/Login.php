@@ -5,10 +5,10 @@ require_once '../Config/dbConection.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener datos del formulario
     $username = $conn->real_escape_string($_POST['nombre_usuario']);
-    $password = $_POST['password'];
+    $password = $_POST['contrasena'];
     
     // Consulta para verificar las credenciales (incluyendo tipo_usuario)
-    $sql = "SELECT id, nombre_usuario, contrasena, tipo_usuario FROM usuario WHERE nombre_usuario = ?";
+    $sql = "SELECT usuario_id, nombre, contrasena, tipo FROM usuario WHERE usuario = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -20,12 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verificar contraseña con password_verify 
         if (password_verify($password, $row['contrasena'])) {
             // Contraseña correcta, iniciar sesión
-            $_SESSION['user_id'] = $row['id'];
-            $_SESSION['username'] = $row['nombre_usuario'];
-            $_SESSION['user_type'] = $row['tipo_usuario'];
+            $_SESSION['user_id'] = $row['usuario_id'];
+            $_SESSION['username'] = $row['usuario'];
+            $_SESSION['user_type'] = $row['tipo'];
             
             // Redirigir según el tipo de usuario
-            if ($row['tipo_usuario'] == 'Admin') {
+            if ($row['tipo'] == 'Admin') {
                 header("Location: ../Pages/Home.php");
             } else {
                 header("Location: ../Pages/HomeUser.php");

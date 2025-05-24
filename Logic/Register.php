@@ -5,8 +5,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $username = $conn->real_escape_string($_POST['nombre_usuario']);
     $email = $conn->real_escape_string($_POST['correo']);
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
+    $password = $_POST['contrasena'];
+    $confirm_password = $_POST['confirma_contrasena'];
     
     // Valores por defecto para los campos adicionales
     $nombre = $conn->real_escape_string($_POST['nombre'] ?? $username);
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
     
-    $sql = "SELECT id FROM usuario WHERE nombre_usuario = ? OR correo = ?";
+    $sql = "SELECT usuario_id FROM usuario WHERE usuario = ? OR correo = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $username, $email);
     $stmt->execute();
@@ -31,10 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Insertar el usuario con tipo_usuario por defecto como 'Usuario'
-    $sql = "INSERT INTO usuario (nombre_usuario, nombre, apellido_paterno, correo, contrasena, tipo_usuario) 
+    $sql = "INSERT INTO usuario (nombre, apellido_paterno, usuario, correo, contrasena, tipo) 
             VALUES (?, ?, ?, ?, ?, 'Usuario')";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssss", $username, $nombre, $apellido_paterno, $email, $hashed_password);
+    $stmt->bind_param("sssss",$nombre, $apellido_paterno, $username, $email, $hashed_password);
     
     if ($stmt->execute()) {
         header("Location: ../Pages/Login.php?success=registered");
