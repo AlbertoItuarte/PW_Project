@@ -6,6 +6,26 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: Login.php");
     exit();
 }
+
+// Verificar si el usuario es administrador
+if ($_SESSION['user_type'] != "Admin") {
+    header("Location: HomeUser.php");
+    exit();
+}
+
+// Conectar a la base de datos
+require_once '../Config/dbConection.php';
+
+// Verificar si existen ciclos
+$sql = "SELECT COUNT(*) AS total FROM ciclo";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+
+if ($row['total'] == 0) {
+    // Redirigir al administrador a la página de gestión de ciclos
+    header("Location: ManageCycles.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +54,8 @@ if (!isset($_SESSION['user_id'])) {
             border-radius: 8px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
         }
         .modal-content h3 {
             margin-bottom: 20px;
@@ -50,12 +72,28 @@ if (!isset($_SESSION['user_id'])) {
             cursor: pointer;
         }
         .btn-confirm {
-            background-color: #f44336;
+            background-color: #4CAF50;
             color: white;
         }
         .btn-cancel {
             background-color: #607d8b;
             color: white;
+        }
+        .cycle-info {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .cycle-info table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .cycle-info th, .cycle-info td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .cycle-info th {
+            background-color: #f2f2f2;
+            text-align: left;
         }
     </style>
 </head>
@@ -64,7 +102,7 @@ if (!isset($_SESSION['user_id'])) {
         <nav>
             <ul>
                 <li><a href="Home.php">Inicio</a></li>
-                <li><a href="./PlanSubject.php">Crear materia</a></li>
+                <li><a href="#" id="btn-create-materia">Crear materia</a></li>
                 <li><a href="../Logic/LogOut.php">Cerrar sesión</a></li>
             </ul>
         </nav>
@@ -80,64 +118,10 @@ if (!isset($_SESSION['user_id'])) {
             <p>Cargando materias...</p>
         </div>
     </div>
-
-    <!-- Ventana emergente -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <h3 id="modal-text"></h3>
-            <div class="modal-buttons">
-                <button id="btn-confirm" class="btn-confirm">Aceptar</button>
-                <button id="btn-cancel" class="btn-cancel">Cancelar</button>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Detectar si la página fue cargada desde el historial del navegador
-        window.addEventListener('pageshow', function (event) {
-        if (event.persisted) {
-            // Si la página fue cargada desde la caché, recargarla
-            window.location.reload();
-        }
-        });
-        // Obtener elementos del DOM
-        const modal = document.getElementById('modal');
-        const modalText = document.getElementById('modal-text');
-        const btnConfirm = document.getElementById('btn-confirm');
-        const btnCancel = document.getElementById('btn-cancel');
-        let deleteUrl = '';
-
-        // Manejar clic en "Eliminar"
-        document.querySelectorAll('.btn-eliminar').forEach(button => {
-            button.addEventListener('click', function (e) {
-                e.preventDefault();
-                const materia = this.dataset.materia;
-                const id = this.dataset.id;
-
-                // Configurar texto y URL de eliminación
-                modalText.textContent = `¿Seguro que desea eliminar la materia "${materia}"?`;
-                deleteUrl = `../Logic/DeleteSubject.php?id=${id}`;
-
-                // Mostrar ventana emergente
-                modal.style.display = 'flex';
-            });
-        });
-
-        // Confirmar eliminación
-        btnConfirm.addEventListener('click', function () {
-            window.location.href = deleteUrl;
-        });
-
-        // Cancelar eliminación
-        btnCancel.addEventListener('click', function () {
-            modal.style.display = 'none';
-        });
-
-        // Obtener el contenedor donde se mostrarán las materias
+        // Cargar materias
         const materiasContainer = document.getElementById('materias-container');
-
-        // Realizar la solicitud a GetAdminSubjects.php
-        fetch('../Logic/GetAdminSubjects.php')
+        fetch('../API/AdminSubjects/GetAdminSubjects.php')
             .then(response => response.json())
             .then(data => {
                 if (data.length > 0) {
