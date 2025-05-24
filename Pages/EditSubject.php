@@ -14,16 +14,16 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     exit();
 }
 
-$programaId = intval($_GET['id']);
+$materiaId = intval($_GET['id']);
 $userId = $_SESSION['user_id'];
 
 // Verificar que la materia pertenezca al usuario actual
-$sql = "SELECT p.*, pu.id as plan_id 
-        FROM programa p
-        INNER JOIN plan_usuario pu ON p.id = pu.programa_id
-        WHERE p.id = ? AND pu.usuario_id = ?";
+$sql = "SELECT m.*, mc.materia_ciclo_id, mc.horas_teoricas, mc.horas_practicas
+        FROM materia m
+        INNER JOIN materia_ciclo mc ON m.materia_id = mc.materia_id
+        WHERE m.materia_id = ? AND mc.usuario_id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ii", $programaId, $userId);
+$stmt->bind_param("ii", $materiaId, $userId);
 $stmt->execute();
 $resultado = $stmt->get_result();
 
@@ -33,27 +33,23 @@ if ($resultado->num_rows === 0) {
     exit();
 }
 
-$programa = $resultado->fetch_assoc();
-$planId = $programa['plan_id'];
+$materia = $resultado->fetch_assoc();
+$materiaCicloId = $materia['materia_ciclo_id'];
 
 // Obtener unidades
 $unidades = [];
-$sqlUnidades = "SELECT * FROM unidad WHERE programa_id = ? ORDER BY id";
+$sqlUnidades = "SELECT * FROM unidad WHERE materia_ciclo_id = ? ORDER BY unidad_id";
 $stmt = $conn->prepare($sqlUnidades);
-$stmt->bind_param("i", $programaId);
+$stmt->bind_param("i", $materiaCicloId);
 $stmt->execute();
 $resultadoUnidades = $stmt->get_result();
 
 while ($unidad = $resultadoUnidades->fetch_assoc()) {
     // Obtener temas para cada unidad
     $temas = [];
-    $sqlTemas = "SELECT t.*, tu.horas_estimadas 
-                FROM tema t
-                LEFT JOIN tema_usuario tu ON t.id = tu.tema_id AND tu.plan_id = ?
-                WHERE t.unidad_id = ?
-                ORDER BY t.id";
+    $sqlTemas = "SELECT * FROM tema WHERE unidad_id = ? ORDER BY tema_id";
     $stmtTemas = $conn->prepare($sqlTemas);
-    $stmtTemas->bind_param("ii", $planId, $unidad['id']);
+    $stmtTemas->bind_param("i", $unidad['unidad_id']);
     $stmtTemas->execute();
     $resultadoTemas = $stmtTemas->get_result();
     
@@ -71,6 +67,63 @@ if (isset($_GET['success'])) {
 }
 if (isset($_GET['error'])) {
     echo '<div class="alert alert-danger">Error: ' . htmlspecialchars($_GET['error']) . '</div>';
+}
+
+// Guardar cambios de materia y unidades
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $conn->begin_transaction();
+    try {
+        // Actualizar información de la materia
+        $nombreMateria = $conn->real_escape_string($_POST['materiaNombre']);
+        $horasTeoricas = intval($_POST['horasTeoricas']);
+        $horasPracticas = intval($_POST['horasPracticas']);
+
+        $sqlMateria = "UPDATE materia SET nombre = ?, horas_teoricas = ?, horas_practicas = ? WHERE materia_id = ?";
+        $stmtMateria = $conn->prepare($sqlMateria);
+        $stmtMateria->bind_param("ssii", $nombreMateria, $horasTeoricas, $horasPracticas, $materiaId);
+        $stmtMateria->execute();
+
+        if (isset($_POST['unidades']) && is_array($_POST['unidades'])) {
+            foreach ($_POST['unidades'] as $unidadData) {
+                if (empty($unidadData['nombre'])) continue;
+
+                // Validar que numero_unidad sea mayor que 0
+                if (!isset($unidadData['numero_unidad']) || intval($unidadData['numero_unidad']) <= 0) {
+                    $conn->rollback();
+                    header("Location: ../Pages/EditSubject.php?id={$materiaId}&error=" . urlencode("El número de unidad debe ser mayor que 0."));
+                    exit();
+                }
+
+                $numeroUnidad = intval($unidadData['numero_unidad']);
+
+                // Determinar si es una nueva unidad o una existente
+                if (isset($unidadData['id']) && intval($unidadData['id']) > 0) {
+                    // Actualizar unidad existente
+                    $unidadId = intval($unidadData['id']);
+                    $nombreUnidad = $conn->real_escape_string($unidadData['nombre']);
+                    $sql = "UPDATE unidad SET nombre = ?, numero_unidad = ? WHERE unidad_id = ?";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("sii", $nombreUnidad, $numeroUnidad, $unidadId);
+                    $stmt->execute();
+                } else {
+                    // Insertar nueva unidad
+                    $nombreUnidad = $conn->real_escape_string($unidadData['nombre']);
+                    $sql = "INSERT INTO unidad (materia_ciclo_id, nombre, numero_unidad) VALUES (?, ?, ?)";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("isi", $materiaCicloId, $nombreUnidad, $numeroUnidad);
+                    $stmt->execute();
+                }
+            }
+        }
+
+        $conn->commit();
+        header("Location: ../Pages/EditSubject.php?id={$materiaId}&success=1");
+        exit();
+    } catch (Exception $e) {
+        $conn->rollback();
+        header("Location: ../Pages/EditSubject.php?id={$materiaId}&error=" . urlencode("Error al actualizar la materia: " . $e->getMessage()));
+        exit();
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -92,32 +145,35 @@ if (isset($_GET['error'])) {
 
   <h2>Editar Materia</h2>
   
-  <form id="programaForm" method="post" action="../Logic/UpdateSubject.php">
-    <input type="hidden" name="programa_id" value="<?php echo $programaId; ?>">
-    <input type="hidden" name="plan_id" value="<?php echo $planId; ?>">
+  <form id="materiaForm" method="post" action="../Logic/UpdateSubject.php">
+    <input type="hidden" name="materia_id" value="<?php echo $materiaId; ?>">
+    <input type="hidden" name="materia_ciclo_id" value="<?php echo $materiaCicloId; ?>">
     
     <label>Nombre de la Materia:</label>
-    <input type="text" id="materiaNombre" name="materiaNombre" value="<?php echo htmlspecialchars($programa['materia']); ?>" required />
+    <input type="text" id="materiaNombre" name="materiaNombre" value="<?php echo htmlspecialchars($materia['nombre']); ?>" required />
 
     <label>Horas teóricas:</label>
-    <input type="number" id="horasTeoricas" name="horasTeoricas" value="<?php echo $programa['horas_teoricas']; ?>" min="0" required />
+    <input type="number" id="horasTeoricas" name="horasTeoricas" value="<?php echo $materia['horas_teoricas']; ?>" min="0" required />
     
     <label>Horas prácticas:</label>
-    <input type="number" id="horasPracticas" name="horasPracticas" value="<?php echo $programa['horas_practicas']; ?>" min="0" required />
+    <input type="number" id="horasPracticas" name="horasPracticas" value="<?php echo $materia['horas_practicas']; ?>" min="0" required />
 
     <div id="unidadesContainer">
       <?php foreach ($unidades as $index => $unidad): ?>
-        <div class="unidad-container" data-id="<?php echo $unidad['id']; ?>">
-          <input type="hidden" name="unidades[<?php echo $index; ?>][id]" value="<?php echo $unidad['id']; ?>">
+        <div class="unidad-container" data-id="<?php echo $unidad['unidad_id']; ?>">
+          <input type="hidden" name="unidades[<?php echo $index; ?>][id]" value="<?php echo $unidad['unidad_id']; ?>">
           
           <h3>Unidad <?php echo $index + 1; ?></h3>
+          <label>Número de Unidad:</label>
+          <input type="number" name="unidades[<?php echo $index; ?>][numero_unidad]" class="unidad-numero" value="<?php echo $unidad['numero_unidad']; ?>" min="1" required />
+
           <label>Nombre de la Unidad:</label>
           <input type="text" name="unidades[<?php echo $index; ?>][nombre]" class="unidad-nombre" value="<?php echo htmlspecialchars($unidad['nombre']); ?>" required />
 
           <div class="temas-container" id="temas-container-<?php echo $index; ?>">
             <?php foreach ($unidad['temas'] as $temaIndex => $tema): ?>
-              <div class="tema-container" data-id="<?php echo $tema['id']; ?>">
-                <input type="hidden" name="unidades[<?php echo $index; ?>][temas][<?php echo $temaIndex; ?>][id]" value="<?php echo $tema['id']; ?>">
+              <div class="tema-container" data-id="<?php echo $tema['tema_id']; ?>">
+                <input type="hidden" name="unidades[<?php echo $index; ?>][temas][<?php echo $temaIndex; ?>][id]" value="<?php echo $tema['tema_id']; ?>">
                 
                 <h4>Tema <?php echo $temaIndex + 1; ?></h4>
                 <label>Nombre del Tema:</label>
@@ -125,154 +181,14 @@ if (isset($_GET['error'])) {
 
                 <label>Horas necesarias para cubrir el tema:</label>
                 <input type="number" name="unidades[<?php echo $index; ?>][temas][<?php echo $temaIndex; ?>][horas]" class="tema-horas" value="<?php echo $tema['horas_estimadas']; ?>" min="1" required />
-                
-                <button type="button" class="btnEliminarTema" data-id="<?php echo $tema['id']; ?>">❌ Eliminar Tema</button>
               </div>
             <?php endforeach; ?>
           </div>
-
-          <button type="button" class="btnAgregarTema" data-unidad="<?php echo $index; ?>">➕ Añadir Tema</button>
-          <button type="button" class="btnEliminarUnidad" data-id="<?php echo $unidad['id']; ?>">❌ Eliminar Unidad</button>
         </div>
       <?php endforeach; ?>
     </div>
 
-    <button type="button" id="btnAgregarUnidad">➕ Añadir Unidad</button> 
-
-    <hr />
     <button type="submit" id="guardarTodo">💾 Guardar Cambios</button>
   </form>
-
-  <script>
-    let contadorUnidades = <?php echo count($unidades); ?>;
-
-    const unidadesContainer = document.getElementById("unidadesContainer");
-    const btnAgregarUnidad = document.getElementById("btnAgregarUnidad");
-    const programaForm = document.getElementById("programaForm");
-
-    // Agregar una nueva unidad
-    btnAgregarUnidad.addEventListener("click", () => {
-      const index = contadorUnidades;
-      contadorUnidades++;
-      
-      const unidadDiv = document.createElement("div");
-      unidadDiv.className = "unidad-container";
-      unidadDiv.dataset.new = "true";
-
-      unidadDiv.innerHTML = `
-        <h3>Unidad ${contadorUnidades}</h3>
-        <input type="hidden" name="unidades[${index}][new]" value="true">
-        <label>Nombre de la Unidad:</label>
-        <input type="text" name="unidades[${index}][nombre]" class="unidad-nombre" placeholder="Ej. Álgebra" required />
-
-        <div class="temas-container" id="temas-container-${index}"></div>
-
-        <button type="button" class="btnAgregarTema" data-unidad="${index}">➕ Añadir Tema</button>
-        <button type="button" class="btnEliminarUnidad" data-new="true">❌ Eliminar Unidad</button>
-      `;
-
-      unidadesContainer.appendChild(unidadDiv);
-
-      const btnTema = unidadDiv.querySelector(".btnAgregarTema");
-      btnTema.addEventListener("click", () => agregarTema(index));
-      
-      const btnEliminar = unidadDiv.querySelector(".btnEliminarUnidad");
-      btnEliminar.addEventListener("click", (e) => {
-        unidadDiv.remove();
-      });
-    });
-
-    // Agregar un nuevo tema a una unidad existente
-    function agregarTema(unidadIndex) {
-      const temasContainer = document.getElementById(`temas-container-${unidadIndex}`);
-      const temaCount = temasContainer.childElementCount;
-      
-      const temaDiv = document.createElement("div");
-      temaDiv.className = "tema-container";
-      temaDiv.dataset.new = "true";
-      
-      temaDiv.innerHTML = `
-        <input type="hidden" name="unidades[${unidadIndex}][temas][${temaCount}][new]" value="true">
-        <h4>Tema ${temaCount + 1}</h4>
-        <label>Nombre del Tema:</label>
-        <input type="text" name="unidades[${unidadIndex}][temas][${temaCount}][nombre]" class="tema-nombre" placeholder="Ej. Ecuaciones cuadráticas" required />
-
-        <label>Horas necesarias para cubrir el tema:</label>
-        <input type="number" name="unidades[${unidadIndex}][temas][${temaCount}][horas]" class="tema-horas" placeholder="Ej. 2" min="1" required />
-        
-        <button type="button" class="btnEliminarTema" data-new="true">❌ Eliminar Tema</button>
-      `;
-      
-      temasContainer.appendChild(temaDiv);
-      
-      const btnEliminar = temaDiv.querySelector(".btnEliminarTema");
-      btnEliminar.addEventListener("click", () => {
-        temaDiv.remove();
-      });
-    }
-
-    // Agregar event listeners para los botones de eliminar existentes
-    document.querySelectorAll('.btnEliminarTema').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const temaContainer = this.closest('.tema-container');
-        if (this.dataset.id) {
-          // Si es un tema existente, agregar campo oculto para marcarlo como eliminado
-          const unidadIndex = this.closest('.unidad-container').querySelector('.btnAgregarTema').dataset.unidad;
-          const hiddenInput = document.createElement('input');
-          hiddenInput.type = 'hidden';
-          hiddenInput.name = 'temas_eliminar[]';
-          hiddenInput.value = this.dataset.id;
-          programaForm.appendChild(hiddenInput);
-        }
-        temaContainer.remove();
-      });
-    });
-
-    document.querySelectorAll('.btnEliminarUnidad').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const unidadContainer = this.closest('.unidad-container');
-        if (this.dataset.id) {
-          // Si es una unidad existente, agregar campo oculto para marcarla como eliminada
-          const hiddenInput = document.createElement('input');
-          hiddenInput.type = 'hidden';
-          hiddenInput.name = 'unidades_eliminar[]';
-          hiddenInput.value = this.dataset.id;
-          programaForm.appendChild(hiddenInput);
-        }
-        unidadContainer.remove();
-      });
-    });
-
-    // Agregar event listeners para botones de agregar tema existentes
-    document.querySelectorAll('.btnAgregarTema').forEach(btn => {
-      btn.addEventListener('click', function() {
-        agregarTema(this.dataset.unidad);
-      });
-    });
-
-    // Validación del formulario
-    programaForm.addEventListener("submit", function(e) {
-      // Verificar que haya al menos una unidad
-      const unidadDivs = document.querySelectorAll(".unidad-container");
-      if (unidadDivs.length === 0) {
-        e.preventDefault();
-        alert("⚠️ Debes tener al menos una unidad.");
-        return false;
-      }
-      
-      // Verificar que cada unidad tenga al menos un tema
-      let valid = true;
-      unidadDivs.forEach((unidadDiv, index) => {
-        const temas = unidadDiv.querySelectorAll(".tema-container");
-        if (temas.length === 0) {
-          e.preventDefault();
-          alert(`⚠️ La unidad ${index+1} debe tener al menos un tema.`);
-          valid = false;
-        }
-      });
-      
-      return valid;
-    });
-  </script>
 </body>
 </html>

@@ -22,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Contraseña correcta, iniciar sesión
             $_SESSION['user_id'] = $row['usuario_id'];
             $_SESSION['username'] = $row['usuario'];
+            $_SESSION['name'] = $row['nombre'];
             $_SESSION['user_type'] = $row['tipo'];
             
             // Redirigir según el tipo de usuario
