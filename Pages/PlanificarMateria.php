@@ -11,10 +11,11 @@ require_once '../Config/dbConection.php';
 $user_id = $_SESSION['user_id'];
 
 // Obtener las materias asignadas al usuario
-$sql = "SELECT mc.materia_ciclo_id, m.nombre AS materia
-        FROM materia_ciclo mc
+$sql = "SELECT umc.materia_ciclo_id, m.nombre AS materia
+        FROM usuario_materia_ciclo umc
+        INNER JOIN materia_ciclo mc ON umc.materia_ciclo_id = mc.materia_ciclo_id
         INNER JOIN materia m ON mc.materia_id = m.materia_id
-        WHERE mc.usuario_id = ?";
+        WHERE umc.usuario_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();

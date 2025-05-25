@@ -17,14 +17,12 @@ if (!isset($_POST['materias']) || empty($_POST['materias'])) {
 $user_id = $_SESSION['user_id'];
 
 // Preparar la consulta para asignar materias
-$sql = "INSERT INTO materia_ciclo (materia_id, usuario_id, ciclo_id) VALUES (?, ?, ?)";
+$sql = "INSERT INTO usuario_materia_ciclo (usuario_id, materia_ciclo_id) VALUES (?, ?)";
 $stmt = $conn->prepare($sql);
 
-$ciclo_id = 10; // Cambiar esto si necesitas obtener el ciclo dinámicamente
-
-foreach ($_POST['materias'] as $materia_id) {
-    $materia_id = intval($materia_id);
-    $stmt->bind_param("iii", $materia_id, $user_id, $ciclo_id);
+foreach ($_POST['materias'] as $materia_ciclo_id) {
+    $materia_ciclo_id = intval($materia_ciclo_id);
+    $stmt->bind_param("ii", $user_id, $materia_ciclo_id);
     $stmt->execute();
 }
 
