@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $materiaId = $conn->insert_id;
 
         // 2. Insertar relación con el ciclo
-        $ciclo = 7;
+        $ciclo = 10;
         $usuario_id = $_SESSION['user_id'];
         $fechaHoy = date('Y-m-d');
         $horas_totales = $horasTeoricas + $horasPracticas;
