@@ -1,16 +1,16 @@
 <?php
 session_start();
-require_once '../Config/dbConection.php';
+require_once '../../Config/dbConection.php';
 
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../Pages/Login.php");
+    header("Location: ../../Pages/Login.php");
     exit();
 }
 
 // Verificar si se proporcionó un ID de materia
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header("Location: ../Pages/Home.php?error=invalid_id");
+    header("Location: ../../Pages/Home.php?error=invalid_id");
     exit();
 }
 
@@ -28,7 +28,7 @@ $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
     // La materia no existe o no pertenece al usuario
-    header("Location: ../Pages/Home.php?error=materia_no_encontrada");
+    header("Location: ../../Pages/Home.php?error=materia_no_encontrada");
     exit();
 }
 
@@ -73,12 +73,12 @@ try {
     $conn->commit();
 
     // Redirigir con mensaje de éxito
-    header("Location: ../Pages/Home.php?success=materia_eliminada");
+    header("Location: ../../Pages/Home.php?success=materia_eliminada");
     exit();
 } catch (Exception $e) {
     // Revertir en caso de error
     $conn->rollback();
-    header("Location: ../Pages/Home.php?error=" . urlencode($e->getMessage()));
+    header("Location: ../../Pages/Home.php?error=" . urlencode($e->getMessage()));
     exit();
 }
 ?>

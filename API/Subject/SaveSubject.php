@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once '../Config/dbConection.php';
+require_once '../../Config/dbConection.php';
 
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../Pages/Login.php");
+    header("Location: ../../Pages/Login.php");
     exit();
 }
 
@@ -84,17 +84,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->commit();
         
         // Redireccionar con mensaje de éxito
-        header("Location: ../Pages/PlanSubject.php?success=1");
+        header("Location: ../../Pages/PlanSubject.php?success=1");
         exit();
         
     } catch (Exception $e) {
         // Revertir en caso de error
         $conn->rollback();
-        header("Location: ../Pages/PlanSubject.php?error=" . urlencode($e->getMessage()));
+        header("Location: ../../Pages/PlanSubject.php?error=" . urlencode($e->getMessage()));
         exit();
     }
 } else {
     // Si alguien intenta acceder directamente a este archivo
-    header("Location: ../Pages/PlanSubject.php");
+    header("Location: ../../Pages/PlanSubject.php");
     exit();
 }

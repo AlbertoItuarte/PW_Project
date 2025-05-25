@@ -145,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <h2>Editar Materia</h2>
   
-  <form id="materiaForm" method="post" action="../Logic/UpdateSubject.php">
+  <form id="materiaForm" method="post" action="../API/Subject/UpdateSubject.php">
     <input type="hidden" name="materia_id" value="<?php echo $materiaId; ?>">
     <input type="hidden" name="materia_ciclo_id" value="<?php echo $materiaCicloId; ?>">
     

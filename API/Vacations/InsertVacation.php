@@ -11,6 +11,6 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("isss", $ciclo_id, $fecha_inicio, $fecha_fin, $descripcion);
 $stmt->execute();
 
-header("Location: ../Pages/ManageCycles.php");
+header("Location: ../../Pages/ManageCycles.php");
 exit();
 ?>

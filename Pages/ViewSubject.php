@@ -35,7 +35,7 @@ if (!isset($_SESSION['user_id'])) {
             window.location.href = "Home.php";
         }
 
-        fetch(`../Logic/GetSubjectDetails.php?id=${materiaId}`)
+        fetch(`../API/Subject/GetSubjectDetails.php?id=${materiaId}`)
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
