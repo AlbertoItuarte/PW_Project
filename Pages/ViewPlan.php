@@ -14,6 +14,15 @@ if (!isset($_GET['materia_ciclo_id'])) {
 
 $materia_ciclo_id = intval($_GET['materia_ciclo_id']);
 
+// Función para formatear fecha de YYYY-MM-DD a DD/MM/YYYY
+function formatDate($date) {
+    if (empty($date) || $date === '0000-00-00') {
+        return "Sin fecha";
+    }
+    $dateObj = DateTime::createFromFormat('Y-m-d', $date);
+    return $dateObj ? $dateObj->format('d/m/Y') : $date;
+}
+
 // Consultar los detalles de la planificación
 $sql_planificacion = "SELECT m.nombre AS materia, u.nombre AS unidad, ge.fecha_evaluacion, 
                              t.nombre AS tema, d.fecha_inicio, d.fecha_fin
@@ -29,6 +38,7 @@ $stmt = $conn->prepare($sql_planificacion);
 $stmt->bind_param("i", $materia_ciclo_id);
 $stmt->execute();
 $result = $stmt->get_result();
+
 
 ?>
 
@@ -57,10 +67,10 @@ $result = $stmt->get_result();
         while ($row = $result->fetch_assoc()):
             $materia = htmlspecialchars($row['materia']);
             $unidad = htmlspecialchars($row['unidad']);
-            $fecha_evaluacion = $row['fecha_evaluacion'] ? htmlspecialchars($row['fecha_evaluacion']) : "Sin fecha";
+            $fecha_evaluacion = formatDate($row['fecha_evaluacion']);
             $tema = htmlspecialchars($row['tema']);
-            $fecha_inicio = htmlspecialchars($row['fecha_inicio']);
-            $fecha_fin = htmlspecialchars($row['fecha_fin']);
+            $fecha_inicio = formatDate($row['fecha_inicio']);
+            $fecha_fin = formatDate($row['fecha_fin']);
 
             // Mostrar la materia si cambia
             if ($materia !== $current_materia) {

@@ -128,7 +128,7 @@ if ($row['total'] == 0) {
         </div>
     </div>
     <script>
-       document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
         const modal = document.getElementById('modal-eliminar');
         const btnConfirmar = document.getElementById('btn-confirmar-eliminar');
         const btnCancelar = document.getElementById('btn-cancelar-eliminar');
@@ -167,61 +167,71 @@ if ($row['total'] == 0) {
             }
         });
     });
-        // Cargar materias
-        const materiasContainer = document.getElementById('materias-container');
-        fetch('../API/Subject/GetAdminSubjects.php')
-            .then(response => response.json())
-            .then(data => {
-                if (data.length > 0) {
-                    let table = `
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Materia</th>
-                                    <th>Horas Teóricas</th>
-                                    <th>Horas Prácticas</th>
-                                    <th>Fecha de Creación</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                    `;
 
-                    data.forEach(materia => {
-                        table += `
+    // Cargar materias
+    const materiasContainer = document.getElementById('materias-container');
+    fetch('../API/Subject/GetAdminSubjects.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.length > 0) {
+                let table = `
+                    <table>
+                        <thead>
                             <tr>
-                                <td>${materia.materia}</td>
-                                <td>${materia.horas_teoricas}</td>
-                                <td>${materia.horas_practicas}</td>
-                                <td>${materia.fecha_asignacion}</td>
-                                <td class="actions">
-                                    <a href="ViewSubject.php?id=${materia.materia_id}">Ver</a>
-                                    <a href="#" class="btn-eliminar" data-id="${materia.materia_id}" data-materia="${materia.materia}">Eliminar</a>
-                                    <a href="EditSubject.php?id=${materia.materia_id}">Editar</a>
-                                </td>
+                                <th>Materia</th>
+                                <th>Horas Teóricas</th>
+                                <th>Horas Prácticas</th>
+                                <th>Usuarios Asignados</th>
+                                <th>Total Usuarios</th>
+                                <th>Fecha de Creación</th>
+                                <th>Acciones</th>
                             </tr>
-                        `;
-                    });
+                        </thead>
+                        <tbody>
+                `;
 
-                    table += '</tbody></table>';
-                    materiasContainer.innerHTML = table;
-                } else {
-                    materiasContainer.innerHTML = `
-                        <div class="no-materias">
-                            <p>No tienes materias registradas aún.</p>
-                            <p>Haz clic en "Crear materia" para empezar a organizar tu plan de estudios.</p>
-                        </div>
+                data.forEach(materia => {
+                    // Determinar el estilo para los usuarios asignados
+                    const usuariosStyle = materia.usuarios_asignados === 'Sin asignar' ? 
+                        'style="color: #888; font-style: italic;"' : '';
+                    
+                    table += `
+                        <tr>
+                            <td>${materia.materia}</td>
+                            <td>${materia.horas_teoricas}</td>
+                            <td>${materia.horas_practicas}</td>
+                            <td ${usuariosStyle}>${materia.usuarios_asignados}</td>
+                            <td>${materia.total_usuarios}</td>
+                            <td>${materia.fecha_asignacion}</td>
+                            <td class="actions">
+                                <a href="ViewSubject.php?id=${materia.materia_id}">Ver</a>
+                                <a href="#" class="btn-eliminar" data-id="${materia.materia_id}" data-materia="${materia.materia}">Eliminar</a>
+                                <a href="EditSubject.php?id=${materia.materia_id}">Editar</a>
+                                <a href="ManageAssignments.php?materia_ciclo_id=${materia.materia_ciclo_id}">Gestionar Asignaciones</a>
+                            </td>
+                        </tr>
                     `;
-                }
-            })
-            .catch(error => {
-                console.error('Error al cargar las materias:', error);
+                });
+
+                table += '</tbody></table>';
+                materiasContainer.innerHTML = table;
+            } else {
                 materiasContainer.innerHTML = `
-                    <div class="error">
-                        <p>Error al cargar las materias. Intenta nuevamente más tarde.</p>
+                    <div class="no-materias">
+                        <p>No tienes materias registradas aún.</p>
+                        <p>Haz clic en "Crear materia" para empezar a organizar tu plan de estudios.</p>
                     </div>
                 `;
-            });
-    </script>
+            }
+        })
+        .catch(error => {
+            console.error('Error al cargar las materias:', error);
+            materiasContainer.innerHTML = `
+                <div class="error">
+                    <p>Error al cargar las materias. Intenta nuevamente más tarde.</p>
+                </div>
+            `;
+        });
+</script>
 </body>
 </html>
