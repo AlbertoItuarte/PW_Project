@@ -23,12 +23,13 @@ if (!isset($_SESSION['user_id'])) {
         $user_id = $_SESSION['user_id'];
 
         // Consultar todas las materias que no están asignadas al usuario actual
-        $sql = "SELECT m.materia_id, m.nombre AS materia
-                FROM materia m
-                WHERE m.materia_id NOT IN (
-                    SELECT mc.materia_id
-                    FROM materia_ciclo mc
-                    WHERE mc.usuario_id = ?
+        $sql = "SELECT mc.materia_ciclo_id, m.nombre AS materia
+                FROM materia_ciclo mc
+                INNER JOIN materia m ON mc.materia_id = m.materia_id
+                WHERE mc.materia_ciclo_id NOT IN (
+                    SELECT umc.materia_ciclo_id
+                    FROM usuario_materia_ciclo umc
+                    WHERE umc.usuario_id = ?
                 )";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $user_id);
@@ -38,7 +39,7 @@ if (!isset($_SESSION['user_id'])) {
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<div>
-                        <input type='checkbox' name='materias[]' value='{$row['materia_id']}'>
+                        <input type='checkbox' name='materias[]' value='{$row['materia_ciclo_id']}'>
                         <label>{$row['materia']}</label>
                       </div>";
             }
