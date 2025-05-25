@@ -26,7 +26,7 @@ require_once '../Config/dbConection.php';
 </head>
 <body>
     <h1>Gestionar Ciclos Escolares</h1>
-    <form action="../Logic/InsertCycle.php" method="POST">
+    <form action="../API/Cycle/InsertCycle.php" method="POST">
         <h2>Agregar Ciclo Escolar</h2>
         <label for="nombre">Nombre del Ciclo:</label>
         <input type="text" id="nombre" name="nombre" required>
@@ -37,7 +37,7 @@ require_once '../Config/dbConection.php';
         <button type="submit">Agregar Ciclo</button>
     </form>
 
-    <form action="../Logic/InsertHoliday.php" method="POST">
+    <form action="../API/Holidays/InsertHoliday.php" method="POST">
         <h2>Agregar Día Feriado</h2>
         <label for="ciclo_id">Ciclo:</label>
         <select id="ciclo_id" name="ciclo_id" required>
@@ -56,7 +56,7 @@ require_once '../Config/dbConection.php';
         <button type="submit">Agregar Feriado</button>
     </form>
 
-    <form action="../Logic/InsertVacation.php" method="POST">
+    <form action="../API/Vacations/InsertVacation.php" method="POST">
         <h2>Agregar Vacaciones</h2>
         <label for="ciclo_id">Ciclo:</label>
         <select id="ciclo_id" name="ciclo_id" required>
@@ -76,5 +76,10 @@ require_once '../Config/dbConection.php';
         <input type="text" id="descripcion" name="descripcion" required>
         <button type="submit">Agregar Vacaciones</button>
     </form>
+
+    <!-- Botón para finalizar la configuración -->
+    <div style="margin-top: 20px;">
+        <a href="Home.php" class="btn btn-secondary" style="text-decoration: none; padding: 10px 20px; background-color: #4CAF50; color: white; border-radius: 5px;">Finalizar Configuración</a>
+    </div>
 </body>
 </html>

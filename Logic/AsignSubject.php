@@ -1,33 +1,33 @@
 <?php
 session_start();
-require_once '../../Config/dbConection.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user_id = $_SESSION['user_id'];
-    $materias = $_POST['materias'] ?? [];
-
-    if (!empty($materias)) {
-        foreach ($materias as $materia_id) {
-            // Verificar que la materia fue asignada por un administrador
-            $sql = "SELECT * FROM programa_admin WHERE programa_id = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("i", $materia_id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            
-            if ($result->num_rows > 0) {
-                // Insertar la asignación en la tabla programa_usuario
-                $sql = "INSERT INTO programa_usuario (usuario_id, programa_id) VALUES (?, ?)";
-                $stmt = $conn->prepare($sql);
-                $stmt->bind_param("ii", $user_id, $materia_id);
-                $stmt->execute();
-            }
-        }
-        // Redirigir correctamente a HomeUser.php
-        header("Location: ../Pages/HomeUser.php?success=materias_asignadas");
-    } else {
-        // Redirigir correctamente a SelectSubject.php en caso de error
-        header("Location: ../Pages/SelectSubject.php?error=no_materias");
-    }
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../Pages/Login.php");
     exit();
 }
+
+require_once '../Config/dbConection.php';
+
+// Verificar si se enviaron materias
+if (!isset($_POST['materias']) || empty($_POST['materias'])) {
+    header("Location: ../Pages/SelectSubject.php?error=No se seleccionaron materias");
+    exit();
+}
+
+// Obtener el ID del usuario desde la sesión
+$user_id = $_SESSION['user_id'];
+
+// Preparar la consulta para asignar materias
+$sql = "INSERT INTO materia_ciclo (materia_id, usuario_id, ciclo_id) VALUES (?, ?, ?)";
+$stmt = $conn->prepare($sql);
+
+$ciclo_id = 10; // Cambiar esto si necesitas obtener el ciclo dinámicamente
+
+foreach ($_POST['materias'] as $materia_id) {
+    $materia_id = intval($materia_id);
+    $stmt->bind_param("iii", $materia_id, $user_id, $ciclo_id);
+    $stmt->execute();
+}
+
+// Redirigir al usuario con un mensaje de éxito
+header("Location: ../Pages/PlanificarMateria.php?success=Materias asignadas correctamente");
+exit();
