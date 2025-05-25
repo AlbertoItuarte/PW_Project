@@ -23,7 +23,7 @@ if (isset($_GET['error'])) {
 <body>
   <h2>Crear Materia</h2>
   
-  <form id="programaForm" method="post" action="../Logic/SaveSubject.php">
+  <form id="programaForm" method="post" action="../API/Subject/SaveSubject.php">
     <label>Nombre de la Materia:</label>
     <input type="text" id="materiaNombre" name="nombreMateria" placeholder="Ej. Matemáticas" required />
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../Config/dbConection.php';
+require_once '../../Config/dbConection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = $_SESSION['user_id'];

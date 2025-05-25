@@ -10,6 +10,6 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("iss", $ciclo_id, $dia, $causa);
 $stmt->execute();
 
-header("Location: ../Pages/ManageCycles.php");
+header("Location: ../../Pages/ManageCycles.php");
 exit();
 ?>

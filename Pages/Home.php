@@ -149,7 +149,7 @@ if ($row['total'] == 0) {
         // Confirmar eliminación
         btnConfirmar.addEventListener('click', () => {
             if (materiaId) {
-                window.location.href = `../Logic/DeleteSubject.php?id=${materiaId}`;
+                window.location.href = `../API/Subject/DeleteSubject.php?id=${materiaId}`;
             }
         });
 
@@ -169,7 +169,7 @@ if ($row['total'] == 0) {
     });
         // Cargar materias
         const materiasContainer = document.getElementById('materias-container');
-        fetch('../API/AdminSubjects/GetAdminSubjects.php')
+        fetch('../API/Subject/GetAdminSubjects.php')
             .then(response => response.json())
             .then(data => {
                 if (data.length > 0) {

@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once '../Config/dbConection.php';
+require_once '../../Config/dbConection.php';
 
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../Pages/Login.php");
+    header("Location: ../../Pages/Login.php");
     exit();
 }
 
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows === 0) {
         // La materia no existe o no pertenece al usuario
-        header("Location: ../Pages/Home.php");
+        header("Location: ../../Pages/Home.php");
         exit();
     }
 
@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Validar que numero_unidad sea mayor que 0
                 if (!isset($unidadData['numero_unidad']) || intval($unidadData['numero_unidad']) <= 0) {
                     $conn->rollback();
-                    header("Location: ../Pages/EditSubject.php?id={$materiaId}&error=" . urlencode("El número de unidad debe ser mayor que 0."));
+                    header("Location: ../../Pages/EditSubject.php?id={$materiaId}&error=" . urlencode("El número de unidad debe ser mayor que 0."));
                     exit();
                 }
 
@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($result->num_rows > 0) {
                     // Si ya existe una unidad con el mismo número, lanzar un error
                     $conn->rollback();
-                    header("Location: ../Pages/EditSubject.php?id={$materiaId}&error=" . urlencode("El número de unidad {$numeroUnidad} ya existe."));
+                    header("Location: ../../Pages/EditSubject.php?id={$materiaId}&error=" . urlencode("El número de unidad {$numeroUnidad} ya existe."));
                     exit();
                 }
 
@@ -164,16 +164,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->commit();
 
         // Redireccionar con mensaje de éxito
-        header("Location: ../Pages/EditSubject.php?id={$materiaId}&success=1");
+        header("Location: ../../Pages/EditSubject.php?id={$materiaId}&success=1");
         exit();
     } catch (Exception $e) {
         // Revertir en caso de error
         $conn->rollback();
-        header("Location: ../Pages/EditSubject.php?id={$materiaId}&error=" . urlencode($e->getMessage()));
+        header("Location: ../../Pages/EditSubject.php?id={$materiaId}&error=" . urlencode($e->getMessage()));
         exit();
     }
 } else {
     // Si alguien intenta acceder directamente a este archivo
-    header("Location: ../Pages/Home.php");
+    header("Location: ../../Pages/Home.php");
     exit();
 }
