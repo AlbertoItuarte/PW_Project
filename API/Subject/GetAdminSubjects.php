@@ -1,54 +1,48 @@
 <?php
-require_once '../../Config/dbConection.php';
 session_start();
-
-// Mostrar errores para depuración (desactiva esto en producción)
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-// Verificar si el usuario ha iniciado sesión
-if (!isset($_SESSION['user_id'])) {
-    http_response_code(401); // Código de error no autorizado
-    echo json_encode(["error" => "No autorizado"]);
+if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != "Admin") {
+    http_response_code(403);
     exit();
 }
 
-// Obtener el ID del usuario actual
-$user_id = $_SESSION['user_id'];
+require_once '../../Config/dbConection.php';
 
-try {
-    // Verificar la conexión a la base de datos
-    if ($conn->connect_error) {
-        throw new Exception("Error de conexión a la base de datos: " . $conn->connect_error);
-    }
+$sql = "SELECT 
+            mc.materia_ciclo_id,
+            m.materia_id,
+            m.nombre AS materia,
+            mc.horas_teoricas,
+            mc.horas_practicas,
+            mc.fecha_asignacion,
+            GROUP_CONCAT(u.nombre SEPARATOR ', ') AS usuarios_asignados,
+            COUNT(umc.usuario_id) AS total_usuarios
+        FROM materia_ciclo mc
+        INNER JOIN materia m ON mc.materia_id = m.materia_id
+        LEFT JOIN usuario_materia_ciclo umc ON mc.materia_ciclo_id = umc.materia_ciclo_id
+        LEFT JOIN usuario u ON umc.usuario_id = u.usuario_id
+        WHERE mc.usuario_id = ?
+        GROUP BY mc.materia_ciclo_id, m.materia_id, m.nombre, mc.horas_teoricas, mc.horas_practicas, mc.fecha_asignacion
+        ORDER BY mc.fecha_asignacion DESC";
 
-    // Consulta para obtener las materias creadas por el administrador
-    $sql = "SELECT p.materia_id, p.nombre AS materia, mc.horas_teoricas, mc.horas_practicas, mc.fecha_asignacion
-            FROM materia p
-            INNER JOIN materia_ciclo mc ON p.materia_id = mc.materia_id
-            WHERE mc.usuario_id = ?";
-    $stmt = $conn->prepare($sql);
-    if (!$stmt) {
-        throw new Exception("Error al preparar la consulta: " . $conn->error);
-    }
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $_SESSION['user_id']);
+$stmt->execute();
+$result = $stmt->get_result();
 
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Convertir los resultados en un array
-    $materias = [];
-    while ($row = $result->fetch_assoc()) {
-        $materias[] = $row;
-    }
-
-    // Devolver los resultados como JSON
-    header('Content-Type: application/json');
-    echo json_encode($materias);
-} catch (Exception $e) {
-    // Manejar errores y devolver un mensaje JSON
-    http_response_code(500); // Código de error interno del servidor
-    header('Content-Type: application/json');
-    echo json_encode(["error" => "Error al obtener las materias", "details" => $e->getMessage()]);
+$materias = [];
+while ($row = $result->fetch_assoc()) {
+    $materias[] = [
+        'materia_ciclo_id' => $row['materia_ciclo_id'],
+        'materia_id' => $row['materia_id'],
+        'materia' => $row['materia'],
+        'horas_teoricas' => $row['horas_teoricas'],
+        'horas_practicas' => $row['horas_practicas'],
+        'fecha_asignacion' => $row['fecha_asignacion'],
+        'usuarios_asignados' => $row['usuarios_asignados'] ?? 'Sin asignar',
+        'total_usuarios' => $row['total_usuarios']
+    ];
 }
+
+header('Content-Type: application/json');
+echo json_encode($materias);
+?>
