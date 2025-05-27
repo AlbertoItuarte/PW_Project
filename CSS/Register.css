@@ -1,24 +1,66 @@
+body {
+  font-family: Arial, sans-serif;
+
+  /* Fondo */
+  background-image: url('/azul.jpg');
+  background-size: cover;         /* La imagen se ajusta a toda la pantalla */
+  background-position: center;    /* Centrada */
+  background-repeat: no-repeat;   /* No se repite */
+
+  /* Ajuste de layout */
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  flex-direction: column;
+}
 form{
-    background: #043333;
-    padding: 2rem;
-    border-radius: 4rem;
+  border-radius: 4rem;
+  background: #043333;
+  align-content: center;
+  padding: 1.6rem;
 }
 
-form h2 {
+form h2{
+  color: #93C3C3;
+  font-family: 'MiFuente';
   text-align: center;
-  color: #93C3C3; /* Puedes cambiar el color si deseas */
-  margin-bottom: 20px;
+  font-weight: 400;
+  margin-bottom: 40px;
+  font-size: 3rem;
 }
 
 form a{
-    color: #93C3C3;
+  color: #93C3C3;
 }
+
 form p{
-    color: #93C3C3;
+  color: #93C3C3;
+  padding: 1rem;
 }
+
+@font-face {
+  font-family: 'MiFuente';
+  src: url('/Boldyguard\ Demo.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 form input[type="submit"] {
   display: block;
   margin: 20px auto; /* Centra horizontalmente */
+  background-color: #2E6E6E;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
+form input[type="text"]{
+  margin-top: 1rem;
+}
 
+form input[type="password"]{
+  margin-top: 1rem;
+}
