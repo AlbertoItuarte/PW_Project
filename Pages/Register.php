@@ -15,7 +15,6 @@
 
             <input type="text" name="nombre" placeholder="Nombre" required>
             <input type="text" name="apellido_paterno" placeholder="Apellido paterno" required>
-            <input type="email" name="correo" placeholder="Ingresa tu correo" required>
             <input type="password" name="contrasena" placeholder="Ingresa tu contraseña" required>
             <input type="password" name="confirma_contrasena" placeholder="Confirma contraseña" required>
             <input type="submit" value="Regístrate">
