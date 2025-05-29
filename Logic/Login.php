@@ -7,8 +7,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $conn->real_escape_string($_POST['nombre_usuario']);
     $password = $_POST['contrasena'];
     
-    // Consulta para verificar las credenciales (incluyendo tipo_usuario)
-    $sql = "SELECT usuario_id, nombre, contrasena, tipo FROM usuario WHERE usuario = ?";
+    // Consulta para verificar las credenciales (incluyendo tipo_usuario y usuario)
+    $sql = "SELECT usuario_id, nombre, usuario, contrasena, tipo FROM usuario WHERE usuario = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -43,3 +43,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
+?>
