@@ -31,9 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Insertar el usuario con tipo_usuario por defecto como 'Usuario'
     $sql = "INSERT INTO usuario (nombre, apellido_paterno, usuario, contrasena, tipo) 
-            VALUES (?, ?, ?, ?, ?, 'Usuario')";
+            VALUES (?, ?, ?, ?, 'Usuario')";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssss",$nombre, $apellido_paterno, $username, $hashed_password);
+    $stmt->bind_param("ssss",$nombre, $apellido_paterno, $username, $hashed_password);
     
     if ($stmt->execute()) {
         header("Location: ../Pages/Login.php?success=registered");

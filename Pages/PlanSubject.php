@@ -24,6 +24,21 @@ if (isset($_GET['error'])) {
   <h2>Crear Materia</h2>
   
   <form id="programaForm" method="post" action="../API/Subject/SaveSubject.php">
+
+    <label>Selecciona el Ciclo:</label>
+    <select id="cicloSelect" name="ciclo" required>
+      <?php
+      require_once '../Config/dbConection.php';
+      $sql = "SELECT ciclo_id, nombre FROM ciclo";
+      $result = $conn->query($sql);
+      if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+              echo '<option value="' . htmlspecialchars($row['ciclo_id']) . '">' . htmlspecialchars($row['nombre']) . '</option>';
+          }
+      } else {
+          echo '<option value="">No hay ciclos disponibles</option>';
+      }
+      ?>
     <label>Nombre de la Materia:</label>
     <input type="text" id="materiaNombre" name="nombreMateria" placeholder="Ej. Matemáticas" required />
 

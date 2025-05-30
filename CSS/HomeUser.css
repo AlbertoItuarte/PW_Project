@@ -1,0 +1,64 @@
+nav {
+    width: 100%;
+    background-color: #2e6e6e;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 40px;
+    display: flex;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    gap: 30px; /* Espacio uniforme entre botones */
+}
+
+nav ul li {
+    margin: 0; /* Elimina el margin-right, usamos gap en el ul */
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 10px 22px;
+    border-radius: 6px;
+    background: transparent;
+    border: 2px solid transparent;
+    transition: 
+        background 0.2s,
+        color 0.2s,
+        border-color 0.2s;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background: #114343;
+    color: #fff;
+    border-color: #114343;
+}
+
+/* Para que el contenido no quede oculto debajo de la barra */
+body {
+    margin: 0;
+    padding-top: 70px;
+}
+
+/* Centrar la tabla de materias */
+table {
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+}
+
+table th {
+    background-color: #2e6e6e;
+    color: #fff;
+}
