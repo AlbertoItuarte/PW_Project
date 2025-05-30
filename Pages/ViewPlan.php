@@ -58,12 +58,11 @@ $result = $stmt->get_result();
     </nav>
 
     <h1>Planificación de la Materia</h1>
-
     <?php if ($result->num_rows > 0): ?>
         <?php
         $current_unidad = null;
         $current_materia = null;
-
+        
         while ($row = $result->fetch_assoc()):
             $materia = htmlspecialchars($row['materia']);
             $unidad = htmlspecialchars($row['unidad']);
@@ -74,19 +73,46 @@ $result = $stmt->get_result();
 
             // Mostrar la materia si cambia
             if ($materia !== $current_materia) {
+                if ($current_materia !== null) {
+                    echo "</tbody></table><br>";
+                }
                 echo "<h2>MATERIA: {$materia}</h2>";
                 $current_materia = $materia;
+                $current_unidad = null; // Reset unidad cuando cambia materia
             }
 
             // Mostrar la unidad si cambia
             if ($unidad !== $current_unidad) {
-                echo "<h3>- Unidad: {$unidad} / Fecha de Evaluación: {$fecha_evaluacion}</h3>";
+                if ($current_unidad !== null) {
+                    echo "</tbody></table><br>";
+                }
+                echo "<table border='1' style='width: 100%; border-collapse: collapse;'>";
+                echo "<thead>";
+                echo "<tr style='background-color: #f2f2f2;'>";
+                echo "<th colspan='3' style='padding: 10px; text-align: center; font-size: 18px;'>UNIDAD: {$unidad} - FECHA DE EVALUACIÓN: {$fecha_evaluacion}</th>";
+                echo "</tr>";
+                echo "<tr style='background-color: #e6e6e6;'>";
+                echo "<th style='padding: 8px;'>Tema</th>";
+                echo "<th style='padding: 8px;'>Fecha de Inicio</th>";
+                echo "<th style='padding: 8px;'>Fecha de Fin</th>";
+                echo "</tr>";
+                echo "</thead>";
+                echo "<tbody>";
                 $current_unidad = $unidad;
             }
 
             // Mostrar el tema
-            echo "<p>-- Tema: {$tema} / Fecha Inicio: {$fecha_inicio} / Fecha Fin: {$fecha_fin}</p>";
+            echo "<tr>";
+            echo "<td style='padding: 8px;'>{$tema}</td>";
+            echo "<td style='padding: 8px;'>{$fecha_inicio}</td>";
+            echo "<td style='padding: 8px;'>{$fecha_fin}</td>";
+            echo "</tr>";
         endwhile;
+        
+        // Cerrar la última tabla
+        if ($current_unidad !== null) {
+            echo "</tbody></table>";
+        }
         ?>
     <?php else: ?>
         <p>No hay planificación registrada para esta materia.</p>
