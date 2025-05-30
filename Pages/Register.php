@@ -12,7 +12,6 @@
         <form action="../Logic/Register.php" id="formulario" method="post">
             <h2>SmartSchedule</h2>
             <input type="text" name="nombre_usuario" placeholder="Nombre de usuario" required>
-
             <input type="text" name="nombre" placeholder="Nombre" required>
             <input type="text" name="apellido_paterno" placeholder="Apellido paterno" required>
             <input type="password" name="contrasena" placeholder="Ingresa tu contraseña" required>
