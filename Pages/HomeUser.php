@@ -20,7 +20,7 @@ if (!isset($_SESSION['user_id'])) {
     <nav>
         <ul>
             <li><a href="HomeUser.php">Inicio</a></li>
-            <li><a href="SelectSubject.php">Seleccionar Materias</a></li>
+            <li><a href="SelectSubject.php">Materias</a></li>
             <li><a href="../Logic/LogOut.php">Cerrar sesión</a></li>
         </ul>
     </nav>
