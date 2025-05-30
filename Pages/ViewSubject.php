@@ -1,7 +1,12 @@
 <?php
 session_start();
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: Login.php");
+    exit();
+}
+if($_SESSION['user_type'] != "Admin") {
+    header("Location: HomeUser.php");
     exit();
 }
 ?>

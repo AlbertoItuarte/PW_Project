@@ -8,6 +8,11 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+if($_SESSION['user_type'] != "Admin") {
+    header("Location: Home.php");
+    exit();
+}
+
 // Verificar si se proporcionó un ID de materia
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     header("Location: Home.php");
