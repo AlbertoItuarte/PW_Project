@@ -4,6 +4,10 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: Login.php");
     exit();
 }
+if ($_SESSION['user_type'] != "Admin") {
+    header("Location: HomeUser.php");
+    exit();
+}
 
 if (isset($_GET['success'])) {
     echo '<div class="alert alert-success">¡Materia guardada correctamente!</div>';
@@ -39,6 +43,8 @@ if (isset($_GET['error'])) {
           echo '<option value="">No hay ciclos disponibles</option>';
       }
       ?>
+    </select>
+
     <label>Nombre de la Materia:</label>
     <input type="text" id="materiaNombre" name="nombreMateria" placeholder="Ej. Matemáticas" required />
 
@@ -48,8 +54,11 @@ if (isset($_GET['error'])) {
     <label>Descripción de la materia:</label>
     <textarea id="descripcionMateria" name="descripcionMateria" rows="4" placeholder="Descripción de la materia..." required></textarea>
 
-    <label>Horas Necesarias:</label>
+    <label>Horas Teóricas:</label>
     <input type="number" id="horasTeoricas" name="horasTeoricas" placeholder="Ej. 3" min="0" required />
+
+    <label>Horas Prácticas:</label>
+    <input type="number" id="horasPracticas" name="horasPracticas" placeholder="Ej. 2" min="0" required />
     
     <div id="unidadesContainer"></div>
 
@@ -60,13 +69,13 @@ if (isset($_GET['error'])) {
   </form>
 
   <script>
-      if (window.location.search.includes("success=1")) {
-    // Limpiar los campos del formulario
-    document.getElementById("programaForm").reset();
+    if (window.location.search.includes("success=1")) {
+      document.getElementById("programaForm").reset();
+      document.getElementById("unidadesContainer").innerHTML = "";
+      contadorUnidades = 0;
+      console.log("Formulario enviado correctamente. Campos limpiados.");
+    }
 
-    // Opcional: Mostrar un mensaje de éxito (si no se muestra ya en PHP)
-    console.log("Formulario enviado correctamente. Campos limpiados.");
-  }
     let contadorUnidades = 0;
 
     const unidadesContainer = document.getElementById("unidadesContainer");
@@ -77,6 +86,7 @@ if (isset($_GET['error'])) {
       contadorUnidades++;
       const unidadDiv = document.createElement("div");
       unidadDiv.className = "unidad-container";
+      unidadDiv.setAttribute("data-unidad-id", contadorUnidades);
 
       unidadDiv.innerHTML = `
         <h3>Unidad ${contadorUnidades}</h3>
@@ -86,7 +96,7 @@ if (isset($_GET['error'])) {
         <div class="temas-container" id="temas-container-${contadorUnidades}"></div>
 
         <button type="button" class="btnAgregarTema" data-unidad="${contadorUnidades}">➕ Añadir Tema</button>
-        <button type="button" id="btnEliminarUnidad" class="btnEliminarUnidad">✘ Eliminar Unidad</button>
+        <button type="button" class="btnEliminarUnidad">✘ Eliminar Unidad</button>
         <hr />
       `;
 
@@ -98,24 +108,25 @@ if (isset($_GET['error'])) {
       const btnEliminarUnidad = unidadDiv.querySelector(".btnEliminarUnidad");
       btnEliminarUnidad.addEventListener("click", () => {
         unidadDiv.remove();
+        reindexarUnidades();
       });
     });
 
     function agregarTema(unidadId) {
       const temasContainer = document.getElementById(`temas-container-${unidadId}`);
-      const temaCount = temasContainer.childElementCount + 1;
+      const temaCount = temasContainer.children.length;
       
       const temaDiv = document.createElement("div");
       temaDiv.className = "tema-container";
       temaDiv.innerHTML = `
-        <h4>Tema ${temaCount}</h4>
+        <h4>Tema ${temaCount + 1}</h4>
         <label>Nombre del Tema:</label>
         <input type="text" name="unidades[${unidadId}][temas][${temaCount}][nombre]" class="tema-nombre" placeholder="Ej. Ecuaciones cuadráticas" required />
 
         <label>Horas necesarias para cubrir el tema:</label>
-        <input type="number" name="unidades[${unidadId}][temas][${temaCount}][horas]" class="tema-horas" placeholder="Ej. 2" min="1" required />
+        <input type="number" name="unidades[${unidadId}][temas][${temaCount}][horas]" class="tema-horas" placeholder="Ej. 2" min="1" step="0.5" required />
 
-        <button type="button" id="btnEliminarTema" class="btnEliminarTema">✘ Eliminar Tema</button>
+        <button type="button" class="btnEliminarTema">✘ Eliminar Tema</button>
       `;
 
       temasContainer.appendChild(temaDiv);
@@ -123,6 +134,52 @@ if (isset($_GET['error'])) {
       const btnEliminarTema = temaDiv.querySelector(".btnEliminarTema");
       btnEliminarTema.addEventListener("click", () => {
         temaDiv.remove();
+        reindexarTemas(unidadId);
+      });
+    }
+
+    function reindexarUnidades() {
+      const unidadDivs = document.querySelectorAll(".unidad-container");
+      unidadDivs.forEach((unidadDiv, index) => {
+        const nuevoIndex = index + 1;
+        unidadDiv.setAttribute("data-unidad-id", nuevoIndex);
+        
+        // Actualizar el título
+        unidadDiv.querySelector("h3").textContent = `Unidad ${nuevoIndex}`;
+        
+        // Actualizar los names de los inputs de la unidad
+        const inputNombre = unidadDiv.querySelector(".unidad-nombre");
+        inputNombre.name = `unidades[${nuevoIndex}][nombre]`;
+        
+        // Actualizar el botón de agregar tema
+        const btnAgregarTema = unidadDiv.querySelector(".btnAgregarTema");
+        btnAgregarTema.setAttribute("data-unidad", nuevoIndex);
+        
+        // Actualizar el ID del contenedor de temas
+        const temasContainer = unidadDiv.querySelector(".temas-container");
+        temasContainer.id = `temas-container-${nuevoIndex}`;
+        
+        // Reindexar todos los temas de esta unidad
+        reindexarTemas(nuevoIndex);
+      });
+      
+      contadorUnidades = unidadDivs.length;
+    }
+
+    function reindexarTemas(unidadId) {
+      const temasContainer = document.getElementById(`temas-container-${unidadId}`);
+      const temaDivs = temasContainer.querySelectorAll(".tema-container");
+      
+      temaDivs.forEach((temaDiv, index) => {
+        // Actualizar el título del tema
+        temaDiv.querySelector("h4").textContent = `Tema ${index + 1}`;
+        
+        // Actualizar los names de los inputs del tema
+        const inputNombre = temaDiv.querySelector(".tema-nombre");
+        const inputHoras = temaDiv.querySelector(".tema-horas");
+        
+        inputNombre.name = `unidades[${unidadId}][temas][${index}][nombre]`;
+        inputHoras.name = `unidades[${unidadId}][temas][${index}][horas]`;
       });
     }
 

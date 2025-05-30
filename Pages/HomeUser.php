@@ -4,6 +4,10 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: Login.php");
     exit();
 }
+if(isset($_POST["usuario_id"]) && $_SESSION["user_type"] != "Admin") {
+    header("Location: Home.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +17,6 @@ if (!isset($_SESSION['user_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/Global.css">
     <link rel="stylesheet" href="../CSS/HomeUser.css">
-
     <title>Home - Profesor</title>
 </head>
 <body>
@@ -33,12 +36,11 @@ if (!isset($_SESSION['user_id'])) {
         // Obtener el ID del usuario desde la sesión
         $user_id = $_SESSION['user_id'];
 
-        // Consultar las materias asignadas al usuario desde la tabla usuario_materia_ciclo
-        $sql = "SELECT m.nombre AS materia, ge.fecha_evaluacion, mc.materia_ciclo_id
+        // Consultar las materias asignadas al usuario
+        $sql = "SELECT DISTINCT m.nombre AS materia, mc.materia_ciclo_id
                 FROM usuario_materia_ciclo umc
                 INNER JOIN materia_ciclo mc ON umc.materia_ciclo_id = mc.materia_ciclo_id
                 INNER JOIN materia m ON mc.materia_id = m.materia_id
-                LEFT JOIN grupo_evaluacion ge ON mc.materia_ciclo_id = ge.materia_ciclo_id
                 WHERE umc.usuario_id = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $user_id);
@@ -49,12 +51,11 @@ if (!isset($_SESSION['user_id'])) {
             echo "<table border='1'>
                     <tr>
                         <th>Materia</th>
-                        <th>Fecha Evaluación</th>
                         <th>Acciones</th>
                     </tr>";
+            
             while ($row = $result->fetch_assoc()) {
                 $materia = htmlspecialchars($row['materia']);
-                $fecha_evaluacion = $row['fecha_evaluacion'] ? htmlspecialchars($row['fecha_evaluacion']) : "Sin fecha";
                 $materia_ciclo_id = $row['materia_ciclo_id'];
 
                 // Verificar si la materia tiene planificación
@@ -73,7 +74,6 @@ if (!isset($_SESSION['user_id'])) {
 
                 echo "<tr>
                         <td>{$materia}</td>
-                        <td>{$fecha_evaluacion}</td>
                         <td>";
                 if ($tiene_planificacion) {
                     echo "<a href='ViewPlan.php?materia_ciclo_id={$materia_ciclo_id}'>Ver Planificación</a>";

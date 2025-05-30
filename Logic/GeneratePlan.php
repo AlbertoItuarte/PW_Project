@@ -7,26 +7,29 @@ if (!isset($_SESSION['user_id'])) {
 
 require_once '../Config/dbConection.php';
 
-// Depuración: registrar los datos enviados
-file_put_contents('debug_generate_plan.log', "=== NUEVO PROCESAMIENTO ===\n", FILE_APPEND);
-file_put_contents('debug_generate_plan.log', print_r($_POST, true), FILE_APPEND);
-
 // Validar los datos enviados
 if (!isset($_POST['materia_ciclo_id']) || empty($_POST['materia_ciclo_id'])) {
-    die("Error: No se proporcionó el ID de la materia.");
+    $_SESSION['error_message'] = "Error: No se proporcionó el ID de la materia.";
+    header("Location: ../Pages/PlanificarMateria.php");
+    exit();
 }
 
 if (!isset($_POST['dias']) || empty($_POST['dias'])) {
-    die("Error: No se seleccionaron días.");
+    $_SESSION['error_message'] = "Error: No se seleccionaron días.";
+    header("Location: ../Pages/PlanificarMateria.php");
+    exit();
 }
 
 if (!isset($_POST['horas']) || empty($_POST['horas'])) {
-    die("Error: No se proporcionaron horas.");
+    $_SESSION['error_message'] = "Error: No se proporcionaron horas.";
+    header("Location: ../Pages/PlanificarMateria.php");
+    exit();
 }
 
 $materia_ciclo_id = intval($_POST['materia_ciclo_id']);
 $dias = $_POST['dias'];
 $horas = $_POST['horas'];
+$evaluaciones_input = isset($_POST['evaluaciones']) ? $_POST['evaluaciones'] : [];
 
 // Normalizar y limpiar datos de entrada
 $dias_normalizados = array_map(function($dia) {
@@ -42,8 +45,31 @@ foreach ($horas as $dia => $hora) {
     }
 }
 
-file_put_contents('debug_generate_plan.log', "Días normalizados: " . print_r($dias_normalizados, true), FILE_APPEND);
-file_put_contents('debug_generate_plan.log', "Horas limpias: " . print_r($horas_limpias, true), FILE_APPEND);
+// Procesar fechas de evaluación
+$fechas_evaluacion = [];
+foreach ($evaluaciones_input as $unidad_id => $fecha) {
+    if (!empty($fecha)) {
+        $fechas_evaluacion[] = $fecha;
+    }
+}
+
+// Limpiar evaluaciones anteriores para esta materia
+$sql_delete_eval = "DELETE FROM grupo_evaluacion WHERE materia_ciclo_id = ?";
+$stmt_delete_eval = $conn->prepare($sql_delete_eval);
+$stmt_delete_eval->bind_param("i", $materia_ciclo_id);
+$stmt_delete_eval->execute();
+
+
+// Insertar nuevas evaluaciones con nombre descriptivo
+foreach ($evaluaciones_input as $unidad_id => $fecha) {
+    if (!empty($fecha)) {
+        $nombre_evaluacion = "Evaluación " . date('d/m/Y', strtotime($fecha));
+        $sql_insert_eval = "INSERT INTO grupo_evaluacion (nombre, materia_ciclo_id, fecha_evaluacion) VALUES (?, ?, ?)";
+        $stmt_insert_eval = $conn->prepare($sql_insert_eval);
+        $stmt_insert_eval->bind_param("sis", $nombre_evaluacion, $materia_ciclo_id, $fecha);
+        $stmt_insert_eval->execute();
+    }
+}
 
 // Obtener las fechas de inicio y fin del semestre
 $sql = "SELECT fecha_inicio, fecha_fin FROM ciclo
@@ -54,15 +80,14 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
-    die("Error: No se encontraron fechas para el ciclo.");
+    $_SESSION['error_message'] = "Error: No se encontraron fechas para el ciclo.";
+    header("Location: ../Pages/PlanificarMateria.php");
+    exit();
 }
 
 $ciclo = $result->fetch_assoc();
 $fecha_inicio = new DateTime($ciclo['fecha_inicio']);
 $fecha_fin = new DateTime($ciclo['fecha_fin']);
-
-file_put_contents('debug_generate_plan.log', "Fecha inicio: " . $fecha_inicio->format('Y-m-d') . "\n", FILE_APPEND);
-file_put_contents('debug_generate_plan.log', "Fecha fin: " . $fecha_fin->format('Y-m-d') . "\n", FILE_APPEND);
 
 // Obtener los días feriados
 $sql = "SELECT dia FROM feriados WHERE ciclo_id = (SELECT ciclo_id FROM materia_ciclo WHERE materia_ciclo_id = ?)";
@@ -73,17 +98,6 @@ $result = $stmt->get_result();
 $feriados = [];
 while ($row = $result->fetch_assoc()) {
     $feriados[] = $row['dia'];
-}
-
-// Obtener las fechas de evaluación
-$sql = "SELECT fecha_evaluacion FROM grupo_evaluacion WHERE materia_ciclo_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $materia_ciclo_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$evaluaciones = [];
-while ($row = $result->fetch_assoc()) {
-    $evaluaciones[] = $row['fecha_evaluacion'];
 }
 
 // Obtener los temas de la materia
@@ -100,11 +114,10 @@ $temas = $result->fetch_all(MYSQLI_ASSOC);
 
 // Validar si se encontraron temas
 if (empty($temas)) {
-    die("Error: No se encontraron temas para la materia seleccionada.");
+    $_SESSION['error_message'] = "Error: No se encontraron temas para la materia seleccionada.";
+    header("Location: ../Pages/PlanificarMateria.php");
+    exit();
 }
-
-file_put_contents('debug_generate_plan.log', "Temas encontrados: " . count($temas) . "\n", FILE_APPEND);
-file_put_contents('debug_generate_plan.log', "Temas: " . print_r($temas, true), FILE_APPEND);
 
 // Mapa de traducción de días de la semana
 $day_translation = [
@@ -141,15 +154,12 @@ foreach ($temas as &$tema) {
     $tema['fecha_fin'] = null;
 }
 
-file_put_contents('debug_generate_plan.log', "Iniciando distribución...\n", FILE_APPEND);
-
 while ($current_date <= $fecha_fin && $tema_index < count($temas)) {
     $day_of_week = $current_date->format('l');
     $formatted_date = $current_date->format('Y-m-d');
 
-    // Excluir días feriados y de evaluación
-    if (in_array($formatted_date, $feriados) || in_array($formatted_date, $evaluaciones)) {
-        file_put_contents('debug_generate_plan.log', "Saltando fecha $formatted_date (feriado/evaluación)\n", FILE_APPEND);
+    // Excluir días feriados y de evaluación (ahora usando las fechas del formulario)
+    if (in_array($formatted_date, $feriados) || in_array($formatted_date, $fechas_evaluacion)) {
         $current_date->modify('+1 day');
         continue;
     }
@@ -157,14 +167,10 @@ while ($current_date <= $fecha_fin && $tema_index < count($temas)) {
     // Traducir el día de la semana
     $day_of_week_es = $day_translation[$day_of_week] ?? $day_of_week;
 
-    file_put_contents('debug_generate_plan.log', "Procesando fecha: $formatted_date ($day_of_week_es)\n", FILE_APPEND);
-
     // Verificar si el día está en los días seleccionados
     if (in_array($day_of_week_es, $dias_normalizados)) {
         // Obtener horas disponibles para este día
         $horas_disponibles_dia = isset($horas_limpias[$day_of_week_es]) ? $horas_limpias[$day_of_week_es] : 0;
-        
-        file_put_contents('debug_generate_plan.log', "Horas disponibles para $day_of_week_es: $horas_disponibles_dia\n", FILE_APPEND);
 
         if ($horas_disponibles_dia > 0) {
             $horas_restantes_dia = $horas_disponibles_dia;
@@ -194,13 +200,8 @@ while ($current_date <= $fecha_fin && $tema_index < count($temas)) {
                     $tema_actual['horas_restantes'] -= $horas_a_asignar;
                     $horas_restantes_dia -= $horas_a_asignar;
 
-                    file_put_contents('debug_generate_plan.log', "Asignando $horas_a_asignar horas al tema: {$tema_actual['tema']}\n", FILE_APPEND);
-                    file_put_contents('debug_generate_plan.log', "Horas restantes del tema: {$tema_actual['horas_restantes']}\n", FILE_APPEND);
-
                     // Si el tema se completó, agregarlo al array para insertar en BD
                     if ($tema_actual['horas_restantes'] <= 0) {
-                        file_put_contents('debug_generate_plan.log', "Tema completado: {$tema_actual['tema']}\n", FILE_APPEND);
-                        
                         // Agregar tema completado al array para BD
                         $temas_para_bd[] = [
                             'tema_id' => $tema_actual['tema_id'],
@@ -214,14 +215,13 @@ while ($current_date <= $fecha_fin && $tema_index < count($temas)) {
                 }
             }
         }
-    } else {
-        file_put_contents('debug_generate_plan.log', "Día $day_of_week_es no está en días seleccionados\n", FILE_APPEND);
     }
 
     $current_date->modify('+1 day');
 }
 
 // Insertar los temas completados en la base de datos
+$temas_insertados = 0;
 foreach ($temas_para_bd as $tema_bd) {
     $sql_insert = "INSERT INTO distribucion (tema_id, horas_asignadas, tipo_clase, fecha_inicio, fecha_fin)
                    VALUES (?, ?, 'Teorica', ?, ?)";
@@ -234,9 +234,11 @@ foreach ($temas_para_bd as $tema_bd) {
     );
     
     if ($stmt_insert->execute()) {
-        file_put_contents('debug_generate_plan.log', "Inserción exitosa en BD para tema ID: {$tema_bd['tema_id']}\n", FILE_APPEND);
+        $temas_insertados++;
     } else {
-        file_put_contents('debug_generate_plan.log', "Error en inserción: " . $stmt_insert->error . "\n", FILE_APPEND);
+        $_SESSION['error_message'] = "Error al insertar tema en la base de datos: " . $stmt_insert->error;
+        header("Location: ../Pages/PlanificarMateria.php");
+        exit();
     }
 }
 
@@ -254,23 +256,17 @@ foreach ($temas as $tema) {
     }
 }
 
-// Depuración: registrar el plan generado
-file_put_contents('debug_generate_plan.log', "Plan generado:\n", FILE_APPEND);
-file_put_contents('debug_generate_plan.log', print_r($plan, true), FILE_APPEND);
-file_put_contents('debug_generate_plan.log', "Total de temas en plan: " . count($plan) . "\n", FILE_APPEND);
-
 // Verificar si se generó algún plan
 if (empty($plan)) {
-    file_put_contents('debug_generate_plan.log', "ERROR: No se pudo generar ningún plan\n", FILE_APPEND);
-    die("Error: No se pudo generar el plan. Revise los parámetros de entrada.");
+    $_SESSION['error_message'] = "Error: No se pudo generar el plan. Revise los parámetros de entrada.";
+    header("Location: ../Pages/PlanificarMateria.php");
+    exit();
 }
 
-// Mostrar el plan
-header('Content-Type: application/json');
-echo json_encode([
-    'success' => true,
-    'plan' => $plan,
-    'total_temas' => count($plan),
-    'temas_procesados' => $tema_index
-], JSON_PRETTY_PRINT);
+// Éxito: guardar el plan en la sesión y redirigir
+$_SESSION['success_message'] = "Plan generado exitosamente. Se procesaron " . count($plan) . " temas y " . count($fechas_evaluacion) . " fechas de evaluación.";
+$_SESSION['plan_generado'] = $plan;
+
+header("Location: ../Pages/PlanificarMateria.php");
 exit();
+?>
