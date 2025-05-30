@@ -11,11 +11,14 @@ if (!isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/Global.css">
+    <link rel="stylesheet" href="../CSS/SelectSubject.css">
     <title>Seleccionar Materias</title>
 </head>
 <body>
     <h1>Seleccionar Materias</h1>
     <form action="../Logic/AsignSubject.php" method="POST">
+        <div class="materias-container">
         <?php
         require_once '../Config/dbConection.php';
 
@@ -38,15 +41,16 @@ if (!isset($_SESSION['user_id'])) {
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo "<div>
-                        <input type='checkbox' name='materias[]' value='{$row['materia_ciclo_id']}'>
+                echo "<div class='materia-item'>
                         <label>{$row['materia']}</label>
+                        <input type='checkbox' name='materias[]' value='{$row['materia_ciclo_id']}'>
                       </div>";
             }
         } else {
             echo "<p>No hay materias disponibles para selección.</p>";
         }
         ?>
+        </div>
         <button type="submit">Cargar Materias</button>
     </form>
 </body>

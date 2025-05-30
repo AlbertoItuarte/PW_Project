@@ -1,0 +1,57 @@
+.materias-container {
+    background: #93C3C3;
+    border-radius: 10px;
+    padding: 30px 20px;
+    max-width: 400px;
+    margin: 30px auto 20px auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.materia-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    margin-bottom: 18px;
+    gap: 10px;
+}
+
+.materia-item label {
+    font-size: 1.08em;
+    color: #043333;
+    margin: 0;
+}
+
+.materia-item input[type="checkbox"] {
+    transform: scale(1.2);
+    accent-color: #2e6e6e;
+    margin: 0;
+    justify-self: end;
+}
+
+button[type="submit"] {
+    margin-top: 10px;
+    background: #2e6e6e;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 24px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button[type="submit"]:hover {
+    background: #043333;
+}
+
+h1 {
+    text-align: center;
+    color: #043333;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+}

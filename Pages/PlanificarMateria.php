@@ -44,6 +44,7 @@ while ($row = $vacaciones_result->fetch_assoc()) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planificar Materia</title>
+    <link rel="stylesheet" href="../CSS/Global.css">
 </head>
 <body>
     <h1>Planificar Materia</h1>
