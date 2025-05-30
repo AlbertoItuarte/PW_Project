@@ -35,67 +35,7 @@ if ($row['total'] == 0) {
     <title>Inicio</title>
     <link rel="stylesheet" href="../CSS/Global.css">
     <link rel="stylesheet" href="../CSS/Home.css">
-    <style>
-        /* Estilos para la ventana emergente */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 80%;
-            max-width: 600px;
-        }
-        .modal-content h3 {
-            margin-bottom: 20px;
-        }
-        .modal-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-        .modal-buttons button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .btn-confirm {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .btn-cancel {
-            background-color: #607d8b;
-            color: white;
-        }
-        .cycle-info {
-            margin-top: 20px;
-            text-align: left;
-        }
-        .cycle-info table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .cycle-info th, .cycle-info td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        .cycle-info th {
-            background-color: #f2f2f2;
-            text-align: left;
-        }
-    </style>
+    <link rel="stylesheet" href="../CSS/VentanaEmergente.css">
 </head>
 <body>
     <div>
@@ -103,6 +43,7 @@ if ($row['total'] == 0) {
             <ul>
                 <li><a href="Home.php">Inicio</a></li>
                 <li><a href="PlanSubject.php" id="btn-create-materia">Crear materia</a></li>
+                <li><a href="CreateCycle.php" id="btn-create-ciclo">Crear Ciclo</a></li>
                 <li><a href="../Logic/LogOut.php">Cerrar sesión</a></li>
             </ul>
         </nav>
