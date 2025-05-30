@@ -34,9 +34,10 @@ if (isset($_GET['error'])) {
       <?php
       require_once '../Config/dbConection.php';
       $sql = "SELECT ciclo_id, nombre FROM ciclo";
-      $result = $conn->query($sql);
-      if ($result->num_rows > 0) {
-          while ($row = $result->fetch_assoc()) {
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute();
+      if ($stmt->rowCount() > 0) {
+          while ($row = $stmt->fetch()) {
               echo '<option value="' . htmlspecialchars($row['ciclo_id']) . '">' . htmlspecialchars($row['nombre']) . '</option>';
           }
       } else {

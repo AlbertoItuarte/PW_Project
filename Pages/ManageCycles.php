@@ -43,8 +43,9 @@ require_once '../Config/dbConection.php';
         <select id="ciclo_id" name="ciclo_id" required>
             <?php
             $sql = "SELECT ciclo_id, nombre FROM ciclo";
-            $result = $conn->query($sql);
-            while ($row = $result->fetch_assoc()) {
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            while ($row = $stmt->fetch()) {
                 echo "<option value='{$row['ciclo_id']}'>{$row['nombre']}</option>";
             }
             ?>
@@ -62,8 +63,9 @@ require_once '../Config/dbConection.php';
         <select id="ciclo_id" name="ciclo_id" required>
             <?php
             $sql = "SELECT ciclo_id, nombre FROM ciclo";
-            $result = $conn->query($sql);
-            while ($row = $result->fetch_assoc()) {
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            while ($row = $stmt->fetch()) {
                 echo "<option value='{$row['ciclo_id']}'>{$row['nombre']}</option>";
             }
             ?>

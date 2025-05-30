@@ -18,8 +18,9 @@ require_once '../Config/dbConection.php';
 
 // Verificar si existen ciclos
 $sql = "SELECT COUNT(*) AS total FROM ciclo";
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$row = $stmt->fetch();
 
 if ($row['total'] == 0) {
     // Redirigir al administrador a la página de gestión de ciclos
@@ -148,7 +149,6 @@ if ($row['total'] == 0) {
                                 <a href="ViewSubject.php?id=${materia.materia_id}">Ver</a>
                                 <a href="#" class="btn-eliminar" data-id="${materia.materia_id}" data-materia="${materia.materia}">Eliminar</a>
                                 <a href="EditSubject.php?id=${materia.materia_id}">Editar</a>
-                                <a href="ManageAssignments.php?materia_ciclo_id=${materia.materia_ciclo_id}">Gestionar Asignaciones</a>
                             </td>
                         </tr>
                     `;

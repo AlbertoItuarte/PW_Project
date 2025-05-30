@@ -22,43 +22,37 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 $materiaId = intval($_GET['id']);
 $userId = $_SESSION['user_id'];
 
-// Verificar que la materia pertenezca al usuario actual
+// Verificar que la materia pertenezca al usuario actual (PDO/PostgreSQL)
 $sql = "SELECT m.*, mc.materia_ciclo_id, mc.horas_teoricas, mc.horas_practicas
         FROM materia m
         INNER JOIN materia_ciclo mc ON m.materia_id = mc.materia_id
         WHERE m.materia_id = ? AND mc.usuario_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ii", $materiaId, $userId);
-$stmt->execute();
-$resultado = $stmt->get_result();
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$materiaId, $userId]);
 
-if ($resultado->num_rows === 0) {
+if ($stmt->rowCount() === 0) {
     // La materia no existe o no pertenece al usuario
     header("Location: Home.php");
     exit();
 }
 
-$materia = $resultado->fetch_assoc();
+$materia = $stmt->fetch();
 $materiaCicloId = $materia['materia_ciclo_id'];
 
 // Obtener unidades
 $unidades = [];
-$sqlUnidades = "SELECT * FROM unidad WHERE materia_ciclo_id = ? ORDER BY unidad_id";
-$stmt = $conn->prepare($sqlUnidades);
-$stmt->bind_param("i", $materiaCicloId);
-$stmt->execute();
-$resultadoUnidades = $stmt->get_result();
+$sqlUnidades = "SELECT * FROM unidad WHERE materia_ciclo_id = ? ORDER BY numero_unidad";
+$stmt = $pdo->prepare($sqlUnidades);
+$stmt->execute([$materiaCicloId]);
 
-while ($unidad = $resultadoUnidades->fetch_assoc()) {
+while ($unidad = $stmt->fetch()) {
     // Obtener temas para cada unidad
     $temas = [];
-    $sqlTemas = "SELECT * FROM tema WHERE unidad_id = ? ORDER BY tema_id";
-    $stmtTemas = $conn->prepare($sqlTemas);
-    $stmtTemas->bind_param("i", $unidad['unidad_id']);
-    $stmtTemas->execute();
-    $resultadoTemas = $stmtTemas->get_result();
+    $sqlTemas = "SELECT * FROM tema WHERE unidad_id = ? ORDER BY orden_tema";
+    $stmtTemas = $pdo->prepare($sqlTemas);
+    $stmtTemas->execute([$unidad['unidad_id']]);
     
-    while ($tema = $resultadoTemas->fetch_assoc()) {
+    while ($tema = $stmtTemas->fetch()) {
         $temas[] = $tema;
     }
     
@@ -76,57 +70,87 @@ if (isset($_GET['error'])) {
 
 // Guardar cambios de materia y unidades
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $conn->begin_transaction();
+    $pdo->beginTransaction();
     try {
         // Actualizar información de la materia
-        $nombreMateria = $conn->real_escape_string($_POST['materiaNombre']);
-        $horasTeoricas = intval($_POST['horasTeoricas']);
-        $horasPracticas = intval($_POST['horasPracticas']);
+        $nombreMateria = $_POST['materiaNombre'];
+        $horasTeoricas = floatval($_POST['horasTeoricas']);
+        $horasPracticas = floatval($_POST['horasPracticas']);
 
-        $sqlMateria = "UPDATE materia SET nombre = ?, horas_teoricas = ?, horas_practicas = ? WHERE materia_id = ?";
-        $stmtMateria = $conn->prepare($sqlMateria);
-        $stmtMateria->bind_param("ssii", $nombreMateria, $horasTeoricas, $horasPracticas, $materiaId);
-        $stmtMateria->execute();
+        // Actualizar materia
+        $sqlMateria = "UPDATE materia SET nombre = ? WHERE materia_id = ?";
+        $stmtMateria = $pdo->prepare($sqlMateria);
+        $stmtMateria->execute([$nombreMateria, $materiaId]);
 
+        // Actualizar materia_ciclo con las horas
+        $sqlMateriaCiclo = "UPDATE materia_ciclo SET horas_teoricas = ?, horas_practicas = ? WHERE materia_ciclo_id = ?";
+        $stmtMateriaCiclo = $pdo->prepare($sqlMateriaCiclo);
+        $stmtMateriaCiclo->execute([$horasTeoricas, $horasPracticas, $materiaCicloId]);
+
+        // Procesar unidades y temas
         if (isset($_POST['unidades']) && is_array($_POST['unidades'])) {
             foreach ($_POST['unidades'] as $unidadData) {
                 if (empty($unidadData['nombre'])) continue;
 
                 // Validar que numero_unidad sea mayor que 0
                 if (!isset($unidadData['numero_unidad']) || intval($unidadData['numero_unidad']) <= 0) {
-                    $conn->rollback();
-                    header("Location: ../Pages/EditSubject.php?id={$materiaId}&error=" . urlencode("El número de unidad debe ser mayor que 0."));
+                    $pdo->rollback();
+                    header("Location: EditSubject.php?id={$materiaId}&error=" . urlencode("El número de unidad debe ser mayor que 0."));
                     exit();
                 }
 
                 $numeroUnidad = intval($unidadData['numero_unidad']);
+                $nombreUnidad = $unidadData['nombre'];
 
                 // Determinar si es una nueva unidad o una existente
                 if (isset($unidadData['id']) && intval($unidadData['id']) > 0) {
                     // Actualizar unidad existente
                     $unidadId = intval($unidadData['id']);
-                    $nombreUnidad = $conn->real_escape_string($unidadData['nombre']);
                     $sql = "UPDATE unidad SET nombre = ?, numero_unidad = ? WHERE unidad_id = ?";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("sii", $nombreUnidad, $numeroUnidad, $unidadId);
-                    $stmt->execute();
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute([$nombreUnidad, $numeroUnidad, $unidadId]);
                 } else {
                     // Insertar nueva unidad
-                    $nombreUnidad = $conn->real_escape_string($unidadData['nombre']);
-                    $sql = "INSERT INTO unidad (materia_ciclo_id, nombre, numero_unidad) VALUES (?, ?, ?)";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("isi", $materiaCicloId, $nombreUnidad, $numeroUnidad);
-                    $stmt->execute();
+                    $sql = "INSERT INTO unidad (materia_ciclo_id, nombre, numero_unidad, fecha_creacion) VALUES (?, ?, ?, CURRENT_TIMESTAMP) RETURNING unidad_id";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute([$materiaCicloId, $nombreUnidad, $numeroUnidad]);
+                    $result = $stmt->fetch();
+                    $unidadId = $result['unidad_id'];
+                }
+
+                // Procesar temas de la unidad
+                if (isset($unidadData['temas']) && is_array($unidadData['temas'])) {
+                    foreach ($unidadData['temas'] as $temaIndex => $temaData) {
+                        if (empty($temaData['nombre'])) continue;
+
+                        $nombreTema = $temaData['nombre'];
+                        $horasEstimadas = floatval($temaData['horas']);
+                        $ordenTema = $temaIndex + 1;
+
+                        // Determinar si es un nuevo tema o uno existente
+                        if (isset($temaData['id']) && intval($temaData['id']) > 0) {
+                            // Actualizar tema existente
+                            $temaId = intval($temaData['id']);
+                            $sqlTema = "UPDATE tema SET nombre = ?, horas_estimadas = ?, orden_tema = ? WHERE tema_id = ?";
+                            $stmtTema = $pdo->prepare($sqlTema);
+                            $stmtTema->execute([$nombreTema, $horasEstimadas, $ordenTema, $temaId]);
+                        } else {
+                            // Insertar nuevo tema
+                            $sqlTema = "INSERT INTO tema (nombre, orden_tema, horas_estimadas, unidad_id, fecha_creacion) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)";
+                            $stmtTema = $pdo->prepare($sqlTema);
+                            $stmtTema->execute([$nombreTema, $ordenTema, $horasEstimadas, $unidadId]);
+                        }
+                    }
                 }
             }
         }
 
-        $conn->commit();
-        header("Location: ../Pages/EditSubject.php?id={$materiaId}&success=1");
+        $pdo->commit();
+        header("Location: EditSubject.php?id={$materiaId}&success=1");
         exit();
     } catch (Exception $e) {
-        $conn->rollback();
-        header("Location: ../Pages/EditSubject.php?id={$materiaId}&error=" . urlencode("Error al actualizar la materia: " . $e->getMessage()));
+        $pdo->rollback();
+        header("Location: EditSubject.php?id={$materiaId}&error=" . urlencode("Error al actualizar la materia: " . $e->getMessage()));
         exit();
     }
 }
@@ -151,7 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <h2>Editar Materia</h2>
   
-  <form id="materiaForm" method="post" action="../API/Subject/UpdateSubject.php">
+  <form id="materiaForm" method="post">
     <input type="hidden" name="materia_id" value="<?php echo $materiaId; ?>">
     <input type="hidden" name="materia_ciclo_id" value="<?php echo $materiaCicloId; ?>">
 
@@ -162,11 +186,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
       <div>
         <label>Horas teóricas:</label>
-        <input type="number" id="horasTeoricas" name="horasTeoricas" value="<?php echo $materia['horas_teoricas']; ?>" min="0" required />
+        <input type="number" id="horasTeoricas" name="horasTeoricas" value="<?php echo $materia['horas_teoricas']; ?>" min="0" step="0.5" required />
       </div>
       <div>
         <label>Horas prácticas:</label>
-        <input type="number" id="horasPracticas" name="horasPracticas" value="<?php echo $materia['horas_practicas']; ?>" min="0" required />
+        <input type="number" id="horasPracticas" name="horasPracticas" value="<?php echo $materia['horas_practicas']; ?>" min="0" step="0.5" required />
       </div>
     </div>
 
@@ -196,7 +220,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   <input type="text" name="unidades[<?php echo $index; ?>][temas][<?php echo $temaIndex; ?>][nombre]" class="tema-nombre" value="<?php echo htmlspecialchars($tema['nombre']); ?>" required />
 
                   <label>Horas necesarias para cubrir el tema:</label>
-                  <input type="number" name="unidades[<?php echo $index; ?>][temas][<?php echo $temaIndex; ?>][horas]" class="tema-horas" value="<?php echo $tema['horas_estimadas']; ?>" min="1" required />
+                  <input type="number" name="unidades[<?php echo $index; ?>][temas][<?php echo $temaIndex; ?>][horas]" class="tema-horas" value="<?php echo $tema['horas_estimadas']; ?>" min="0.5" step="0.5" required />
                 </div>
               <?php endforeach; ?>
             </div>

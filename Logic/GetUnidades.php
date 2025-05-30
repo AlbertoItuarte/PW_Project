@@ -18,11 +18,9 @@ $materia_ciclo_id = intval($_POST['materia_ciclo_id']);
 
 // Obtener las unidades para la materia seleccionada
 $sql = "SELECT unidad_id, nombre, numero_unidad FROM unidad WHERE materia_ciclo_id = ? ORDER BY numero_unidad";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $materia_ciclo_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$unidades = $result->fetch_all(MYSQLI_ASSOC);
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$materia_ciclo_id]);
+$unidades = $stmt->fetchAll();
 
 header('Content-Type: application/json');
 echo json_encode($unidades);
