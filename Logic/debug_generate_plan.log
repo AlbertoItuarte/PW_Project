@@ -5,2347 +5,6 @@ Array
     [dias] => Array
         (
             [0] => Lunes
-            [1] => Miércoles
-            [2] => Jueves
-        )
-
-    [horas] => Array
-        (
-            [Lunes] => 1
-            [Martes] => 
-            [Miércoles] => 2
-            [Jueves] => 3
-            [Viernes] => 
-        )
-
-)
-Días normalizados: Array
-(
-    [0] => Lunes
-    [1] => Miércoles
-    [2] => Jueves
-)
-Horas limpias: Array
-(
-    [Lunes] => 1
-    [Miércoles] => 2
-    [Jueves] => 3
-)
-Fecha inicio: 2025-01-01
-Fecha fin: 2025-06-30
-Temas encontrados: 20
-Temas: Array
-(
-    [0] => Array
-        (
-            [tema_id] => 306
-            [tema] => Fundamentos de Probabilidad
-            [horas_estimadas] => 5.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [1] => Array
-        (
-            [tema_id] => 307
-            [tema] => Probabilidad Condicional
-            [horas_estimadas] => 6.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [2] => Array
-        (
-            [tema_id] => 308
-            [tema] => Variables Aleatorias Discretas
-            [horas_estimadas] => 7.50
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [3] => Array
-        (
-            [tema_id] => 309
-            [tema] => Variables Aleatorias Continuas
-            [horas_estimadas] => 8.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [4] => Array
-        (
-            [tema_id] => 310
-            [tema] => Distribuciones Multivariadas
-            [horas_estimadas] => 5.50
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [5] => Array
-        (
-            [tema_id] => 311
-            [tema] => Distribuciones Muestrales
-            [horas_estimadas] => 6.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [6] => Array
-        (
-            [tema_id] => 312
-            [tema] => Estimación Puntual
-            [horas_estimadas] => 6.50
-            [unidad] => Inferencia Estadística
-        )
-
-    [7] => Array
-        (
-            [tema_id] => 313
-            [tema] => Intervalos de Confianza
-            [horas_estimadas] => 7.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [8] => Array
-        (
-            [tema_id] => 314
-            [tema] => Pruebas de Hipótesis
-            [horas_estimadas] => 8.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [9] => Array
-        (
-            [tema_id] => 315
-            [tema] => Pruebas No Paramétricas
-            [horas_estimadas] => 4.50
-            [unidad] => Inferencia Estadística
-        )
-
-    [10] => Array
-        (
-            [tema_id] => 316
-            [tema] => Regresión Lineal Simple
-            [horas_estimadas] => 7.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [11] => Array
-        (
-            [tema_id] => 317
-            [tema] => Diagnóstico del Modelo
-            [horas_estimadas] => 6.50
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [12] => Array
-        (
-            [tema_id] => 318
-            [tema] => Regresión Múltiple
-            [horas_estimadas] => 8.50
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [13] => Array
-        (
-            [tema_id] => 319
-            [tema] => ANOVA y Diseño Experimental
-            [horas_estimadas] => 7.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [14] => Array
-        (
-            [tema_id] => 320
-            [tema] => Modelos Avanzados
-            [horas_estimadas] => 6.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [15] => Array
-        (
-            [tema_id] => 321
-            [tema] => Programación Estadística
-            [horas_estimadas] => 7.00
-            [unidad] => Estadística Computacional
-        )
-
-    [16] => Array
-        (
-            [tema_id] => 322
-            [tema] => Simulación Monte Carlo
-            [horas_estimadas] => 6.50
-            [unidad] => Estadística Computacional
-        )
-
-    [17] => Array
-        (
-            [tema_id] => 323
-            [tema] => Bootstrap y Remuestreo
-            [horas_estimadas] => 6.00
-            [unidad] => Estadística Computacional
-        )
-
-    [18] => Array
-        (
-            [tema_id] => 324
-            [tema] => Visualización de Datos
-            [horas_estimadas] => 5.50
-            [unidad] => Estadística Computacional
-        )
-
-    [19] => Array
-        (
-            [tema_id] => 325
-            [tema] => Machine Learning Básico
-            [horas_estimadas] => 7.00
-            [unidad] => Estadística Computacional
-        )
-
-)
-=== NUEVO PROCESAMIENTO ===
-Array
-(
-    [materia_ciclo_id] => 17
-    [dias] => Array
-        (
-            [0] => Lunes
-            [1] => Miércoles
-            [2] => Jueves
-        )
-
-    [horas] => Array
-        (
-            [Lunes] => 1
-            [Martes] => 
-            [Miércoles] => 2
-            [Jueves] => 3
-            [Viernes] => 
-        )
-
-)
-Días normalizados: Array
-(
-    [0] => Lunes
-    [1] => Miércoles
-    [2] => Jueves
-)
-Horas limpias: Array
-(
-    [Lunes] => 1
-    [Miércoles] => 2
-    [Jueves] => 3
-)
-Fecha inicio: 2025-01-01
-Fecha fin: 2025-06-30
-Temas encontrados: 20
-Temas: Array
-(
-    [0] => Array
-        (
-            [tema_id] => 306
-            [tema] => Fundamentos de Probabilidad
-            [horas_estimadas] => 5.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [1] => Array
-        (
-            [tema_id] => 307
-            [tema] => Probabilidad Condicional
-            [horas_estimadas] => 6.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [2] => Array
-        (
-            [tema_id] => 308
-            [tema] => Variables Aleatorias Discretas
-            [horas_estimadas] => 7.50
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [3] => Array
-        (
-            [tema_id] => 309
-            [tema] => Variables Aleatorias Continuas
-            [horas_estimadas] => 8.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [4] => Array
-        (
-            [tema_id] => 310
-            [tema] => Distribuciones Multivariadas
-            [horas_estimadas] => 5.50
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [5] => Array
-        (
-            [tema_id] => 311
-            [tema] => Distribuciones Muestrales
-            [horas_estimadas] => 6.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [6] => Array
-        (
-            [tema_id] => 312
-            [tema] => Estimación Puntual
-            [horas_estimadas] => 6.50
-            [unidad] => Inferencia Estadística
-        )
-
-    [7] => Array
-        (
-            [tema_id] => 313
-            [tema] => Intervalos de Confianza
-            [horas_estimadas] => 7.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [8] => Array
-        (
-            [tema_id] => 314
-            [tema] => Pruebas de Hipótesis
-            [horas_estimadas] => 8.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [9] => Array
-        (
-            [tema_id] => 315
-            [tema] => Pruebas No Paramétricas
-            [horas_estimadas] => 4.50
-            [unidad] => Inferencia Estadística
-        )
-
-    [10] => Array
-        (
-            [tema_id] => 316
-            [tema] => Regresión Lineal Simple
-            [horas_estimadas] => 7.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [11] => Array
-        (
-            [tema_id] => 317
-            [tema] => Diagnóstico del Modelo
-            [horas_estimadas] => 6.50
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [12] => Array
-        (
-            [tema_id] => 318
-            [tema] => Regresión Múltiple
-            [horas_estimadas] => 8.50
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [13] => Array
-        (
-            [tema_id] => 319
-            [tema] => ANOVA y Diseño Experimental
-            [horas_estimadas] => 7.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [14] => Array
-        (
-            [tema_id] => 320
-            [tema] => Modelos Avanzados
-            [horas_estimadas] => 6.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [15] => Array
-        (
-            [tema_id] => 321
-            [tema] => Programación Estadística
-            [horas_estimadas] => 7.00
-            [unidad] => Estadística Computacional
-        )
-
-    [16] => Array
-        (
-            [tema_id] => 322
-            [tema] => Simulación Monte Carlo
-            [horas_estimadas] => 6.50
-            [unidad] => Estadística Computacional
-        )
-
-    [17] => Array
-        (
-            [tema_id] => 323
-            [tema] => Bootstrap y Remuestreo
-            [horas_estimadas] => 6.00
-            [unidad] => Estadística Computacional
-        )
-
-    [18] => Array
-        (
-            [tema_id] => 324
-            [tema] => Visualización de Datos
-            [horas_estimadas] => 5.50
-            [unidad] => Estadística Computacional
-        )
-
-    [19] => Array
-        (
-            [tema_id] => 325
-            [tema] => Machine Learning Básico
-            [horas_estimadas] => 7.00
-            [unidad] => Estadística Computacional
-        )
-
-)
-=== NUEVO PROCESAMIENTO ===
-Array
-(
-    [materia_ciclo_id] => 17
-    [dias] => Array
-        (
-            [0] => Lunes
-            [1] => Miércoles
-            [2] => Jueves
-        )
-
-    [horas] => Array
-        (
-            [Lunes] => 1
-            [Martes] => 
-            [Miércoles] => 2
-            [Jueves] => 3
-            [Viernes] => 
-        )
-
-)
-Días normalizados: Array
-(
-    [0] => Lunes
-    [1] => Miércoles
-    [2] => Jueves
-)
-Horas limpias: Array
-(
-    [Lunes] => 1
-    [Miércoles] => 2
-    [Jueves] => 3
-)
-Fecha inicio: 2025-01-01
-Fecha fin: 2025-06-30
-Temas encontrados: 20
-Temas: Array
-(
-    [0] => Array
-        (
-            [tema_id] => 306
-            [tema] => Fundamentos de Probabilidad
-            [horas_estimadas] => 5.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [1] => Array
-        (
-            [tema_id] => 307
-            [tema] => Probabilidad Condicional
-            [horas_estimadas] => 6.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [2] => Array
-        (
-            [tema_id] => 308
-            [tema] => Variables Aleatorias Discretas
-            [horas_estimadas] => 7.50
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [3] => Array
-        (
-            [tema_id] => 309
-            [tema] => Variables Aleatorias Continuas
-            [horas_estimadas] => 8.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [4] => Array
-        (
-            [tema_id] => 310
-            [tema] => Distribuciones Multivariadas
-            [horas_estimadas] => 5.50
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [5] => Array
-        (
-            [tema_id] => 311
-            [tema] => Distribuciones Muestrales
-            [horas_estimadas] => 6.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [6] => Array
-        (
-            [tema_id] => 312
-            [tema] => Estimación Puntual
-            [horas_estimadas] => 6.50
-            [unidad] => Inferencia Estadística
-        )
-
-    [7] => Array
-        (
-            [tema_id] => 313
-            [tema] => Intervalos de Confianza
-            [horas_estimadas] => 7.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [8] => Array
-        (
-            [tema_id] => 314
-            [tema] => Pruebas de Hipótesis
-            [horas_estimadas] => 8.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [9] => Array
-        (
-            [tema_id] => 315
-            [tema] => Pruebas No Paramétricas
-            [horas_estimadas] => 4.50
-            [unidad] => Inferencia Estadística
-        )
-
-    [10] => Array
-        (
-            [tema_id] => 316
-            [tema] => Regresión Lineal Simple
-            [horas_estimadas] => 7.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [11] => Array
-        (
-            [tema_id] => 317
-            [tema] => Diagnóstico del Modelo
-            [horas_estimadas] => 6.50
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [12] => Array
-        (
-            [tema_id] => 318
-            [tema] => Regresión Múltiple
-            [horas_estimadas] => 8.50
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [13] => Array
-        (
-            [tema_id] => 319
-            [tema] => ANOVA y Diseño Experimental
-            [horas_estimadas] => 7.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [14] => Array
-        (
-            [tema_id] => 320
-            [tema] => Modelos Avanzados
-            [horas_estimadas] => 6.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [15] => Array
-        (
-            [tema_id] => 321
-            [tema] => Programación Estadística
-            [horas_estimadas] => 7.00
-            [unidad] => Estadística Computacional
-        )
-
-    [16] => Array
-        (
-            [tema_id] => 322
-            [tema] => Simulación Monte Carlo
-            [horas_estimadas] => 6.50
-            [unidad] => Estadística Computacional
-        )
-
-    [17] => Array
-        (
-            [tema_id] => 323
-            [tema] => Bootstrap y Remuestreo
-            [horas_estimadas] => 6.00
-            [unidad] => Estadística Computacional
-        )
-
-    [18] => Array
-        (
-            [tema_id] => 324
-            [tema] => Visualización de Datos
-            [horas_estimadas] => 5.50
-            [unidad] => Estadística Computacional
-        )
-
-    [19] => Array
-        (
-            [tema_id] => 325
-            [tema] => Machine Learning Básico
-            [horas_estimadas] => 7.00
-            [unidad] => Estadística Computacional
-        )
-
-)
-=== NUEVO PROCESAMIENTO ===
-Array
-(
-    [materia_ciclo_id] => 17
-    [dias] => Array
-        (
-            [0] => Lunes
-            [1] => Miércoles
-            [2] => Jueves
-        )
-
-    [horas] => Array
-        (
-            [Lunes] => 1
-            [Martes] => 
-            [Miércoles] => 2
-            [Jueves] => 3
-            [Viernes] => 
-        )
-
-)
-Días normalizados: Array
-(
-    [0] => Lunes
-    [1] => Miércoles
-    [2] => Jueves
-)
-Horas limpias: Array
-(
-    [Lunes] => 1
-    [Miércoles] => 2
-    [Jueves] => 3
-)
-Fecha inicio: 2025-01-01
-Fecha fin: 2025-06-30
-Temas encontrados: 20
-Temas: Array
-(
-    [0] => Array
-        (
-            [tema_id] => 306
-            [tema] => Fundamentos de Probabilidad
-            [horas_estimadas] => 5.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [1] => Array
-        (
-            [tema_id] => 307
-            [tema] => Probabilidad Condicional
-            [horas_estimadas] => 6.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [2] => Array
-        (
-            [tema_id] => 308
-            [tema] => Variables Aleatorias Discretas
-            [horas_estimadas] => 7.50
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [3] => Array
-        (
-            [tema_id] => 309
-            [tema] => Variables Aleatorias Continuas
-            [horas_estimadas] => 8.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [4] => Array
-        (
-            [tema_id] => 310
-            [tema] => Distribuciones Multivariadas
-            [horas_estimadas] => 5.50
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [5] => Array
-        (
-            [tema_id] => 311
-            [tema] => Distribuciones Muestrales
-            [horas_estimadas] => 6.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [6] => Array
-        (
-            [tema_id] => 312
-            [tema] => Estimación Puntual
-            [horas_estimadas] => 6.50
-            [unidad] => Inferencia Estadística
-        )
-
-    [7] => Array
-        (
-            [tema_id] => 313
-            [tema] => Intervalos de Confianza
-            [horas_estimadas] => 7.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [8] => Array
-        (
-            [tema_id] => 314
-            [tema] => Pruebas de Hipótesis
-            [horas_estimadas] => 8.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [9] => Array
-        (
-            [tema_id] => 315
-            [tema] => Pruebas No Paramétricas
-            [horas_estimadas] => 4.50
-            [unidad] => Inferencia Estadística
-        )
-
-    [10] => Array
-        (
-            [tema_id] => 316
-            [tema] => Regresión Lineal Simple
-            [horas_estimadas] => 7.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [11] => Array
-        (
-            [tema_id] => 317
-            [tema] => Diagnóstico del Modelo
-            [horas_estimadas] => 6.50
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [12] => Array
-        (
-            [tema_id] => 318
-            [tema] => Regresión Múltiple
-            [horas_estimadas] => 8.50
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [13] => Array
-        (
-            [tema_id] => 319
-            [tema] => ANOVA y Diseño Experimental
-            [horas_estimadas] => 7.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [14] => Array
-        (
-            [tema_id] => 320
-            [tema] => Modelos Avanzados
-            [horas_estimadas] => 6.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [15] => Array
-        (
-            [tema_id] => 321
-            [tema] => Programación Estadística
-            [horas_estimadas] => 7.00
-            [unidad] => Estadística Computacional
-        )
-
-    [16] => Array
-        (
-            [tema_id] => 322
-            [tema] => Simulación Monte Carlo
-            [horas_estimadas] => 6.50
-            [unidad] => Estadística Computacional
-        )
-
-    [17] => Array
-        (
-            [tema_id] => 323
-            [tema] => Bootstrap y Remuestreo
-            [horas_estimadas] => 6.00
-            [unidad] => Estadística Computacional
-        )
-
-    [18] => Array
-        (
-            [tema_id] => 324
-            [tema] => Visualización de Datos
-            [horas_estimadas] => 5.50
-            [unidad] => Estadística Computacional
-        )
-
-    [19] => Array
-        (
-            [tema_id] => 325
-            [tema] => Machine Learning Básico
-            [horas_estimadas] => 7.00
-            [unidad] => Estadística Computacional
-        )
-
-)
-=== NUEVO PROCESAMIENTO ===
-Array
-(
-    [materia_ciclo_id] => 17
-    [dias] => Array
-        (
-            [0] => Lunes
-            [1] => Miércoles
-            [2] => Jueves
-        )
-
-    [horas] => Array
-        (
-            [Lunes] => 1
-            [Martes] => 
-            [Miércoles] => 2
-            [Jueves] => 3
-            [Viernes] => 
-        )
-
-)
-Días normalizados: Array
-(
-    [0] => Lunes
-    [1] => Miércoles
-    [2] => Jueves
-)
-Horas limpias: Array
-(
-    [Lunes] => 1
-    [Miércoles] => 2
-    [Jueves] => 3
-)
-Fecha inicio: 2025-01-01
-Fecha fin: 2025-06-30
-Temas encontrados: 20
-Temas: Array
-(
-    [0] => Array
-        (
-            [tema_id] => 306
-            [tema] => Fundamentos de Probabilidad
-            [horas_estimadas] => 5.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [1] => Array
-        (
-            [tema_id] => 307
-            [tema] => Probabilidad Condicional
-            [horas_estimadas] => 6.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [2] => Array
-        (
-            [tema_id] => 308
-            [tema] => Variables Aleatorias Discretas
-            [horas_estimadas] => 7.50
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [3] => Array
-        (
-            [tema_id] => 309
-            [tema] => Variables Aleatorias Continuas
-            [horas_estimadas] => 8.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [4] => Array
-        (
-            [tema_id] => 310
-            [tema] => Distribuciones Multivariadas
-            [horas_estimadas] => 5.50
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [5] => Array
-        (
-            [tema_id] => 311
-            [tema] => Distribuciones Muestrales
-            [horas_estimadas] => 6.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [6] => Array
-        (
-            [tema_id] => 312
-            [tema] => Estimación Puntual
-            [horas_estimadas] => 6.50
-            [unidad] => Inferencia Estadística
-        )
-
-    [7] => Array
-        (
-            [tema_id] => 313
-            [tema] => Intervalos de Confianza
-            [horas_estimadas] => 7.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [8] => Array
-        (
-            [tema_id] => 314
-            [tema] => Pruebas de Hipótesis
-            [horas_estimadas] => 8.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [9] => Array
-        (
-            [tema_id] => 315
-            [tema] => Pruebas No Paramétricas
-            [horas_estimadas] => 4.50
-            [unidad] => Inferencia Estadística
-        )
-
-    [10] => Array
-        (
-            [tema_id] => 316
-            [tema] => Regresión Lineal Simple
-            [horas_estimadas] => 7.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [11] => Array
-        (
-            [tema_id] => 317
-            [tema] => Diagnóstico del Modelo
-            [horas_estimadas] => 6.50
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [12] => Array
-        (
-            [tema_id] => 318
-            [tema] => Regresión Múltiple
-            [horas_estimadas] => 8.50
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [13] => Array
-        (
-            [tema_id] => 319
-            [tema] => ANOVA y Diseño Experimental
-            [horas_estimadas] => 7.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [14] => Array
-        (
-            [tema_id] => 320
-            [tema] => Modelos Avanzados
-            [horas_estimadas] => 6.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [15] => Array
-        (
-            [tema_id] => 321
-            [tema] => Programación Estadística
-            [horas_estimadas] => 7.00
-            [unidad] => Estadística Computacional
-        )
-
-    [16] => Array
-        (
-            [tema_id] => 322
-            [tema] => Simulación Monte Carlo
-            [horas_estimadas] => 6.50
-            [unidad] => Estadística Computacional
-        )
-
-    [17] => Array
-        (
-            [tema_id] => 323
-            [tema] => Bootstrap y Remuestreo
-            [horas_estimadas] => 6.00
-            [unidad] => Estadística Computacional
-        )
-
-    [18] => Array
-        (
-            [tema_id] => 324
-            [tema] => Visualización de Datos
-            [horas_estimadas] => 5.50
-            [unidad] => Estadística Computacional
-        )
-
-    [19] => Array
-        (
-            [tema_id] => 325
-            [tema] => Machine Learning Básico
-            [horas_estimadas] => 7.00
-            [unidad] => Estadística Computacional
-        )
-
-)
-Iniciando distribución...
-Procesando fecha: 2025-01-01 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Fundamentos de Probabilidad
-Horas restantes del tema: 3
-Procesando fecha: 2025-01-02 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Fundamentos de Probabilidad
-Horas restantes del tema: 0
-Tema completado: Fundamentos de Probabilidad
-Procesando fecha: 2025-01-03 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-01-04 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-01-05 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-01-06 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Probabilidad Condicional
-Horas restantes del tema: 5
-Procesando fecha: 2025-01-07 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-01-08 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Probabilidad Condicional
-Horas restantes del tema: 3
-Procesando fecha: 2025-01-09 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Probabilidad Condicional
-Horas restantes del tema: 0
-Tema completado: Probabilidad Condicional
-Procesando fecha: 2025-01-10 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-01-11 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-01-12 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-01-13 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Variables Aleatorias Discretas
-Horas restantes del tema: 6.5
-Procesando fecha: 2025-01-14 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-01-15 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Variables Aleatorias Discretas
-Horas restantes del tema: 4.5
-Procesando fecha: 2025-01-16 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Variables Aleatorias Discretas
-Horas restantes del tema: 1.5
-Procesando fecha: 2025-01-17 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-01-18 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-01-19 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-01-20 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Variables Aleatorias Discretas
-Horas restantes del tema: 0.5
-Procesando fecha: 2025-01-21 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-01-22 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 0.5 horas al tema: Variables Aleatorias Discretas
-Horas restantes del tema: 0
-Tema completado: Variables Aleatorias Discretas
-Asignando 1.5 horas al tema: Variables Aleatorias Continuas
-Horas restantes del tema: 6.5
-Procesando fecha: 2025-01-23 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Variables Aleatorias Continuas
-Horas restantes del tema: 3.5
-Procesando fecha: 2025-01-24 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-01-25 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-01-26 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-01-27 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Variables Aleatorias Continuas
-Horas restantes del tema: 2.5
-Procesando fecha: 2025-01-28 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-01-29 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Variables Aleatorias Continuas
-Horas restantes del tema: 0.5
-Procesando fecha: 2025-01-30 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 0.5 horas al tema: Variables Aleatorias Continuas
-Horas restantes del tema: 0
-Tema completado: Variables Aleatorias Continuas
-Asignando 2.5 horas al tema: Distribuciones Multivariadas
-Horas restantes del tema: 3
-Procesando fecha: 2025-01-31 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-02-01 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-02-02 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-02-03 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Distribuciones Multivariadas
-Horas restantes del tema: 2
-Procesando fecha: 2025-02-04 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-02-05 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Distribuciones Multivariadas
-Horas restantes del tema: 0
-Tema completado: Distribuciones Multivariadas
-Procesando fecha: 2025-02-06 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Distribuciones Muestrales
-Horas restantes del tema: 3
-Procesando fecha: 2025-02-07 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-02-08 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-02-09 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-02-10 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Distribuciones Muestrales
-Horas restantes del tema: 2
-Procesando fecha: 2025-02-11 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-02-12 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Distribuciones Muestrales
-Horas restantes del tema: 0
-Tema completado: Distribuciones Muestrales
-Procesando fecha: 2025-02-13 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Estimación Puntual
-Horas restantes del tema: 3.5
-Procesando fecha: 2025-02-14 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-02-15 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-02-16 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-02-17 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Estimación Puntual
-Horas restantes del tema: 2.5
-Procesando fecha: 2025-02-18 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-02-19 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Estimación Puntual
-Horas restantes del tema: 0.5
-Procesando fecha: 2025-02-20 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 0.5 horas al tema: Estimación Puntual
-Horas restantes del tema: 0
-Tema completado: Estimación Puntual
-Asignando 2.5 horas al tema: Intervalos de Confianza
-Horas restantes del tema: 4.5
-Procesando fecha: 2025-02-21 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-02-22 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-02-23 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-02-24 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Intervalos de Confianza
-Horas restantes del tema: 3.5
-Procesando fecha: 2025-02-25 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-02-26 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Intervalos de Confianza
-Horas restantes del tema: 1.5
-Procesando fecha: 2025-02-27 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 1.5 horas al tema: Intervalos de Confianza
-Horas restantes del tema: 0
-Tema completado: Intervalos de Confianza
-Asignando 1.5 horas al tema: Pruebas de Hipótesis
-Horas restantes del tema: 6.5
-Procesando fecha: 2025-02-28 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-03-01 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-03-02 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-03-03 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Pruebas de Hipótesis
-Horas restantes del tema: 5.5
-Procesando fecha: 2025-03-04 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-03-05 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Pruebas de Hipótesis
-Horas restantes del tema: 3.5
-Procesando fecha: 2025-03-06 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Pruebas de Hipótesis
-Horas restantes del tema: 0.5
-Procesando fecha: 2025-03-07 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-03-08 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-03-09 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-03-10 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 0.5 horas al tema: Pruebas de Hipótesis
-Horas restantes del tema: 0
-Tema completado: Pruebas de Hipótesis
-Asignando 0.5 horas al tema: Pruebas No Paramétricas
-Horas restantes del tema: 4
-Procesando fecha: 2025-03-11 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-03-12 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Pruebas No Paramétricas
-Horas restantes del tema: 2
-Procesando fecha: 2025-03-13 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 2 horas al tema: Pruebas No Paramétricas
-Horas restantes del tema: 0
-Tema completado: Pruebas No Paramétricas
-Asignando 1 horas al tema: Regresión Lineal Simple
-Horas restantes del tema: 6
-Procesando fecha: 2025-03-14 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-03-15 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-03-16 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-03-17 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Regresión Lineal Simple
-Horas restantes del tema: 5
-Procesando fecha: 2025-03-18 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-03-19 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Regresión Lineal Simple
-Horas restantes del tema: 3
-Procesando fecha: 2025-03-20 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Regresión Lineal Simple
-Horas restantes del tema: 0
-Tema completado: Regresión Lineal Simple
-Procesando fecha: 2025-03-21 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-03-22 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-03-23 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-03-24 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Diagnóstico del Modelo
-Horas restantes del tema: 5.5
-Procesando fecha: 2025-03-25 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-03-26 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Diagnóstico del Modelo
-Horas restantes del tema: 3.5
-Procesando fecha: 2025-03-27 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Diagnóstico del Modelo
-Horas restantes del tema: 0.5
-Procesando fecha: 2025-03-28 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-03-29 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-03-30 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-03-31 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 0.5 horas al tema: Diagnóstico del Modelo
-Horas restantes del tema: 0
-Tema completado: Diagnóstico del Modelo
-Asignando 0.5 horas al tema: Regresión Múltiple
-Horas restantes del tema: 8
-Procesando fecha: 2025-04-01 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-04-02 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Regresión Múltiple
-Horas restantes del tema: 6
-Procesando fecha: 2025-04-03 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Regresión Múltiple
-Horas restantes del tema: 3
-Procesando fecha: 2025-04-04 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-04-05 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-04-06 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-04-07 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Regresión Múltiple
-Horas restantes del tema: 2
-Procesando fecha: 2025-04-08 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-04-09 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Regresión Múltiple
-Horas restantes del tema: 0
-Tema completado: Regresión Múltiple
-Procesando fecha: 2025-04-10 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: ANOVA y Diseño Experimental
-Horas restantes del tema: 4
-Procesando fecha: 2025-04-11 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-04-12 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-04-13 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-04-14 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: ANOVA y Diseño Experimental
-Horas restantes del tema: 3
-Procesando fecha: 2025-04-15 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-04-16 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: ANOVA y Diseño Experimental
-Horas restantes del tema: 1
-Procesando fecha: 2025-04-17 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 1 horas al tema: ANOVA y Diseño Experimental
-Horas restantes del tema: 0
-Tema completado: ANOVA y Diseño Experimental
-Asignando 2 horas al tema: Modelos Avanzados
-Horas restantes del tema: 4
-Procesando fecha: 2025-04-18 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-04-19 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-04-20 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-04-21 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Modelos Avanzados
-Horas restantes del tema: 3
-Procesando fecha: 2025-04-22 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-04-23 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Modelos Avanzados
-Horas restantes del tema: 1
-Procesando fecha: 2025-04-24 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 1 horas al tema: Modelos Avanzados
-Horas restantes del tema: 0
-Tema completado: Modelos Avanzados
-Asignando 2 horas al tema: Programación Estadística
-Horas restantes del tema: 5
-Procesando fecha: 2025-04-25 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-04-26 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-04-27 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-04-28 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Programación Estadística
-Horas restantes del tema: 4
-Procesando fecha: 2025-04-29 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-04-30 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Programación Estadística
-Horas restantes del tema: 2
-Procesando fecha: 2025-05-01 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 2 horas al tema: Programación Estadística
-Horas restantes del tema: 0
-Tema completado: Programación Estadística
-Asignando 1 horas al tema: Simulación Monte Carlo
-Horas restantes del tema: 5.5
-Procesando fecha: 2025-05-02 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-05-03 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-05-04 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-05-05 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Simulación Monte Carlo
-Horas restantes del tema: 4.5
-Procesando fecha: 2025-05-06 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-05-07 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Simulación Monte Carlo
-Horas restantes del tema: 2.5
-Procesando fecha: 2025-05-08 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 2.5 horas al tema: Simulación Monte Carlo
-Horas restantes del tema: 0
-Tema completado: Simulación Monte Carlo
-Asignando 0.5 horas al tema: Bootstrap y Remuestreo
-Horas restantes del tema: 5.5
-Procesando fecha: 2025-05-09 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-05-10 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-05-11 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-05-12 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Bootstrap y Remuestreo
-Horas restantes del tema: 4.5
-Procesando fecha: 2025-05-13 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-05-14 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Bootstrap y Remuestreo
-Horas restantes del tema: 2.5
-Procesando fecha: 2025-05-15 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 2.5 horas al tema: Bootstrap y Remuestreo
-Horas restantes del tema: 0
-Tema completado: Bootstrap y Remuestreo
-Asignando 0.5 horas al tema: Visualización de Datos
-Horas restantes del tema: 5
-Procesando fecha: 2025-05-16 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-05-17 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-05-18 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-05-19 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Visualización de Datos
-Horas restantes del tema: 4
-Procesando fecha: 2025-05-20 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-05-21 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Visualización de Datos
-Horas restantes del tema: 2
-Procesando fecha: 2025-05-22 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 2 horas al tema: Visualización de Datos
-Horas restantes del tema: 0
-Tema completado: Visualización de Datos
-Asignando 1 horas al tema: Machine Learning Básico
-Horas restantes del tema: 6
-Saltando fecha 2025-05-23 (feriado/evaluación)
-Procesando fecha: 2025-05-24 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-05-25 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-05-26 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Machine Learning Básico
-Horas restantes del tema: 5
-Procesando fecha: 2025-05-27 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-05-28 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Machine Learning Básico
-Horas restantes del tema: 3
-Procesando fecha: 2025-05-29 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Machine Learning Básico
-Horas restantes del tema: 0
-Tema completado: Machine Learning Básico
-=== NUEVO PROCESAMIENTO ===
-Array
-(
-    [materia_ciclo_id] => 17
-    [dias] => Array
-        (
-            [0] => Lunes
-            [1] => Miércoles
-            [2] => Jueves
-        )
-
-    [horas] => Array
-        (
-            [Lunes] => 1
-            [Martes] => 
-            [Miércoles] => 2
-            [Jueves] => 3
-            [Viernes] => 
-        )
-
-)
-Días normalizados: Array
-(
-    [0] => Lunes
-    [1] => Miércoles
-    [2] => Jueves
-)
-Horas limpias: Array
-(
-    [Lunes] => 1
-    [Miércoles] => 2
-    [Jueves] => 3
-)
-Fecha inicio: 2025-01-01
-Fecha fin: 2025-06-30
-Temas encontrados: 20
-Temas: Array
-(
-    [0] => Array
-        (
-            [tema_id] => 306
-            [tema] => Fundamentos de Probabilidad
-            [horas_estimadas] => 5.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [1] => Array
-        (
-            [tema_id] => 307
-            [tema] => Probabilidad Condicional
-            [horas_estimadas] => 6.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [2] => Array
-        (
-            [tema_id] => 308
-            [tema] => Variables Aleatorias Discretas
-            [horas_estimadas] => 7.50
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [3] => Array
-        (
-            [tema_id] => 309
-            [tema] => Variables Aleatorias Continuas
-            [horas_estimadas] => 8.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [4] => Array
-        (
-            [tema_id] => 310
-            [tema] => Distribuciones Multivariadas
-            [horas_estimadas] => 5.50
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [5] => Array
-        (
-            [tema_id] => 311
-            [tema] => Distribuciones Muestrales
-            [horas_estimadas] => 6.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [6] => Array
-        (
-            [tema_id] => 312
-            [tema] => Estimación Puntual
-            [horas_estimadas] => 6.50
-            [unidad] => Inferencia Estadística
-        )
-
-    [7] => Array
-        (
-            [tema_id] => 313
-            [tema] => Intervalos de Confianza
-            [horas_estimadas] => 7.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [8] => Array
-        (
-            [tema_id] => 314
-            [tema] => Pruebas de Hipótesis
-            [horas_estimadas] => 8.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [9] => Array
-        (
-            [tema_id] => 315
-            [tema] => Pruebas No Paramétricas
-            [horas_estimadas] => 4.50
-            [unidad] => Inferencia Estadística
-        )
-
-    [10] => Array
-        (
-            [tema_id] => 316
-            [tema] => Regresión Lineal Simple
-            [horas_estimadas] => 7.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [11] => Array
-        (
-            [tema_id] => 317
-            [tema] => Diagnóstico del Modelo
-            [horas_estimadas] => 6.50
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [12] => Array
-        (
-            [tema_id] => 318
-            [tema] => Regresión Múltiple
-            [horas_estimadas] => 8.50
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [13] => Array
-        (
-            [tema_id] => 319
-            [tema] => ANOVA y Diseño Experimental
-            [horas_estimadas] => 7.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [14] => Array
-        (
-            [tema_id] => 320
-            [tema] => Modelos Avanzados
-            [horas_estimadas] => 6.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [15] => Array
-        (
-            [tema_id] => 321
-            [tema] => Programación Estadística
-            [horas_estimadas] => 7.00
-            [unidad] => Estadística Computacional
-        )
-
-    [16] => Array
-        (
-            [tema_id] => 322
-            [tema] => Simulación Monte Carlo
-            [horas_estimadas] => 6.50
-            [unidad] => Estadística Computacional
-        )
-
-    [17] => Array
-        (
-            [tema_id] => 323
-            [tema] => Bootstrap y Remuestreo
-            [horas_estimadas] => 6.00
-            [unidad] => Estadística Computacional
-        )
-
-    [18] => Array
-        (
-            [tema_id] => 324
-            [tema] => Visualización de Datos
-            [horas_estimadas] => 5.50
-            [unidad] => Estadística Computacional
-        )
-
-    [19] => Array
-        (
-            [tema_id] => 325
-            [tema] => Machine Learning Básico
-            [horas_estimadas] => 7.00
-            [unidad] => Estadística Computacional
-        )
-
-)
-Iniciando distribución...
-Procesando fecha: 2025-01-01 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Fundamentos de Probabilidad
-Horas restantes del tema: 3
-Procesando fecha: 2025-01-02 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Fundamentos de Probabilidad
-Horas restantes del tema: 0
-Tema completado: Fundamentos de Probabilidad
-Procesando fecha: 2025-01-03 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-01-04 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-01-05 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-01-06 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Probabilidad Condicional
-Horas restantes del tema: 5
-Procesando fecha: 2025-01-07 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-01-08 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Probabilidad Condicional
-Horas restantes del tema: 3
-Procesando fecha: 2025-01-09 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Probabilidad Condicional
-Horas restantes del tema: 0
-Tema completado: Probabilidad Condicional
-Procesando fecha: 2025-01-10 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-01-11 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-01-12 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-01-13 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Variables Aleatorias Discretas
-Horas restantes del tema: 6.5
-Procesando fecha: 2025-01-14 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-01-15 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Variables Aleatorias Discretas
-Horas restantes del tema: 4.5
-Procesando fecha: 2025-01-16 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Variables Aleatorias Discretas
-Horas restantes del tema: 1.5
-Procesando fecha: 2025-01-17 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-01-18 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-01-19 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-01-20 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Variables Aleatorias Discretas
-Horas restantes del tema: 0.5
-Procesando fecha: 2025-01-21 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-01-22 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 0.5 horas al tema: Variables Aleatorias Discretas
-Horas restantes del tema: 0
-Tema completado: Variables Aleatorias Discretas
-Asignando 1.5 horas al tema: Variables Aleatorias Continuas
-Horas restantes del tema: 6.5
-Procesando fecha: 2025-01-23 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Variables Aleatorias Continuas
-Horas restantes del tema: 3.5
-Procesando fecha: 2025-01-24 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-01-25 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-01-26 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-01-27 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Variables Aleatorias Continuas
-Horas restantes del tema: 2.5
-Procesando fecha: 2025-01-28 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-01-29 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Variables Aleatorias Continuas
-Horas restantes del tema: 0.5
-Procesando fecha: 2025-01-30 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 0.5 horas al tema: Variables Aleatorias Continuas
-Horas restantes del tema: 0
-Tema completado: Variables Aleatorias Continuas
-Asignando 2.5 horas al tema: Distribuciones Multivariadas
-Horas restantes del tema: 3
-Procesando fecha: 2025-01-31 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-02-01 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-02-02 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-02-03 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Distribuciones Multivariadas
-Horas restantes del tema: 2
-Procesando fecha: 2025-02-04 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-02-05 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Distribuciones Multivariadas
-Horas restantes del tema: 0
-Tema completado: Distribuciones Multivariadas
-Procesando fecha: 2025-02-06 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Distribuciones Muestrales
-Horas restantes del tema: 3
-Procesando fecha: 2025-02-07 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-02-08 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-02-09 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-02-10 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Distribuciones Muestrales
-Horas restantes del tema: 2
-Procesando fecha: 2025-02-11 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-02-12 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Distribuciones Muestrales
-Horas restantes del tema: 0
-Tema completado: Distribuciones Muestrales
-Procesando fecha: 2025-02-13 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Estimación Puntual
-Horas restantes del tema: 3.5
-Procesando fecha: 2025-02-14 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-02-15 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-02-16 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-02-17 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Estimación Puntual
-Horas restantes del tema: 2.5
-Procesando fecha: 2025-02-18 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-02-19 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Estimación Puntual
-Horas restantes del tema: 0.5
-Procesando fecha: 2025-02-20 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 0.5 horas al tema: Estimación Puntual
-Horas restantes del tema: 0
-Tema completado: Estimación Puntual
-Asignando 2.5 horas al tema: Intervalos de Confianza
-Horas restantes del tema: 4.5
-Procesando fecha: 2025-02-21 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-02-22 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-02-23 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-02-24 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Intervalos de Confianza
-Horas restantes del tema: 3.5
-Procesando fecha: 2025-02-25 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-02-26 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Intervalos de Confianza
-Horas restantes del tema: 1.5
-Procesando fecha: 2025-02-27 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 1.5 horas al tema: Intervalos de Confianza
-Horas restantes del tema: 0
-Tema completado: Intervalos de Confianza
-Asignando 1.5 horas al tema: Pruebas de Hipótesis
-Horas restantes del tema: 6.5
-Procesando fecha: 2025-02-28 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-03-01 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-03-02 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-03-03 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Pruebas de Hipótesis
-Horas restantes del tema: 5.5
-Procesando fecha: 2025-03-04 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-03-05 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Pruebas de Hipótesis
-Horas restantes del tema: 3.5
-Procesando fecha: 2025-03-06 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Pruebas de Hipótesis
-Horas restantes del tema: 0.5
-Procesando fecha: 2025-03-07 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-03-08 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-03-09 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-03-10 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 0.5 horas al tema: Pruebas de Hipótesis
-Horas restantes del tema: 0
-Tema completado: Pruebas de Hipótesis
-Asignando 0.5 horas al tema: Pruebas No Paramétricas
-Horas restantes del tema: 4
-Procesando fecha: 2025-03-11 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-03-12 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Pruebas No Paramétricas
-Horas restantes del tema: 2
-Procesando fecha: 2025-03-13 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 2 horas al tema: Pruebas No Paramétricas
-Horas restantes del tema: 0
-Tema completado: Pruebas No Paramétricas
-Asignando 1 horas al tema: Regresión Lineal Simple
-Horas restantes del tema: 6
-Procesando fecha: 2025-03-14 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-03-15 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-03-16 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-03-17 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Regresión Lineal Simple
-Horas restantes del tema: 5
-Procesando fecha: 2025-03-18 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-03-19 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Regresión Lineal Simple
-Horas restantes del tema: 3
-Procesando fecha: 2025-03-20 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Regresión Lineal Simple
-Horas restantes del tema: 0
-Tema completado: Regresión Lineal Simple
-Procesando fecha: 2025-03-21 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-03-22 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-03-23 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-03-24 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Diagnóstico del Modelo
-Horas restantes del tema: 5.5
-Procesando fecha: 2025-03-25 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-03-26 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Diagnóstico del Modelo
-Horas restantes del tema: 3.5
-Procesando fecha: 2025-03-27 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Diagnóstico del Modelo
-Horas restantes del tema: 0.5
-Procesando fecha: 2025-03-28 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-03-29 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-03-30 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-03-31 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 0.5 horas al tema: Diagnóstico del Modelo
-Horas restantes del tema: 0
-Tema completado: Diagnóstico del Modelo
-Asignando 0.5 horas al tema: Regresión Múltiple
-Horas restantes del tema: 8
-Procesando fecha: 2025-04-01 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-04-02 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Regresión Múltiple
-Horas restantes del tema: 6
-Procesando fecha: 2025-04-03 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Regresión Múltiple
-Horas restantes del tema: 3
-Procesando fecha: 2025-04-04 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-04-05 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-04-06 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-04-07 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Regresión Múltiple
-Horas restantes del tema: 2
-Procesando fecha: 2025-04-08 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-04-09 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Regresión Múltiple
-Horas restantes del tema: 0
-Tema completado: Regresión Múltiple
-Procesando fecha: 2025-04-10 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: ANOVA y Diseño Experimental
-Horas restantes del tema: 4
-Procesando fecha: 2025-04-11 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-04-12 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-04-13 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-04-14 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: ANOVA y Diseño Experimental
-Horas restantes del tema: 3
-Procesando fecha: 2025-04-15 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-04-16 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: ANOVA y Diseño Experimental
-Horas restantes del tema: 1
-Procesando fecha: 2025-04-17 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 1 horas al tema: ANOVA y Diseño Experimental
-Horas restantes del tema: 0
-Tema completado: ANOVA y Diseño Experimental
-Asignando 2 horas al tema: Modelos Avanzados
-Horas restantes del tema: 4
-Procesando fecha: 2025-04-18 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-04-19 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-04-20 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-04-21 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Modelos Avanzados
-Horas restantes del tema: 3
-Procesando fecha: 2025-04-22 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-04-23 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Modelos Avanzados
-Horas restantes del tema: 1
-Procesando fecha: 2025-04-24 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 1 horas al tema: Modelos Avanzados
-Horas restantes del tema: 0
-Tema completado: Modelos Avanzados
-Asignando 2 horas al tema: Programación Estadística
-Horas restantes del tema: 5
-Procesando fecha: 2025-04-25 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-04-26 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-04-27 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-04-28 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Programación Estadística
-Horas restantes del tema: 4
-Procesando fecha: 2025-04-29 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-04-30 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Programación Estadística
-Horas restantes del tema: 2
-Procesando fecha: 2025-05-01 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 2 horas al tema: Programación Estadística
-Horas restantes del tema: 0
-Tema completado: Programación Estadística
-Asignando 1 horas al tema: Simulación Monte Carlo
-Horas restantes del tema: 5.5
-Procesando fecha: 2025-05-02 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-05-03 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-05-04 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-05-05 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Simulación Monte Carlo
-Horas restantes del tema: 4.5
-Procesando fecha: 2025-05-06 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-05-07 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Simulación Monte Carlo
-Horas restantes del tema: 2.5
-Procesando fecha: 2025-05-08 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 2.5 horas al tema: Simulación Monte Carlo
-Horas restantes del tema: 0
-Tema completado: Simulación Monte Carlo
-Asignando 0.5 horas al tema: Bootstrap y Remuestreo
-Horas restantes del tema: 5.5
-Procesando fecha: 2025-05-09 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-05-10 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-05-11 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-05-12 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Bootstrap y Remuestreo
-Horas restantes del tema: 4.5
-Procesando fecha: 2025-05-13 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-05-14 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Bootstrap y Remuestreo
-Horas restantes del tema: 2.5
-Procesando fecha: 2025-05-15 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 2.5 horas al tema: Bootstrap y Remuestreo
-Horas restantes del tema: 0
-Tema completado: Bootstrap y Remuestreo
-Asignando 0.5 horas al tema: Visualización de Datos
-Horas restantes del tema: 5
-Procesando fecha: 2025-05-16 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-05-17 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-05-18 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-05-19 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Visualización de Datos
-Horas restantes del tema: 4
-Procesando fecha: 2025-05-20 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-05-21 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Visualización de Datos
-Horas restantes del tema: 2
-Procesando fecha: 2025-05-22 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 2 horas al tema: Visualización de Datos
-Horas restantes del tema: 0
-Tema completado: Visualización de Datos
-Asignando 1 horas al tema: Machine Learning Básico
-Horas restantes del tema: 6
-Saltando fecha 2025-05-23 (feriado/evaluación)
-Procesando fecha: 2025-05-24 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-05-25 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-05-26 (Lunes)
-Horas disponibles para Lunes: 1
-Asignando 1 horas al tema: Machine Learning Básico
-Horas restantes del tema: 5
-Procesando fecha: 2025-05-27 (Martes)
-Día Martes no está en días seleccionados
-Procesando fecha: 2025-05-28 (Miércoles)
-Horas disponibles para Miércoles: 2
-Asignando 2 horas al tema: Machine Learning Básico
-Horas restantes del tema: 3
-Procesando fecha: 2025-05-29 (Jueves)
-Horas disponibles para Jueves: 3
-Asignando 3 horas al tema: Machine Learning Básico
-Horas restantes del tema: 0
-Tema completado: Machine Learning Básico
-=== NUEVO PROCESAMIENTO ===
-Array
-(
-    [materia_ciclo_id] => 17
-    [dias] => Array
-        (
-            [0] => Lunes
-            [1] => Miércoles
-            [2] => Jueves
-        )
-
-    [horas] => Array
-        (
-            [Lunes] => 1
-            [Martes] => 
-            [Miércoles] => 2
-            [Jueves] => 3
-            [Viernes] => 
-        )
-
-)
-Días normalizados: Array
-(
-    [0] => Lunes
-    [1] => Miércoles
-    [2] => Jueves
-)
-Horas limpias: Array
-(
-    [Lunes] => 1
-    [Miércoles] => 2
-    [Jueves] => 3
-)
-Fecha inicio: 2025-01-01
-Fecha fin: 2025-06-30
-Temas encontrados: 20
-Temas: Array
-(
-    [0] => Array
-        (
-            [tema_id] => 306
-            [tema] => Fundamentos de Probabilidad
-            [horas_estimadas] => 5.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [1] => Array
-        (
-            [tema_id] => 307
-            [tema] => Probabilidad Condicional
-            [horas_estimadas] => 6.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [2] => Array
-        (
-            [tema_id] => 308
-            [tema] => Variables Aleatorias Discretas
-            [horas_estimadas] => 7.50
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [3] => Array
-        (
-            [tema_id] => 309
-            [tema] => Variables Aleatorias Continuas
-            [horas_estimadas] => 8.00
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [4] => Array
-        (
-            [tema_id] => 310
-            [tema] => Distribuciones Multivariadas
-            [horas_estimadas] => 5.50
-            [unidad] => Probabilidad y Distribuciones
-        )
-
-    [5] => Array
-        (
-            [tema_id] => 311
-            [tema] => Distribuciones Muestrales
-            [horas_estimadas] => 6.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [6] => Array
-        (
-            [tema_id] => 312
-            [tema] => Estimación Puntual
-            [horas_estimadas] => 6.50
-            [unidad] => Inferencia Estadística
-        )
-
-    [7] => Array
-        (
-            [tema_id] => 313
-            [tema] => Intervalos de Confianza
-            [horas_estimadas] => 7.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [8] => Array
-        (
-            [tema_id] => 314
-            [tema] => Pruebas de Hipótesis
-            [horas_estimadas] => 8.00
-            [unidad] => Inferencia Estadística
-        )
-
-    [9] => Array
-        (
-            [tema_id] => 315
-            [tema] => Pruebas No Paramétricas
-            [horas_estimadas] => 4.50
-            [unidad] => Inferencia Estadística
-        )
-
-    [10] => Array
-        (
-            [tema_id] => 316
-            [tema] => Regresión Lineal Simple
-            [horas_estimadas] => 7.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [11] => Array
-        (
-            [tema_id] => 317
-            [tema] => Diagnóstico del Modelo
-            [horas_estimadas] => 6.50
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [12] => Array
-        (
-            [tema_id] => 318
-            [tema] => Regresión Múltiple
-            [horas_estimadas] => 8.50
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [13] => Array
-        (
-            [tema_id] => 319
-            [tema] => ANOVA y Diseño Experimental
-            [horas_estimadas] => 7.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [14] => Array
-        (
-            [tema_id] => 320
-            [tema] => Modelos Avanzados
-            [horas_estimadas] => 6.00
-            [unidad] => Análisis de Regresión y Correlación
-        )
-
-    [15] => Array
-        (
-            [tema_id] => 321
-            [tema] => Programación Estadística
-            [horas_estimadas] => 7.00
-            [unidad] => Estadística Computacional
-        )
-
-    [16] => Array
-        (
-            [tema_id] => 322
-            [tema] => Simulación Monte Carlo
-            [horas_estimadas] => 6.50
-            [unidad] => Estadística Computacional
-        )
-
-    [17] => Array
-        (
-            [tema_id] => 323
-            [tema] => Bootstrap y Remuestreo
-            [horas_estimadas] => 6.00
-            [unidad] => Estadística Computacional
-        )
-
-    [18] => Array
-        (
-            [tema_id] => 324
-            [tema] => Visualización de Datos
-            [horas_estimadas] => 5.50
-            [unidad] => Estadística Computacional
-        )
-
-    [19] => Array
-        (
-            [tema_id] => 325
-            [tema] => Machine Learning Básico
-            [horas_estimadas] => 7.00
-            [unidad] => Estadística Computacional
-        )
-
-)
-=== NUEVO PROCESAMIENTO ===
-Array
-(
-    [materia_ciclo_id] => 17
-    [dias] => Array
-        (
-            [0] => Lunes
             [1] => Martes
             [2] => Miércoles
         )
@@ -2353,7 +12,7 @@ Array
     [horas] => Array
         (
             [Lunes] => 2
-            [Martes] => 2
+            [Martes] => 4
             [Miércoles] => 1
             [Jueves] => 
             [Viernes] => 
@@ -2369,7 +28,7 @@ Días normalizados: Array
 Horas limpias: Array
 (
     [Lunes] => 2
-    [Martes] => 2
+    [Martes] => 4
     [Miércoles] => 1
 )
 Fecha inicio: 2025-01-01
@@ -2556,14 +215,16 @@ Horas disponibles para Lunes: 2
 Asignando 2 horas al tema: Fundamentos de Probabilidad
 Horas restantes del tema: 2
 Procesando fecha: 2025-01-07 (Martes)
-Horas disponibles para Martes: 2
+Horas disponibles para Martes: 4
 Asignando 2 horas al tema: Fundamentos de Probabilidad
 Horas restantes del tema: 0
 Tema completado: Fundamentos de Probabilidad
+Asignando 2 horas al tema: Probabilidad Condicional
+Horas restantes del tema: 4
 Procesando fecha: 2025-01-08 (Miércoles)
 Horas disponibles para Miércoles: 1
 Asignando 1 horas al tema: Probabilidad Condicional
-Horas restantes del tema: 5
+Horas restantes del tema: 3
 Procesando fecha: 2025-01-09 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-01-10 (Viernes)
@@ -2575,16 +236,18 @@ Día Domingo no está en días seleccionados
 Procesando fecha: 2025-01-13 (Lunes)
 Horas disponibles para Lunes: 2
 Asignando 2 horas al tema: Probabilidad Condicional
-Horas restantes del tema: 3
-Procesando fecha: 2025-01-14 (Martes)
-Horas disponibles para Martes: 2
-Asignando 2 horas al tema: Probabilidad Condicional
 Horas restantes del tema: 1
-Procesando fecha: 2025-01-15 (Miércoles)
-Horas disponibles para Miércoles: 1
+Procesando fecha: 2025-01-14 (Martes)
+Horas disponibles para Martes: 4
 Asignando 1 horas al tema: Probabilidad Condicional
 Horas restantes del tema: 0
 Tema completado: Probabilidad Condicional
+Asignando 3 horas al tema: Variables Aleatorias Discretas
+Horas restantes del tema: 4.5
+Procesando fecha: 2025-01-15 (Miércoles)
+Horas disponibles para Miércoles: 1
+Asignando 1 horas al tema: Variables Aleatorias Discretas
+Horas restantes del tema: 3.5
 Procesando fecha: 2025-01-16 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-01-17 (Viernes)
@@ -2596,15 +259,18 @@ Día Domingo no está en días seleccionados
 Procesando fecha: 2025-01-20 (Lunes)
 Horas disponibles para Lunes: 2
 Asignando 2 horas al tema: Variables Aleatorias Discretas
-Horas restantes del tema: 5.5
+Horas restantes del tema: 1.5
 Procesando fecha: 2025-01-21 (Martes)
-Horas disponibles para Martes: 2
-Asignando 2 horas al tema: Variables Aleatorias Discretas
-Horas restantes del tema: 3.5
+Horas disponibles para Martes: 4
+Asignando 1.5 horas al tema: Variables Aleatorias Discretas
+Horas restantes del tema: 0
+Tema completado: Variables Aleatorias Discretas
+Asignando 2.5 horas al tema: Variables Aleatorias Continuas
+Horas restantes del tema: 5.5
 Procesando fecha: 2025-01-22 (Miércoles)
 Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Variables Aleatorias Discretas
-Horas restantes del tema: 2.5
+Asignando 1 horas al tema: Variables Aleatorias Continuas
+Horas restantes del tema: 4.5
 Procesando fecha: 2025-01-23 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-01-24 (Viernes)
@@ -2615,19 +281,19 @@ Procesando fecha: 2025-01-26 (Domingo)
 Día Domingo no está en días seleccionados
 Procesando fecha: 2025-01-27 (Lunes)
 Horas disponibles para Lunes: 2
-Asignando 2 horas al tema: Variables Aleatorias Discretas
-Horas restantes del tema: 0.5
+Asignando 2 horas al tema: Variables Aleatorias Continuas
+Horas restantes del tema: 2.5
 Procesando fecha: 2025-01-28 (Martes)
-Horas disponibles para Martes: 2
-Asignando 0.5 horas al tema: Variables Aleatorias Discretas
+Horas disponibles para Martes: 4
+Asignando 2.5 horas al tema: Variables Aleatorias Continuas
 Horas restantes del tema: 0
-Tema completado: Variables Aleatorias Discretas
-Asignando 1.5 horas al tema: Variables Aleatorias Continuas
-Horas restantes del tema: 6.5
+Tema completado: Variables Aleatorias Continuas
+Asignando 1.5 horas al tema: Distribuciones Multivariadas
+Horas restantes del tema: 4
 Procesando fecha: 2025-01-29 (Miércoles)
 Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Variables Aleatorias Continuas
-Horas restantes del tema: 5.5
+Asignando 1 horas al tema: Distribuciones Multivariadas
+Horas restantes del tema: 3
 Procesando fecha: 2025-01-30 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-01-31 (Viernes)
@@ -2638,16 +304,19 @@ Procesando fecha: 2025-02-02 (Domingo)
 Día Domingo no está en días seleccionados
 Procesando fecha: 2025-02-03 (Lunes)
 Horas disponibles para Lunes: 2
-Asignando 2 horas al tema: Variables Aleatorias Continuas
-Horas restantes del tema: 3.5
+Asignando 2 horas al tema: Distribuciones Multivariadas
+Horas restantes del tema: 1
 Procesando fecha: 2025-02-04 (Martes)
-Horas disponibles para Martes: 2
-Asignando 2 horas al tema: Variables Aleatorias Continuas
-Horas restantes del tema: 1.5
+Horas disponibles para Martes: 4
+Asignando 1 horas al tema: Distribuciones Multivariadas
+Horas restantes del tema: 0
+Tema completado: Distribuciones Multivariadas
+Asignando 3 horas al tema: Distribuciones Muestrales
+Horas restantes del tema: 3
 Procesando fecha: 2025-02-05 (Miércoles)
 Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Variables Aleatorias Continuas
-Horas restantes del tema: 0.5
+Asignando 1 horas al tema: Distribuciones Muestrales
+Horas restantes del tema: 2
 Procesando fecha: 2025-02-06 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-02-07 (Viernes)
@@ -2658,19 +327,17 @@ Procesando fecha: 2025-02-09 (Domingo)
 Día Domingo no está en días seleccionados
 Procesando fecha: 2025-02-10 (Lunes)
 Horas disponibles para Lunes: 2
-Asignando 0.5 horas al tema: Variables Aleatorias Continuas
+Asignando 2 horas al tema: Distribuciones Muestrales
 Horas restantes del tema: 0
-Tema completado: Variables Aleatorias Continuas
-Asignando 1.5 horas al tema: Distribuciones Multivariadas
-Horas restantes del tema: 4
+Tema completado: Distribuciones Muestrales
 Procesando fecha: 2025-02-11 (Martes)
-Horas disponibles para Martes: 2
-Asignando 2 horas al tema: Distribuciones Multivariadas
-Horas restantes del tema: 2
+Horas disponibles para Martes: 4
+Asignando 4 horas al tema: Estimación Puntual
+Horas restantes del tema: 2.5
 Procesando fecha: 2025-02-12 (Miércoles)
 Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Distribuciones Multivariadas
-Horas restantes del tema: 1
+Asignando 1 horas al tema: Estimación Puntual
+Horas restantes del tema: 1.5
 Procesando fecha: 2025-02-13 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-02-14 (Viernes)
@@ -2681,19 +348,19 @@ Procesando fecha: 2025-02-16 (Domingo)
 Día Domingo no está en días seleccionados
 Procesando fecha: 2025-02-17 (Lunes)
 Horas disponibles para Lunes: 2
-Asignando 1 horas al tema: Distribuciones Multivariadas
+Asignando 1.5 horas al tema: Estimación Puntual
 Horas restantes del tema: 0
-Tema completado: Distribuciones Multivariadas
-Asignando 1 horas al tema: Distribuciones Muestrales
-Horas restantes del tema: 5
+Tema completado: Estimación Puntual
+Asignando 0.5 horas al tema: Intervalos de Confianza
+Horas restantes del tema: 6.5
 Procesando fecha: 2025-02-18 (Martes)
-Horas disponibles para Martes: 2
-Asignando 2 horas al tema: Distribuciones Muestrales
-Horas restantes del tema: 3
+Horas disponibles para Martes: 4
+Asignando 4 horas al tema: Intervalos de Confianza
+Horas restantes del tema: 2.5
 Procesando fecha: 2025-02-19 (Miércoles)
 Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Distribuciones Muestrales
-Horas restantes del tema: 2
+Asignando 1 horas al tema: Intervalos de Confianza
+Horas restantes del tema: 1.5
 Procesando fecha: 2025-02-20 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-02-21 (Viernes)
@@ -2704,17 +371,19 @@ Procesando fecha: 2025-02-23 (Domingo)
 Día Domingo no está en días seleccionados
 Procesando fecha: 2025-02-24 (Lunes)
 Horas disponibles para Lunes: 2
-Asignando 2 horas al tema: Distribuciones Muestrales
+Asignando 1.5 horas al tema: Intervalos de Confianza
 Horas restantes del tema: 0
-Tema completado: Distribuciones Muestrales
+Tema completado: Intervalos de Confianza
+Asignando 0.5 horas al tema: Pruebas de Hipótesis
+Horas restantes del tema: 7.5
 Procesando fecha: 2025-02-25 (Martes)
-Horas disponibles para Martes: 2
-Asignando 2 horas al tema: Estimación Puntual
-Horas restantes del tema: 4.5
+Horas disponibles para Martes: 4
+Asignando 4 horas al tema: Pruebas de Hipótesis
+Horas restantes del tema: 3.5
 Procesando fecha: 2025-02-26 (Miércoles)
 Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Estimación Puntual
-Horas restantes del tema: 3.5
+Asignando 1 horas al tema: Pruebas de Hipótesis
+Horas restantes del tema: 2.5
 Procesando fecha: 2025-02-27 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-02-28 (Viernes)
@@ -2725,19 +394,20 @@ Procesando fecha: 2025-03-02 (Domingo)
 Día Domingo no está en días seleccionados
 Procesando fecha: 2025-03-03 (Lunes)
 Horas disponibles para Lunes: 2
-Asignando 2 horas al tema: Estimación Puntual
-Horas restantes del tema: 1.5
+Asignando 2 horas al tema: Pruebas de Hipótesis
+Horas restantes del tema: 0.5
 Procesando fecha: 2025-03-04 (Martes)
-Horas disponibles para Martes: 2
-Asignando 1.5 horas al tema: Estimación Puntual
+Horas disponibles para Martes: 4
+Asignando 0.5 horas al tema: Pruebas de Hipótesis
 Horas restantes del tema: 0
-Tema completado: Estimación Puntual
-Asignando 0.5 horas al tema: Intervalos de Confianza
-Horas restantes del tema: 6.5
+Tema completado: Pruebas de Hipótesis
+Asignando 3.5 horas al tema: Pruebas No Paramétricas
+Horas restantes del tema: 1
 Procesando fecha: 2025-03-05 (Miércoles)
 Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Intervalos de Confianza
-Horas restantes del tema: 5.5
+Asignando 1 horas al tema: Pruebas No Paramétricas
+Horas restantes del tema: 0
+Tema completado: Pruebas No Paramétricas
 Procesando fecha: 2025-03-06 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-03-07 (Viernes)
@@ -2748,16 +418,17 @@ Procesando fecha: 2025-03-09 (Domingo)
 Día Domingo no está en días seleccionados
 Procesando fecha: 2025-03-10 (Lunes)
 Horas disponibles para Lunes: 2
-Asignando 2 horas al tema: Intervalos de Confianza
-Horas restantes del tema: 3.5
+Asignando 2 horas al tema: Regresión Lineal Simple
+Horas restantes del tema: 5
 Procesando fecha: 2025-03-11 (Martes)
-Horas disponibles para Martes: 2
-Asignando 2 horas al tema: Intervalos de Confianza
-Horas restantes del tema: 1.5
+Horas disponibles para Martes: 4
+Asignando 4 horas al tema: Regresión Lineal Simple
+Horas restantes del tema: 1
 Procesando fecha: 2025-03-12 (Miércoles)
 Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Intervalos de Confianza
-Horas restantes del tema: 0.5
+Asignando 1 horas al tema: Regresión Lineal Simple
+Horas restantes del tema: 0
+Tema completado: Regresión Lineal Simple
 Procesando fecha: 2025-03-13 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-03-14 (Viernes)
@@ -2768,19 +439,19 @@ Procesando fecha: 2025-03-16 (Domingo)
 Día Domingo no está en días seleccionados
 Procesando fecha: 2025-03-17 (Lunes)
 Horas disponibles para Lunes: 2
-Asignando 0.5 horas al tema: Intervalos de Confianza
-Horas restantes del tema: 0
-Tema completado: Intervalos de Confianza
-Asignando 1.5 horas al tema: Pruebas de Hipótesis
-Horas restantes del tema: 6.5
-Procesando fecha: 2025-03-18 (Martes)
-Horas disponibles para Martes: 2
-Asignando 2 horas al tema: Pruebas de Hipótesis
+Asignando 2 horas al tema: Diagnóstico del Modelo
 Horas restantes del tema: 4.5
+Procesando fecha: 2025-03-18 (Martes)
+Horas disponibles para Martes: 4
+Asignando 4 horas al tema: Diagnóstico del Modelo
+Horas restantes del tema: 0.5
 Procesando fecha: 2025-03-19 (Miércoles)
 Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Pruebas de Hipótesis
-Horas restantes del tema: 3.5
+Asignando 0.5 horas al tema: Diagnóstico del Modelo
+Horas restantes del tema: 0
+Tema completado: Diagnóstico del Modelo
+Asignando 0.5 horas al tema: Regresión Múltiple
+Horas restantes del tema: 8
 Procesando fecha: 2025-03-20 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-03-21 (Viernes)
@@ -2791,19 +462,16 @@ Procesando fecha: 2025-03-23 (Domingo)
 Día Domingo no está en días seleccionados
 Procesando fecha: 2025-03-24 (Lunes)
 Horas disponibles para Lunes: 2
-Asignando 2 horas al tema: Pruebas de Hipótesis
-Horas restantes del tema: 1.5
+Asignando 2 horas al tema: Regresión Múltiple
+Horas restantes del tema: 6
 Procesando fecha: 2025-03-25 (Martes)
-Horas disponibles para Martes: 2
-Asignando 1.5 horas al tema: Pruebas de Hipótesis
-Horas restantes del tema: 0
-Tema completado: Pruebas de Hipótesis
-Asignando 0.5 horas al tema: Pruebas No Paramétricas
-Horas restantes del tema: 4
+Horas disponibles para Martes: 4
+Asignando 4 horas al tema: Regresión Múltiple
+Horas restantes del tema: 2
 Procesando fecha: 2025-03-26 (Miércoles)
 Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Pruebas No Paramétricas
-Horas restantes del tema: 3
+Asignando 1 horas al tema: Regresión Múltiple
+Horas restantes del tema: 1
 Procesando fecha: 2025-03-27 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-03-28 (Viernes)
@@ -2814,19 +482,19 @@ Procesando fecha: 2025-03-30 (Domingo)
 Día Domingo no está en días seleccionados
 Procesando fecha: 2025-03-31 (Lunes)
 Horas disponibles para Lunes: 2
-Asignando 2 horas al tema: Pruebas No Paramétricas
-Horas restantes del tema: 1
-Procesando fecha: 2025-04-01 (Martes)
-Horas disponibles para Martes: 2
-Asignando 1 horas al tema: Pruebas No Paramétricas
+Asignando 1 horas al tema: Regresión Múltiple
 Horas restantes del tema: 0
-Tema completado: Pruebas No Paramétricas
-Asignando 1 horas al tema: Regresión Lineal Simple
+Tema completado: Regresión Múltiple
+Asignando 1 horas al tema: ANOVA y Diseño Experimental
 Horas restantes del tema: 6
+Procesando fecha: 2025-04-01 (Martes)
+Horas disponibles para Martes: 4
+Asignando 4 horas al tema: ANOVA y Diseño Experimental
+Horas restantes del tema: 2
 Procesando fecha: 2025-04-02 (Miércoles)
 Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Regresión Lineal Simple
-Horas restantes del tema: 5
+Asignando 1 horas al tema: ANOVA y Diseño Experimental
+Horas restantes del tema: 1
 Procesando fecha: 2025-04-03 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-04-04 (Viernes)
@@ -2837,17 +505,20 @@ Procesando fecha: 2025-04-06 (Domingo)
 Día Domingo no está en días seleccionados
 Procesando fecha: 2025-04-07 (Lunes)
 Horas disponibles para Lunes: 2
-Asignando 2 horas al tema: Regresión Lineal Simple
-Horas restantes del tema: 3
+Asignando 1 horas al tema: ANOVA y Diseño Experimental
+Horas restantes del tema: 0
+Tema completado: ANOVA y Diseño Experimental
+Asignando 1 horas al tema: Modelos Avanzados
+Horas restantes del tema: 5
 Procesando fecha: 2025-04-08 (Martes)
-Horas disponibles para Martes: 2
-Asignando 2 horas al tema: Regresión Lineal Simple
+Horas disponibles para Martes: 4
+Asignando 4 horas al tema: Modelos Avanzados
 Horas restantes del tema: 1
 Procesando fecha: 2025-04-09 (Miércoles)
 Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Regresión Lineal Simple
+Asignando 1 horas al tema: Modelos Avanzados
 Horas restantes del tema: 0
-Tema completado: Regresión Lineal Simple
+Tema completado: Modelos Avanzados
 Procesando fecha: 2025-04-10 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-04-11 (Viernes)
@@ -2858,16 +529,17 @@ Procesando fecha: 2025-04-13 (Domingo)
 Día Domingo no está en días seleccionados
 Procesando fecha: 2025-04-14 (Lunes)
 Horas disponibles para Lunes: 2
-Asignando 2 horas al tema: Diagnóstico del Modelo
-Horas restantes del tema: 4.5
+Asignando 2 horas al tema: Programación Estadística
+Horas restantes del tema: 5
 Procesando fecha: 2025-04-15 (Martes)
-Horas disponibles para Martes: 2
-Asignando 2 horas al tema: Diagnóstico del Modelo
-Horas restantes del tema: 2.5
+Horas disponibles para Martes: 4
+Asignando 4 horas al tema: Programación Estadística
+Horas restantes del tema: 1
 Procesando fecha: 2025-04-16 (Miércoles)
 Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Diagnóstico del Modelo
-Horas restantes del tema: 1.5
+Asignando 1 horas al tema: Programación Estadística
+Horas restantes del tema: 0
+Tema completado: Programación Estadística
 Procesando fecha: 2025-04-17 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-04-18 (Viernes)
@@ -2878,19 +550,19 @@ Procesando fecha: 2025-04-20 (Domingo)
 Día Domingo no está en días seleccionados
 Procesando fecha: 2025-04-21 (Lunes)
 Horas disponibles para Lunes: 2
-Asignando 1.5 horas al tema: Diagnóstico del Modelo
-Horas restantes del tema: 0
-Tema completado: Diagnóstico del Modelo
-Asignando 0.5 horas al tema: Regresión Múltiple
-Horas restantes del tema: 8
+Asignando 2 horas al tema: Simulación Monte Carlo
+Horas restantes del tema: 4.5
 Procesando fecha: 2025-04-22 (Martes)
-Horas disponibles para Martes: 2
-Asignando 2 horas al tema: Regresión Múltiple
-Horas restantes del tema: 6
+Horas disponibles para Martes: 4
+Asignando 4 horas al tema: Simulación Monte Carlo
+Horas restantes del tema: 0.5
 Procesando fecha: 2025-04-23 (Miércoles)
 Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Regresión Múltiple
-Horas restantes del tema: 5
+Asignando 0.5 horas al tema: Simulación Monte Carlo
+Horas restantes del tema: 0
+Tema completado: Simulación Monte Carlo
+Asignando 0.5 horas al tema: Bootstrap y Remuestreo
+Horas restantes del tema: 5.5
 Procesando fecha: 2025-04-24 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-04-25 (Viernes)
@@ -2901,17 +573,19 @@ Procesando fecha: 2025-04-27 (Domingo)
 Día Domingo no está en días seleccionados
 Procesando fecha: 2025-04-28 (Lunes)
 Horas disponibles para Lunes: 2
-Asignando 2 horas al tema: Regresión Múltiple
-Horas restantes del tema: 3
+Asignando 2 horas al tema: Bootstrap y Remuestreo
+Horas restantes del tema: 3.5
 Procesando fecha: 2025-04-29 (Martes)
-Horas disponibles para Martes: 2
-Asignando 2 horas al tema: Regresión Múltiple
-Horas restantes del tema: 1
+Horas disponibles para Martes: 4
+Asignando 3.5 horas al tema: Bootstrap y Remuestreo
+Horas restantes del tema: 0
+Tema completado: Bootstrap y Remuestreo
+Asignando 0.5 horas al tema: Visualización de Datos
+Horas restantes del tema: 5
 Procesando fecha: 2025-04-30 (Miércoles)
 Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Regresión Múltiple
-Horas restantes del tema: 0
-Tema completado: Regresión Múltiple
+Asignando 1 horas al tema: Visualización de Datos
+Horas restantes del tema: 4
 Procesando fecha: 2025-05-01 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-05-02 (Viernes)
@@ -2922,16 +596,19 @@ Procesando fecha: 2025-05-04 (Domingo)
 Día Domingo no está en días seleccionados
 Procesando fecha: 2025-05-05 (Lunes)
 Horas disponibles para Lunes: 2
-Asignando 2 horas al tema: ANOVA y Diseño Experimental
-Horas restantes del tema: 5
+Asignando 2 horas al tema: Visualización de Datos
+Horas restantes del tema: 2
 Procesando fecha: 2025-05-06 (Martes)
-Horas disponibles para Martes: 2
-Asignando 2 horas al tema: ANOVA y Diseño Experimental
-Horas restantes del tema: 3
+Horas disponibles para Martes: 4
+Asignando 2 horas al tema: Visualización de Datos
+Horas restantes del tema: 0
+Tema completado: Visualización de Datos
+Asignando 2 horas al tema: Machine Learning Básico
+Horas restantes del tema: 5
 Procesando fecha: 2025-05-07 (Miércoles)
 Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: ANOVA y Diseño Experimental
-Horas restantes del tema: 2
+Asignando 1 horas al tema: Machine Learning Básico
+Horas restantes del tema: 4
 Procesando fecha: 2025-05-08 (Jueves)
 Día Jueves no está en días seleccionados
 Procesando fecha: 2025-05-09 (Viernes)
@@ -2942,161 +619,13 @@ Procesando fecha: 2025-05-11 (Domingo)
 Día Domingo no está en días seleccionados
 Procesando fecha: 2025-05-12 (Lunes)
 Horas disponibles para Lunes: 2
-Asignando 2 horas al tema: ANOVA y Diseño Experimental
-Horas restantes del tema: 0
-Tema completado: ANOVA y Diseño Experimental
-Procesando fecha: 2025-05-13 (Martes)
-Horas disponibles para Martes: 2
-Asignando 2 horas al tema: Modelos Avanzados
-Horas restantes del tema: 4
-Procesando fecha: 2025-05-14 (Miércoles)
-Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Modelos Avanzados
-Horas restantes del tema: 3
-Procesando fecha: 2025-05-15 (Jueves)
-Día Jueves no está en días seleccionados
-Procesando fecha: 2025-05-16 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-05-17 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-05-18 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-05-19 (Lunes)
-Horas disponibles para Lunes: 2
-Asignando 2 horas al tema: Modelos Avanzados
-Horas restantes del tema: 1
-Procesando fecha: 2025-05-20 (Martes)
-Horas disponibles para Martes: 2
-Asignando 1 horas al tema: Modelos Avanzados
-Horas restantes del tema: 0
-Tema completado: Modelos Avanzados
-Asignando 1 horas al tema: Programación Estadística
-Horas restantes del tema: 6
-Procesando fecha: 2025-05-21 (Miércoles)
-Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Programación Estadística
-Horas restantes del tema: 5
-Procesando fecha: 2025-05-22 (Jueves)
-Día Jueves no está en días seleccionados
-Saltando fecha 2025-05-23 (feriado/evaluación)
-Procesando fecha: 2025-05-24 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-05-25 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-05-26 (Lunes)
-Horas disponibles para Lunes: 2
-Asignando 2 horas al tema: Programación Estadística
-Horas restantes del tema: 3
-Procesando fecha: 2025-05-27 (Martes)
-Horas disponibles para Martes: 2
-Asignando 2 horas al tema: Programación Estadística
-Horas restantes del tema: 1
-Procesando fecha: 2025-05-28 (Miércoles)
-Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Programación Estadística
-Horas restantes del tema: 0
-Tema completado: Programación Estadística
-Procesando fecha: 2025-05-29 (Jueves)
-Día Jueves no está en días seleccionados
-Procesando fecha: 2025-05-30 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-05-31 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-06-01 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-06-02 (Lunes)
-Horas disponibles para Lunes: 2
-Asignando 2 horas al tema: Simulación Monte Carlo
-Horas restantes del tema: 4.5
-Procesando fecha: 2025-06-03 (Martes)
-Horas disponibles para Martes: 2
-Asignando 2 horas al tema: Simulación Monte Carlo
-Horas restantes del tema: 2.5
-Procesando fecha: 2025-06-04 (Miércoles)
-Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Simulación Monte Carlo
-Horas restantes del tema: 1.5
-Procesando fecha: 2025-06-05 (Jueves)
-Día Jueves no está en días seleccionados
-Procesando fecha: 2025-06-06 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-06-07 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-06-08 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-06-09 (Lunes)
-Horas disponibles para Lunes: 2
-Asignando 1.5 horas al tema: Simulación Monte Carlo
-Horas restantes del tema: 0
-Tema completado: Simulación Monte Carlo
-Asignando 0.5 horas al tema: Bootstrap y Remuestreo
-Horas restantes del tema: 5.5
-Procesando fecha: 2025-06-10 (Martes)
-Horas disponibles para Martes: 2
-Asignando 2 horas al tema: Bootstrap y Remuestreo
-Horas restantes del tema: 3.5
-Procesando fecha: 2025-06-11 (Miércoles)
-Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Bootstrap y Remuestreo
-Horas restantes del tema: 2.5
-Procesando fecha: 2025-06-12 (Jueves)
-Día Jueves no está en días seleccionados
-Procesando fecha: 2025-06-13 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-06-14 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-06-15 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-06-16 (Lunes)
-Horas disponibles para Lunes: 2
-Asignando 2 horas al tema: Bootstrap y Remuestreo
-Horas restantes del tema: 0.5
-Procesando fecha: 2025-06-17 (Martes)
-Horas disponibles para Martes: 2
-Asignando 0.5 horas al tema: Bootstrap y Remuestreo
-Horas restantes del tema: 0
-Tema completado: Bootstrap y Remuestreo
-Asignando 1.5 horas al tema: Visualización de Datos
-Horas restantes del tema: 4
-Procesando fecha: 2025-06-18 (Miércoles)
-Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Visualización de Datos
-Horas restantes del tema: 3
-Procesando fecha: 2025-06-19 (Jueves)
-Día Jueves no está en días seleccionados
-Procesando fecha: 2025-06-20 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-06-21 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-06-22 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-06-23 (Lunes)
-Horas disponibles para Lunes: 2
-Asignando 2 horas al tema: Visualización de Datos
-Horas restantes del tema: 1
-Procesando fecha: 2025-06-24 (Martes)
-Horas disponibles para Martes: 2
-Asignando 1 horas al tema: Visualización de Datos
-Horas restantes del tema: 0
-Tema completado: Visualización de Datos
-Asignando 1 horas al tema: Machine Learning Básico
-Horas restantes del tema: 6
-Procesando fecha: 2025-06-25 (Miércoles)
-Horas disponibles para Miércoles: 1
-Asignando 1 horas al tema: Machine Learning Básico
-Horas restantes del tema: 5
-Procesando fecha: 2025-06-26 (Jueves)
-Día Jueves no está en días seleccionados
-Procesando fecha: 2025-06-27 (Viernes)
-Día Viernes no está en días seleccionados
-Procesando fecha: 2025-06-28 (Sábado)
-Día Sábado no está en días seleccionados
-Procesando fecha: 2025-06-29 (Domingo)
-Día Domingo no está en días seleccionados
-Procesando fecha: 2025-06-30 (Lunes)
-Horas disponibles para Lunes: 2
 Asignando 2 horas al tema: Machine Learning Básico
-Horas restantes del tema: 3
+Horas restantes del tema: 2
+Procesando fecha: 2025-05-13 (Martes)
+Horas disponibles para Martes: 4
+Asignando 2 horas al tema: Machine Learning Básico
+Horas restantes del tema: 0
+Tema completado: Machine Learning Básico
 Inserción exitosa en BD para tema ID: 306
 Inserción exitosa en BD para tema ID: 307
 Inserción exitosa en BD para tema ID: 308
@@ -3116,6 +645,7 @@ Inserción exitosa en BD para tema ID: 321
 Inserción exitosa en BD para tema ID: 322
 Inserción exitosa en BD para tema ID: 323
 Inserción exitosa en BD para tema ID: 324
+Inserción exitosa en BD para tema ID: 325
 Plan generado:
 Array
 (
@@ -3133,8 +663,8 @@ Array
         (
             [unidad] => Probabilidad y Distribuciones
             [tema] => Probabilidad Condicional
-            [fecha_inicio] => 2025-01-08
-            [fecha_fin] => 2025-01-15
+            [fecha_inicio] => 2025-01-07
+            [fecha_fin] => 2025-01-14
             [horas_estimadas] => 6.00
             [tema_id] => 307
         )
@@ -3143,8 +673,8 @@ Array
         (
             [unidad] => Probabilidad y Distribuciones
             [tema] => Variables Aleatorias Discretas
-            [fecha_inicio] => 2025-01-20
-            [fecha_fin] => 2025-01-28
+            [fecha_inicio] => 2025-01-14
+            [fecha_fin] => 2025-01-21
             [horas_estimadas] => 7.50
             [tema_id] => 308
         )
@@ -3153,8 +683,8 @@ Array
         (
             [unidad] => Probabilidad y Distribuciones
             [tema] => Variables Aleatorias Continuas
-            [fecha_inicio] => 2025-01-28
-            [fecha_fin] => 2025-02-10
+            [fecha_inicio] => 2025-01-21
+            [fecha_fin] => 2025-01-28
             [horas_estimadas] => 8.00
             [tema_id] => 309
         )
@@ -3163,8 +693,8 @@ Array
         (
             [unidad] => Probabilidad y Distribuciones
             [tema] => Distribuciones Multivariadas
-            [fecha_inicio] => 2025-02-10
-            [fecha_fin] => 2025-02-17
+            [fecha_inicio] => 2025-01-28
+            [fecha_fin] => 2025-02-04
             [horas_estimadas] => 5.50
             [tema_id] => 310
         )
@@ -3173,8 +703,8 @@ Array
         (
             [unidad] => Inferencia Estadística
             [tema] => Distribuciones Muestrales
-            [fecha_inicio] => 2025-02-17
-            [fecha_fin] => 2025-02-24
+            [fecha_inicio] => 2025-02-04
+            [fecha_fin] => 2025-02-10
             [horas_estimadas] => 6.00
             [tema_id] => 311
         )
@@ -3183,8 +713,8 @@ Array
         (
             [unidad] => Inferencia Estadística
             [tema] => Estimación Puntual
-            [fecha_inicio] => 2025-02-25
-            [fecha_fin] => 2025-03-04
+            [fecha_inicio] => 2025-02-11
+            [fecha_fin] => 2025-02-17
             [horas_estimadas] => 6.50
             [tema_id] => 312
         )
@@ -3193,8 +723,8 @@ Array
         (
             [unidad] => Inferencia Estadística
             [tema] => Intervalos de Confianza
-            [fecha_inicio] => 2025-03-04
-            [fecha_fin] => 2025-03-17
+            [fecha_inicio] => 2025-02-17
+            [fecha_fin] => 2025-02-24
             [horas_estimadas] => 7.00
             [tema_id] => 313
         )
@@ -3203,8 +733,8 @@ Array
         (
             [unidad] => Inferencia Estadística
             [tema] => Pruebas de Hipótesis
-            [fecha_inicio] => 2025-03-17
-            [fecha_fin] => 2025-03-25
+            [fecha_inicio] => 2025-02-24
+            [fecha_fin] => 2025-03-04
             [horas_estimadas] => 8.00
             [tema_id] => 314
         )
@@ -3213,8 +743,8 @@ Array
         (
             [unidad] => Inferencia Estadística
             [tema] => Pruebas No Paramétricas
-            [fecha_inicio] => 2025-03-25
-            [fecha_fin] => 2025-04-01
+            [fecha_inicio] => 2025-03-04
+            [fecha_fin] => 2025-03-05
             [horas_estimadas] => 4.50
             [tema_id] => 315
         )
@@ -3223,8 +753,8 @@ Array
         (
             [unidad] => Análisis de Regresión y Correlación
             [tema] => Regresión Lineal Simple
-            [fecha_inicio] => 2025-04-01
-            [fecha_fin] => 2025-04-09
+            [fecha_inicio] => 2025-03-10
+            [fecha_fin] => 2025-03-12
             [horas_estimadas] => 7.00
             [tema_id] => 316
         )
@@ -3233,8 +763,8 @@ Array
         (
             [unidad] => Análisis de Regresión y Correlación
             [tema] => Diagnóstico del Modelo
-            [fecha_inicio] => 2025-04-14
-            [fecha_fin] => 2025-04-21
+            [fecha_inicio] => 2025-03-17
+            [fecha_fin] => 2025-03-19
             [horas_estimadas] => 6.50
             [tema_id] => 317
         )
@@ -3243,8 +773,8 @@ Array
         (
             [unidad] => Análisis de Regresión y Correlación
             [tema] => Regresión Múltiple
-            [fecha_inicio] => 2025-04-21
-            [fecha_fin] => 2025-04-30
+            [fecha_inicio] => 2025-03-19
+            [fecha_fin] => 2025-03-31
             [horas_estimadas] => 8.50
             [tema_id] => 318
         )
@@ -3253,8 +783,8 @@ Array
         (
             [unidad] => Análisis de Regresión y Correlación
             [tema] => ANOVA y Diseño Experimental
-            [fecha_inicio] => 2025-05-05
-            [fecha_fin] => 2025-05-12
+            [fecha_inicio] => 2025-03-31
+            [fecha_fin] => 2025-04-07
             [horas_estimadas] => 7.00
             [tema_id] => 319
         )
@@ -3263,8 +793,8 @@ Array
         (
             [unidad] => Análisis de Regresión y Correlación
             [tema] => Modelos Avanzados
-            [fecha_inicio] => 2025-05-13
-            [fecha_fin] => 2025-05-20
+            [fecha_inicio] => 2025-04-07
+            [fecha_fin] => 2025-04-09
             [horas_estimadas] => 6.00
             [tema_id] => 320
         )
@@ -3273,8 +803,8 @@ Array
         (
             [unidad] => Estadística Computacional
             [tema] => Programación Estadística
-            [fecha_inicio] => 2025-05-20
-            [fecha_fin] => 2025-05-28
+            [fecha_inicio] => 2025-04-14
+            [fecha_fin] => 2025-04-16
             [horas_estimadas] => 7.00
             [tema_id] => 321
         )
@@ -3283,8 +813,8 @@ Array
         (
             [unidad] => Estadística Computacional
             [tema] => Simulación Monte Carlo
-            [fecha_inicio] => 2025-06-02
-            [fecha_fin] => 2025-06-09
+            [fecha_inicio] => 2025-04-21
+            [fecha_fin] => 2025-04-23
             [horas_estimadas] => 6.50
             [tema_id] => 322
         )
@@ -3293,8 +823,8 @@ Array
         (
             [unidad] => Estadística Computacional
             [tema] => Bootstrap y Remuestreo
-            [fecha_inicio] => 2025-06-09
-            [fecha_fin] => 2025-06-17
+            [fecha_inicio] => 2025-04-23
+            [fecha_fin] => 2025-04-29
             [horas_estimadas] => 6.00
             [tema_id] => 323
         )
@@ -3303,8 +833,8 @@ Array
         (
             [unidad] => Estadística Computacional
             [tema] => Visualización de Datos
-            [fecha_inicio] => 2025-06-17
-            [fecha_fin] => 2025-06-24
+            [fecha_inicio] => 2025-04-29
+            [fecha_fin] => 2025-05-06
             [horas_estimadas] => 5.50
             [tema_id] => 324
         )
@@ -3313,8 +843,8 @@ Array
         (
             [unidad] => Estadística Computacional
             [tema] => Visualización de Datos
-            [fecha_inicio] => 2025-06-17
-            [fecha_fin] => 2025-06-24
+            [fecha_inicio] => 2025-04-29
+            [fecha_fin] => 2025-05-06
             [horas_estimadas] => 5.50
             [tema_id] => 324
         )
@@ -3324,28 +854,660 @@ Total de temas en plan: 20
 === NUEVO PROCESAMIENTO ===
 Array
 (
-    [materia_ciclo_id] => 11
+    [materia_ciclo_id] => 17
+    [dias] => Array
+        (
+            [0] => Lunes
+            [1] => Martes
+            [2] => Miércoles
+            [3] => Jueves
+        )
+
     [horas] => Array
         (
-            [Lunes] => 
-            [Martes] => 
-            [Miércoles] => 
-            [Jueves] => 
+            [Lunes] => 4
+            [Martes] => 4
+            [Miércoles] => 4
+            [Jueves] => 4
             [Viernes] => 
         )
 
 )
-=== NUEVO PROCESAMIENTO ===
+Días normalizados: Array
+(
+    [0] => Lunes
+    [1] => Martes
+    [2] => Miércoles
+    [3] => Jueves
+)
+Horas limpias: Array
+(
+    [Lunes] => 4
+    [Martes] => 4
+    [Miércoles] => 4
+    [Jueves] => 4
+)
+Fecha inicio: 2025-01-01
+Fecha fin: 2025-06-30
+Temas encontrados: 20
+Temas: Array
+(
+    [0] => Array
+        (
+            [tema_id] => 306
+            [tema] => Fundamentos de Probabilidad
+            [horas_estimadas] => 5.00
+            [unidad] => Probabilidad y Distribuciones
+        )
+
+    [1] => Array
+        (
+            [tema_id] => 307
+            [tema] => Probabilidad Condicional
+            [horas_estimadas] => 6.00
+            [unidad] => Probabilidad y Distribuciones
+        )
+
+    [2] => Array
+        (
+            [tema_id] => 308
+            [tema] => Variables Aleatorias Discretas
+            [horas_estimadas] => 7.50
+            [unidad] => Probabilidad y Distribuciones
+        )
+
+    [3] => Array
+        (
+            [tema_id] => 309
+            [tema] => Variables Aleatorias Continuas
+            [horas_estimadas] => 8.00
+            [unidad] => Probabilidad y Distribuciones
+        )
+
+    [4] => Array
+        (
+            [tema_id] => 310
+            [tema] => Distribuciones Multivariadas
+            [horas_estimadas] => 5.50
+            [unidad] => Probabilidad y Distribuciones
+        )
+
+    [5] => Array
+        (
+            [tema_id] => 311
+            [tema] => Distribuciones Muestrales
+            [horas_estimadas] => 6.00
+            [unidad] => Inferencia Estadística
+        )
+
+    [6] => Array
+        (
+            [tema_id] => 312
+            [tema] => Estimación Puntual
+            [horas_estimadas] => 6.50
+            [unidad] => Inferencia Estadística
+        )
+
+    [7] => Array
+        (
+            [tema_id] => 313
+            [tema] => Intervalos de Confianza
+            [horas_estimadas] => 7.00
+            [unidad] => Inferencia Estadística
+        )
+
+    [8] => Array
+        (
+            [tema_id] => 314
+            [tema] => Pruebas de Hipótesis
+            [horas_estimadas] => 8.00
+            [unidad] => Inferencia Estadística
+        )
+
+    [9] => Array
+        (
+            [tema_id] => 315
+            [tema] => Pruebas No Paramétricas
+            [horas_estimadas] => 4.50
+            [unidad] => Inferencia Estadística
+        )
+
+    [10] => Array
+        (
+            [tema_id] => 316
+            [tema] => Regresión Lineal Simple
+            [horas_estimadas] => 7.00
+            [unidad] => Análisis de Regresión y Correlación
+        )
+
+    [11] => Array
+        (
+            [tema_id] => 317
+            [tema] => Diagnóstico del Modelo
+            [horas_estimadas] => 6.50
+            [unidad] => Análisis de Regresión y Correlación
+        )
+
+    [12] => Array
+        (
+            [tema_id] => 318
+            [tema] => Regresión Múltiple
+            [horas_estimadas] => 8.50
+            [unidad] => Análisis de Regresión y Correlación
+        )
+
+    [13] => Array
+        (
+            [tema_id] => 319
+            [tema] => ANOVA y Diseño Experimental
+            [horas_estimadas] => 7.00
+            [unidad] => Análisis de Regresión y Correlación
+        )
+
+    [14] => Array
+        (
+            [tema_id] => 320
+            [tema] => Modelos Avanzados
+            [horas_estimadas] => 6.00
+            [unidad] => Análisis de Regresión y Correlación
+        )
+
+    [15] => Array
+        (
+            [tema_id] => 321
+            [tema] => Programación Estadística
+            [horas_estimadas] => 7.00
+            [unidad] => Estadística Computacional
+        )
+
+    [16] => Array
+        (
+            [tema_id] => 322
+            [tema] => Simulación Monte Carlo
+            [horas_estimadas] => 6.50
+            [unidad] => Estadística Computacional
+        )
+
+    [17] => Array
+        (
+            [tema_id] => 323
+            [tema] => Bootstrap y Remuestreo
+            [horas_estimadas] => 6.00
+            [unidad] => Estadística Computacional
+        )
+
+    [18] => Array
+        (
+            [tema_id] => 324
+            [tema] => Visualización de Datos
+            [horas_estimadas] => 5.50
+            [unidad] => Estadística Computacional
+        )
+
+    [19] => Array
+        (
+            [tema_id] => 325
+            [tema] => Machine Learning Básico
+            [horas_estimadas] => 7.00
+            [unidad] => Estadística Computacional
+        )
+
+)
+Iniciando distribución...
+Procesando fecha: 2025-01-01 (Miércoles)
+Horas disponibles para Miércoles: 4
+Asignando 4 horas al tema: Fundamentos de Probabilidad
+Horas restantes del tema: 1
+Procesando fecha: 2025-01-02 (Jueves)
+Horas disponibles para Jueves: 4
+Asignando 1 horas al tema: Fundamentos de Probabilidad
+Horas restantes del tema: 0
+Tema completado: Fundamentos de Probabilidad
+Asignando 3 horas al tema: Probabilidad Condicional
+Horas restantes del tema: 3
+Procesando fecha: 2025-01-03 (Viernes)
+Día Viernes no está en días seleccionados
+Procesando fecha: 2025-01-04 (Sábado)
+Día Sábado no está en días seleccionados
+Procesando fecha: 2025-01-05 (Domingo)
+Día Domingo no está en días seleccionados
+Procesando fecha: 2025-01-06 (Lunes)
+Horas disponibles para Lunes: 4
+Asignando 3 horas al tema: Probabilidad Condicional
+Horas restantes del tema: 0
+Tema completado: Probabilidad Condicional
+Asignando 1 horas al tema: Variables Aleatorias Discretas
+Horas restantes del tema: 6.5
+Procesando fecha: 2025-01-07 (Martes)
+Horas disponibles para Martes: 4
+Asignando 4 horas al tema: Variables Aleatorias Discretas
+Horas restantes del tema: 2.5
+Procesando fecha: 2025-01-08 (Miércoles)
+Horas disponibles para Miércoles: 4
+Asignando 2.5 horas al tema: Variables Aleatorias Discretas
+Horas restantes del tema: 0
+Tema completado: Variables Aleatorias Discretas
+Asignando 1.5 horas al tema: Variables Aleatorias Continuas
+Horas restantes del tema: 6.5
+Procesando fecha: 2025-01-09 (Jueves)
+Horas disponibles para Jueves: 4
+Asignando 4 horas al tema: Variables Aleatorias Continuas
+Horas restantes del tema: 2.5
+Procesando fecha: 2025-01-10 (Viernes)
+Día Viernes no está en días seleccionados
+Procesando fecha: 2025-01-11 (Sábado)
+Día Sábado no está en días seleccionados
+Procesando fecha: 2025-01-12 (Domingo)
+Día Domingo no está en días seleccionados
+Procesando fecha: 2025-01-13 (Lunes)
+Horas disponibles para Lunes: 4
+Asignando 2.5 horas al tema: Variables Aleatorias Continuas
+Horas restantes del tema: 0
+Tema completado: Variables Aleatorias Continuas
+Asignando 1.5 horas al tema: Distribuciones Multivariadas
+Horas restantes del tema: 4
+Procesando fecha: 2025-01-14 (Martes)
+Horas disponibles para Martes: 4
+Asignando 4 horas al tema: Distribuciones Multivariadas
+Horas restantes del tema: 0
+Tema completado: Distribuciones Multivariadas
+Procesando fecha: 2025-01-15 (Miércoles)
+Horas disponibles para Miércoles: 4
+Asignando 4 horas al tema: Distribuciones Muestrales
+Horas restantes del tema: 2
+Procesando fecha: 2025-01-16 (Jueves)
+Horas disponibles para Jueves: 4
+Asignando 2 horas al tema: Distribuciones Muestrales
+Horas restantes del tema: 0
+Tema completado: Distribuciones Muestrales
+Asignando 2 horas al tema: Estimación Puntual
+Horas restantes del tema: 4.5
+Procesando fecha: 2025-01-17 (Viernes)
+Día Viernes no está en días seleccionados
+Procesando fecha: 2025-01-18 (Sábado)
+Día Sábado no está en días seleccionados
+Procesando fecha: 2025-01-19 (Domingo)
+Día Domingo no está en días seleccionados
+Procesando fecha: 2025-01-20 (Lunes)
+Horas disponibles para Lunes: 4
+Asignando 4 horas al tema: Estimación Puntual
+Horas restantes del tema: 0.5
+Procesando fecha: 2025-01-21 (Martes)
+Horas disponibles para Martes: 4
+Asignando 0.5 horas al tema: Estimación Puntual
+Horas restantes del tema: 0
+Tema completado: Estimación Puntual
+Asignando 3.5 horas al tema: Intervalos de Confianza
+Horas restantes del tema: 3.5
+Procesando fecha: 2025-01-22 (Miércoles)
+Horas disponibles para Miércoles: 4
+Asignando 3.5 horas al tema: Intervalos de Confianza
+Horas restantes del tema: 0
+Tema completado: Intervalos de Confianza
+Asignando 0.5 horas al tema: Pruebas de Hipótesis
+Horas restantes del tema: 7.5
+Procesando fecha: 2025-01-23 (Jueves)
+Horas disponibles para Jueves: 4
+Asignando 4 horas al tema: Pruebas de Hipótesis
+Horas restantes del tema: 3.5
+Procesando fecha: 2025-01-24 (Viernes)
+Día Viernes no está en días seleccionados
+Procesando fecha: 2025-01-25 (Sábado)
+Día Sábado no está en días seleccionados
+Procesando fecha: 2025-01-26 (Domingo)
+Día Domingo no está en días seleccionados
+Procesando fecha: 2025-01-27 (Lunes)
+Horas disponibles para Lunes: 4
+Asignando 3.5 horas al tema: Pruebas de Hipótesis
+Horas restantes del tema: 0
+Tema completado: Pruebas de Hipótesis
+Asignando 0.5 horas al tema: Pruebas No Paramétricas
+Horas restantes del tema: 4
+Procesando fecha: 2025-01-28 (Martes)
+Horas disponibles para Martes: 4
+Asignando 4 horas al tema: Pruebas No Paramétricas
+Horas restantes del tema: 0
+Tema completado: Pruebas No Paramétricas
+Procesando fecha: 2025-01-29 (Miércoles)
+Horas disponibles para Miércoles: 4
+Asignando 4 horas al tema: Regresión Lineal Simple
+Horas restantes del tema: 3
+Procesando fecha: 2025-01-30 (Jueves)
+Horas disponibles para Jueves: 4
+Asignando 3 horas al tema: Regresión Lineal Simple
+Horas restantes del tema: 0
+Tema completado: Regresión Lineal Simple
+Asignando 1 horas al tema: Diagnóstico del Modelo
+Horas restantes del tema: 5.5
+Procesando fecha: 2025-01-31 (Viernes)
+Día Viernes no está en días seleccionados
+Procesando fecha: 2025-02-01 (Sábado)
+Día Sábado no está en días seleccionados
+Procesando fecha: 2025-02-02 (Domingo)
+Día Domingo no está en días seleccionados
+Procesando fecha: 2025-02-03 (Lunes)
+Horas disponibles para Lunes: 4
+Asignando 4 horas al tema: Diagnóstico del Modelo
+Horas restantes del tema: 1.5
+Procesando fecha: 2025-02-04 (Martes)
+Horas disponibles para Martes: 4
+Asignando 1.5 horas al tema: Diagnóstico del Modelo
+Horas restantes del tema: 0
+Tema completado: Diagnóstico del Modelo
+Asignando 2.5 horas al tema: Regresión Múltiple
+Horas restantes del tema: 6
+Procesando fecha: 2025-02-05 (Miércoles)
+Horas disponibles para Miércoles: 4
+Asignando 4 horas al tema: Regresión Múltiple
+Horas restantes del tema: 2
+Procesando fecha: 2025-02-06 (Jueves)
+Horas disponibles para Jueves: 4
+Asignando 2 horas al tema: Regresión Múltiple
+Horas restantes del tema: 0
+Tema completado: Regresión Múltiple
+Asignando 2 horas al tema: ANOVA y Diseño Experimental
+Horas restantes del tema: 5
+Procesando fecha: 2025-02-07 (Viernes)
+Día Viernes no está en días seleccionados
+Procesando fecha: 2025-02-08 (Sábado)
+Día Sábado no está en días seleccionados
+Procesando fecha: 2025-02-09 (Domingo)
+Día Domingo no está en días seleccionados
+Procesando fecha: 2025-02-10 (Lunes)
+Horas disponibles para Lunes: 4
+Asignando 4 horas al tema: ANOVA y Diseño Experimental
+Horas restantes del tema: 1
+Procesando fecha: 2025-02-11 (Martes)
+Horas disponibles para Martes: 4
+Asignando 1 horas al tema: ANOVA y Diseño Experimental
+Horas restantes del tema: 0
+Tema completado: ANOVA y Diseño Experimental
+Asignando 3 horas al tema: Modelos Avanzados
+Horas restantes del tema: 3
+Procesando fecha: 2025-02-12 (Miércoles)
+Horas disponibles para Miércoles: 4
+Asignando 3 horas al tema: Modelos Avanzados
+Horas restantes del tema: 0
+Tema completado: Modelos Avanzados
+Asignando 1 horas al tema: Programación Estadística
+Horas restantes del tema: 6
+Procesando fecha: 2025-02-13 (Jueves)
+Horas disponibles para Jueves: 4
+Asignando 4 horas al tema: Programación Estadística
+Horas restantes del tema: 2
+Procesando fecha: 2025-02-14 (Viernes)
+Día Viernes no está en días seleccionados
+Procesando fecha: 2025-02-15 (Sábado)
+Día Sábado no está en días seleccionados
+Procesando fecha: 2025-02-16 (Domingo)
+Día Domingo no está en días seleccionados
+Procesando fecha: 2025-02-17 (Lunes)
+Horas disponibles para Lunes: 4
+Asignando 2 horas al tema: Programación Estadística
+Horas restantes del tema: 0
+Tema completado: Programación Estadística
+Asignando 2 horas al tema: Simulación Monte Carlo
+Horas restantes del tema: 4.5
+Procesando fecha: 2025-02-18 (Martes)
+Horas disponibles para Martes: 4
+Asignando 4 horas al tema: Simulación Monte Carlo
+Horas restantes del tema: 0.5
+Procesando fecha: 2025-02-19 (Miércoles)
+Horas disponibles para Miércoles: 4
+Asignando 0.5 horas al tema: Simulación Monte Carlo
+Horas restantes del tema: 0
+Tema completado: Simulación Monte Carlo
+Asignando 3.5 horas al tema: Bootstrap y Remuestreo
+Horas restantes del tema: 2.5
+Procesando fecha: 2025-02-20 (Jueves)
+Horas disponibles para Jueves: 4
+Asignando 2.5 horas al tema: Bootstrap y Remuestreo
+Horas restantes del tema: 0
+Tema completado: Bootstrap y Remuestreo
+Asignando 1.5 horas al tema: Visualización de Datos
+Horas restantes del tema: 4
+Procesando fecha: 2025-02-21 (Viernes)
+Día Viernes no está en días seleccionados
+Procesando fecha: 2025-02-22 (Sábado)
+Día Sábado no está en días seleccionados
+Procesando fecha: 2025-02-23 (Domingo)
+Día Domingo no está en días seleccionados
+Procesando fecha: 2025-02-24 (Lunes)
+Horas disponibles para Lunes: 4
+Asignando 4 horas al tema: Visualización de Datos
+Horas restantes del tema: 0
+Tema completado: Visualización de Datos
+Procesando fecha: 2025-02-25 (Martes)
+Horas disponibles para Martes: 4
+Asignando 4 horas al tema: Machine Learning Básico
+Horas restantes del tema: 3
+Procesando fecha: 2025-02-26 (Miércoles)
+Horas disponibles para Miércoles: 4
+Asignando 3 horas al tema: Machine Learning Básico
+Horas restantes del tema: 0
+Tema completado: Machine Learning Básico
+Inserción exitosa en BD para tema ID: 306
+Inserción exitosa en BD para tema ID: 307
+Inserción exitosa en BD para tema ID: 308
+Inserción exitosa en BD para tema ID: 309
+Inserción exitosa en BD para tema ID: 310
+Inserción exitosa en BD para tema ID: 311
+Inserción exitosa en BD para tema ID: 312
+Inserción exitosa en BD para tema ID: 313
+Inserción exitosa en BD para tema ID: 314
+Inserción exitosa en BD para tema ID: 315
+Inserción exitosa en BD para tema ID: 316
+Inserción exitosa en BD para tema ID: 317
+Inserción exitosa en BD para tema ID: 318
+Inserción exitosa en BD para tema ID: 319
+Inserción exitosa en BD para tema ID: 320
+Inserción exitosa en BD para tema ID: 321
+Inserción exitosa en BD para tema ID: 322
+Inserción exitosa en BD para tema ID: 323
+Inserción exitosa en BD para tema ID: 324
+Inserción exitosa en BD para tema ID: 325
+Plan generado:
 Array
 (
-    [materia_ciclo_id] => 11
-    [horas] => Array
+    [0] => Array
         (
-            [Lunes] => 
-            [Martes] => 
-            [Miércoles] => 
-            [Jueves] => 
-            [Viernes] => 
+            [unidad] => Probabilidad y Distribuciones
+            [tema] => Fundamentos de Probabilidad
+            [fecha_inicio] => 2025-01-01
+            [fecha_fin] => 2025-01-02
+            [horas_estimadas] => 5.00
+            [tema_id] => 306
+        )
+
+    [1] => Array
+        (
+            [unidad] => Probabilidad y Distribuciones
+            [tema] => Probabilidad Condicional
+            [fecha_inicio] => 2025-01-02
+            [fecha_fin] => 2025-01-06
+            [horas_estimadas] => 6.00
+            [tema_id] => 307
+        )
+
+    [2] => Array
+        (
+            [unidad] => Probabilidad y Distribuciones
+            [tema] => Variables Aleatorias Discretas
+            [fecha_inicio] => 2025-01-06
+            [fecha_fin] => 2025-01-08
+            [horas_estimadas] => 7.50
+            [tema_id] => 308
+        )
+
+    [3] => Array
+        (
+            [unidad] => Probabilidad y Distribuciones
+            [tema] => Variables Aleatorias Continuas
+            [fecha_inicio] => 2025-01-08
+            [fecha_fin] => 2025-01-13
+            [horas_estimadas] => 8.00
+            [tema_id] => 309
+        )
+
+    [4] => Array
+        (
+            [unidad] => Probabilidad y Distribuciones
+            [tema] => Distribuciones Multivariadas
+            [fecha_inicio] => 2025-01-13
+            [fecha_fin] => 2025-01-14
+            [horas_estimadas] => 5.50
+            [tema_id] => 310
+        )
+
+    [5] => Array
+        (
+            [unidad] => Inferencia Estadística
+            [tema] => Distribuciones Muestrales
+            [fecha_inicio] => 2025-01-15
+            [fecha_fin] => 2025-01-16
+            [horas_estimadas] => 6.00
+            [tema_id] => 311
+        )
+
+    [6] => Array
+        (
+            [unidad] => Inferencia Estadística
+            [tema] => Estimación Puntual
+            [fecha_inicio] => 2025-01-16
+            [fecha_fin] => 2025-01-21
+            [horas_estimadas] => 6.50
+            [tema_id] => 312
+        )
+
+    [7] => Array
+        (
+            [unidad] => Inferencia Estadística
+            [tema] => Intervalos de Confianza
+            [fecha_inicio] => 2025-01-21
+            [fecha_fin] => 2025-01-22
+            [horas_estimadas] => 7.00
+            [tema_id] => 313
+        )
+
+    [8] => Array
+        (
+            [unidad] => Inferencia Estadística
+            [tema] => Pruebas de Hipótesis
+            [fecha_inicio] => 2025-01-22
+            [fecha_fin] => 2025-01-27
+            [horas_estimadas] => 8.00
+            [tema_id] => 314
+        )
+
+    [9] => Array
+        (
+            [unidad] => Inferencia Estadística
+            [tema] => Pruebas No Paramétricas
+            [fecha_inicio] => 2025-01-27
+            [fecha_fin] => 2025-01-28
+            [horas_estimadas] => 4.50
+            [tema_id] => 315
+        )
+
+    [10] => Array
+        (
+            [unidad] => Análisis de Regresión y Correlación
+            [tema] => Regresión Lineal Simple
+            [fecha_inicio] => 2025-01-29
+            [fecha_fin] => 2025-01-30
+            [horas_estimadas] => 7.00
+            [tema_id] => 316
+        )
+
+    [11] => Array
+        (
+            [unidad] => Análisis de Regresión y Correlación
+            [tema] => Diagnóstico del Modelo
+            [fecha_inicio] => 2025-01-30
+            [fecha_fin] => 2025-02-04
+            [horas_estimadas] => 6.50
+            [tema_id] => 317
+        )
+
+    [12] => Array
+        (
+            [unidad] => Análisis de Regresión y Correlación
+            [tema] => Regresión Múltiple
+            [fecha_inicio] => 2025-02-04
+            [fecha_fin] => 2025-02-06
+            [horas_estimadas] => 8.50
+            [tema_id] => 318
+        )
+
+    [13] => Array
+        (
+            [unidad] => Análisis de Regresión y Correlación
+            [tema] => ANOVA y Diseño Experimental
+            [fecha_inicio] => 2025-02-06
+            [fecha_fin] => 2025-02-11
+            [horas_estimadas] => 7.00
+            [tema_id] => 319
+        )
+
+    [14] => Array
+        (
+            [unidad] => Análisis de Regresión y Correlación
+            [tema] => Modelos Avanzados
+            [fecha_inicio] => 2025-02-11
+            [fecha_fin] => 2025-02-12
+            [horas_estimadas] => 6.00
+            [tema_id] => 320
+        )
+
+    [15] => Array
+        (
+            [unidad] => Estadística Computacional
+            [tema] => Programación Estadística
+            [fecha_inicio] => 2025-02-12
+            [fecha_fin] => 2025-02-17
+            [horas_estimadas] => 7.00
+            [tema_id] => 321
+        )
+
+    [16] => Array
+        (
+            [unidad] => Estadística Computacional
+            [tema] => Simulación Monte Carlo
+            [fecha_inicio] => 2025-02-17
+            [fecha_fin] => 2025-02-19
+            [horas_estimadas] => 6.50
+            [tema_id] => 322
+        )
+
+    [17] => Array
+        (
+            [unidad] => Estadística Computacional
+            [tema] => Bootstrap y Remuestreo
+            [fecha_inicio] => 2025-02-19
+            [fecha_fin] => 2025-02-20
+            [horas_estimadas] => 6.00
+            [tema_id] => 323
+        )
+
+    [18] => Array
+        (
+            [unidad] => Estadística Computacional
+            [tema] => Visualización de Datos
+            [fecha_inicio] => 2025-02-20
+            [fecha_fin] => 2025-02-24
+            [horas_estimadas] => 5.50
+            [tema_id] => 324
+        )
+
+    [19] => Array
+        (
+            [unidad] => Estadística Computacional
+            [tema] => Visualización de Datos
+            [fecha_inicio] => 2025-02-20
+            [fecha_fin] => 2025-02-24
+            [horas_estimadas] => 5.50
+            [tema_id] => 324
         )
 
 )
+Total de temas en plan: 20
