@@ -23,23 +23,23 @@ function formatDate($date) {
     return $dateObj ? $dateObj->format('d/m/Y') : $date;
 }
 
-// Consultar los detalles de la planificación
-$sql_planificacion = "SELECT m.nombre AS materia, u.nombre AS unidad, ge.fecha_evaluacion, 
-                             t.nombre AS tema, d.fecha_inicio, d.fecha_fin
+// Consultar los detalles de la planificación con las relaciones correctas
+$sql_planificacion = "SELECT DISTINCT m.nombre AS materia, u.nombre AS unidad, u.numero_unidad,
+                             t.nombre AS tema, t.orden_tema, d.fecha_inicio, d.fecha_fin, t.horas_estimadas,
+                             ge.fecha_evaluacion
                       FROM distribucion d
                       INNER JOIN tema t ON d.tema_id = t.tema_id
                       INNER JOIN unidad u ON t.unidad_id = u.unidad_id
                       INNER JOIN materia_ciclo mc ON u.materia_ciclo_id = mc.materia_ciclo_id
                       INNER JOIN materia m ON mc.materia_id = m.materia_id
-                      LEFT JOIN grupo_evaluacion ge ON mc.materia_ciclo_id = ge.materia_ciclo_id
+                      LEFT JOIN unidad_evaluacion ue ON u.unidad_id = ue.unidad_id
+                      LEFT JOIN grupo_evaluacion ge ON ue.grupo_eval_id = ge.grupo_eval_id
                       WHERE u.materia_ciclo_id = ?
-                      ORDER BY u.nombre, d.fecha_inicio";
+                      ORDER BY u.numero_unidad, t.orden_tema, d.fecha_inicio";
 $stmt = $conn->prepare($sql_planificacion);
 $stmt->bind_param("i", $materia_ciclo_id);
 $stmt->execute();
 $result = $stmt->get_result();
-
-
 ?>
 
 <!DOCTYPE html>
@@ -72,6 +72,7 @@ $result = $stmt->get_result();
             $tema = htmlspecialchars($row['tema']);
             $fecha_inicio = formatDate($row['fecha_inicio']);
             $fecha_fin = formatDate($row['fecha_fin']);
+            $horas_estimadas = $row['horas_estimadas'];
 
             // Mostrar la materia si cambia
             if ($materia !== $current_materia) {
@@ -91,12 +92,13 @@ $result = $stmt->get_result();
                 echo "<table border='1' style='width: 100%; border-collapse: collapse;'>";
                 echo "<thead>";
                 echo "<tr style='background-color: #f2f2f2;'>";
-                echo "<th colspan='3' style='padding: 10px; text-align: center; font-size: 18px;'>UNIDAD: {$unidad} - FECHA DE EVALUACIÓN: {$fecha_evaluacion}</th>";
+                echo "<th colspan='4' style='padding: 10px; text-align: center; font-size: 18px;'>UNIDAD: {$unidad} - FECHA DE EVALUACIÓN: {$fecha_evaluacion}</th>";
                 echo "</tr>";
                 echo "<tr style='background-color: #e6e6e6;'>";
                 echo "<th style='padding: 8px;'>Tema</th>";
                 echo "<th style='padding: 8px;'>Fecha de Inicio</th>";
                 echo "<th style='padding: 8px;'>Fecha de Fin</th>";
+                echo "<th style='padding: 8px;'>Horas Estimadas</th>";
                 echo "</tr>";
                 echo "</thead>";
                 echo "<tbody>";
@@ -108,6 +110,7 @@ $result = $stmt->get_result();
             echo "<td style='padding: 8px;'>{$tema}</td>";
             echo "<td style='padding: 8px;'>{$fecha_inicio}</td>";
             echo "<td style='padding: 8px;'>{$fecha_fin}</td>";
+            echo "<td style='padding: 8px;'>{$horas_estimadas} hrs</td>";
             echo "</tr>";
         endwhile;
         

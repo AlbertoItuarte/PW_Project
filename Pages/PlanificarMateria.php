@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
@@ -8,42 +7,57 @@ if (!isset($_SESSION['user_id'])) {
 
 require_once '../Config/dbConection.php';
 
-// Obtener el ID del usuario desde la sesión
+// Obtener el ID de la materia desde la URL
+if (!isset($_GET['materia_ciclo_id']) || empty($_GET['materia_ciclo_id'])) {
+    header("Location: HomeUser.php");
+    exit();
+}
+
+$materia_ciclo_id = intval($_GET['materia_ciclo_id']);
 $user_id = $_SESSION['user_id'];
 
-// Obtener las materias asignadas al usuario
-$sql = "SELECT umc.materia_ciclo_id, m.nombre AS materia
+// Verificar que la materia pertenece al usuario actual
+$sql = "SELECT m.nombre AS materia
         FROM usuario_materia_ciclo umc
         INNER JOIN materia_ciclo mc ON umc.materia_ciclo_id = mc.materia_ciclo_id
         INNER JOIN materia m ON mc.materia_id = m.materia_id
-        WHERE umc.usuario_id = ?";
+        WHERE umc.usuario_id = ? AND umc.materia_ciclo_id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
+$stmt->bind_param("ii", $user_id, $materia_ciclo_id);
 $stmt->execute();
 $result = $stmt->get_result();
-$materias = $result->fetch_all(MYSQLI_ASSOC);
 
-// Obtener las unidades para la primera materia (se actualizará dinámicamente)
-$unidades = [];
-if (!empty($materias)) {
-    $sql = "SELECT unidad_id, nombre, numero_unidad FROM unidad WHERE materia_ciclo_id = ? ORDER BY numero_unidad";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $materias[0]['materia_ciclo_id']);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $unidades = $result->fetch_all(MYSQLI_ASSOC);
+if ($result->num_rows === 0) {
+    header("Location: HomeUser.php");
+    exit();
 }
 
+$materia_info = $result->fetch_assoc();
+
+// Obtener las unidades para la materia seleccionada
+$sql = "SELECT unidad_id, nombre, numero_unidad FROM unidad WHERE materia_ciclo_id = ? ORDER BY numero_unidad";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $materia_ciclo_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$unidades = $result->fetch_all(MYSQLI_ASSOC);
+
 // Obtener los días feriados y vacaciones
-$sql = "SELECT dia FROM feriados WHERE ciclo_id = (SELECT ciclo_id FROM ciclo ORDER BY fecha_inicio DESC LIMIT 1)";
-$feriados_result = $conn->query($sql);
+$sql = "SELECT dia FROM feriados WHERE ciclo_id = (SELECT ciclo_id FROM materia_ciclo WHERE materia_ciclo_id = ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $materia_ciclo_id);
+$stmt->execute();
+$feriados_result = $stmt->get_result();
 $feriados = [];
 while ($row = $feriados_result->fetch_assoc()) {
     $feriados[] = $row['dia'];
 }
 
-$sql = "SELECT fecha_inicio, fecha_fin FROM vacaciones WHERE ciclo_id = (SELECT ciclo_id FROM ciclo ORDER BY fecha_inicio DESC LIMIT 1)";
-$vacaciones_result = $conn->query($sql);
+$sql = "SELECT fecha_inicio, fecha_fin FROM vacaciones WHERE ciclo_id = (SELECT ciclo_id FROM materia_ciclo WHERE materia_ciclo_id = ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $materia_ciclo_id);
+$stmt->execute();
+$vacaciones_result = $stmt->get_result();
 $vacaciones = [];
 while ($row = $vacaciones_result->fetch_assoc()) {
     $vacaciones[] = ['inicio' => $row['fecha_inicio'], 'fin' => $row['fecha_fin']];
@@ -113,10 +127,37 @@ unset($_SESSION['plan_generado']);
             border: 1px solid #ccc;
             border-radius: 3px;
         }
+        .materia-info {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .materia-info h2 {
+            margin: 0 0 10px 0;
+            color: #495057;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background-color: #6c757d;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
     </style>
 </head>
 <body>
-    <h1>Planificar Materia</h1>
+    <a href="HomeUser.php" class="back-button">← Volver a Materias</a>
+    
+    <div class="materia-info">
+        <h2>Planificar: <?= htmlspecialchars($materia_info['materia']) ?></h2>
+        <p>Configure los días disponibles, horas por día y fechas de evaluación para generar la planificación.</p>
+    </div>
     
     <!-- Mostrar mensajes -->
     <?php if ($error_message): ?>
@@ -132,12 +173,8 @@ unset($_SESSION['plan_generado']);
     <?php endif; ?>
 
     <form action="../Logic/GeneratePlan.php" method="POST">
-        <label for="materia_ciclo_id">Selecciona la Materia:</label>
-        <select id="materia_ciclo_id" name="materia_ciclo_id" required onchange="cargarUnidades()">
-            <?php foreach ($materias as $materia): ?>
-                <option value="<?= $materia['materia_ciclo_id'] ?>"><?= htmlspecialchars($materia['materia']) ?></option>
-            <?php endforeach; ?>
-        </select>
+        <!-- Campo oculto para enviar el ID de la materia -->
+        <input type="hidden" name="materia_ciclo_id" value="<?= $materia_ciclo_id ?>">
 
         <h2>Días y Horas Disponibles</h2>
         <div>
@@ -163,17 +200,21 @@ unset($_SESSION['plan_generado']);
 
         <h2>Fechas de Evaluación por Unidad</h2>
         <div id="evaluaciones">
-            <?php foreach ($unidades as $unidad): ?>
-                <div class="evaluation-item">
-                    <label for="evaluacion_<?= $unidad['unidad_id'] ?>">
-                        Evaluación - <?= htmlspecialchars($unidad['nombre']) ?>:
-                    </label>
-                    <input type="date" 
-                           id="evaluacion_<?= $unidad['unidad_id'] ?>" 
-                           name="evaluaciones[<?= $unidad['unidad_id'] ?>]" 
-                           class="fecha-evaluacion">
-                </div>
-            <?php endforeach; ?>
+            <?php if (!empty($unidades)): ?>
+                <?php foreach ($unidades as $unidad): ?>
+                    <div class="evaluation-item">
+                        <label for="evaluacion_<?= $unidad['unidad_id'] ?>">
+                            Evaluación - <?= htmlspecialchars($unidad['nombre']) ?>:
+                        </label>
+                        <input type="date" 
+                               id="evaluacion_<?= $unidad['unidad_id'] ?>" 
+                               name="evaluaciones[<?= $unidad['unidad_id'] ?>]" 
+                               class="fecha-evaluacion">
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No se encontraron unidades para esta materia. Asegúrate de haber creado la estructura de la materia primero.</p>
+            <?php endif; ?>
         </div>
 
         <button type="submit">Generar Plan</button>
@@ -209,45 +250,6 @@ unset($_SESSION['plan_generado']);
     <script>
         const feriados = <?= json_encode($feriados) ?>;
         const vacaciones = <?= json_encode($vacaciones) ?>;
-
-        // Función para cargar unidades cuando cambia la materia
-        function cargarUnidades() {
-            const materiaCicloId = document.getElementById('materia_ciclo_id').value;
-            
-            fetch('../Logic/GetUnidades.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'materia_ciclo_id=' + materiaCicloId
-            })
-            .then(response => response.json())
-            .then(data => {
-                const evaluacionesDiv = document.getElementById('evaluaciones');
-                evaluacionesDiv.innerHTML = '';
-                
-                data.forEach(unidad => {
-                    const div = document.createElement('div');
-                    div.className = 'evaluation-item';
-                    div.innerHTML = `
-                        <label for="evaluacion_${unidad.unidad_id}">
-                            Evaluación - ${unidad.nombre}:
-                        </label>
-                        <input type="date" 
-                               id="evaluacion_${unidad.unidad_id}" 
-                               name="evaluaciones[${unidad.unidad_id}]" 
-                               class="fecha-evaluacion">
-                    `;
-                    evaluacionesDiv.appendChild(div);
-                });
-                
-                // Reactivar validación de fechas
-                activarValidacionFechas();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
 
         // Función para activar validación de fechas
         function activarValidacionFechas() {

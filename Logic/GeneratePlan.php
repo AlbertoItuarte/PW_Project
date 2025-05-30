@@ -59,15 +59,45 @@ $stmt_delete_eval = $conn->prepare($sql_delete_eval);
 $stmt_delete_eval->bind_param("i", $materia_ciclo_id);
 $stmt_delete_eval->execute();
 
+// También limpiar las relaciones en unidad_evaluacion
+$sql_delete_unidad_eval = "DELETE ue FROM unidad_evaluacion ue 
+                          INNER JOIN grupo_evaluacion ge ON ue.grupo_eval_id = ge.grupo_eval_id 
+                          WHERE ge.materia_ciclo_id = ?";
+$stmt_delete_unidad_eval = $conn->prepare($sql_delete_unidad_eval);
+$stmt_delete_unidad_eval->bind_param("i", $materia_ciclo_id);
+$stmt_delete_unidad_eval->execute();
 
-// Insertar nuevas evaluaciones con nombre descriptivo
+// Insertar nuevas evaluaciones con nombre descriptivo y relación con unidades
 foreach ($evaluaciones_input as $unidad_id => $fecha) {
     if (!empty($fecha)) {
-        $nombre_evaluacion = "Evaluación " . date('d/m/Y', strtotime($fecha));
+        // Obtener el nombre de la unidad para crear un nombre descriptivo
+        $sql_unidad_nombre = "SELECT nombre FROM unidad WHERE unidad_id = ?";
+        $stmt_unidad_nombre = $conn->prepare($sql_unidad_nombre);
+        $stmt_unidad_nombre->bind_param("i", $unidad_id);
+        $stmt_unidad_nombre->execute();
+        $result_unidad_nombre = $stmt_unidad_nombre->get_result();
+        
+        if ($result_unidad_nombre->num_rows > 0) {
+            $unidad_data = $result_unidad_nombre->fetch_assoc();
+            $nombre_evaluacion = "Evaluación - " . $unidad_data['nombre'] . " (" . date('d/m/Y', strtotime($fecha)) . ")";
+        } else {
+            $nombre_evaluacion = "Evaluación " . date('d/m/Y', strtotime($fecha));
+        }
+        
+        // Insertar en grupo_evaluacion
         $sql_insert_eval = "INSERT INTO grupo_evaluacion (nombre, materia_ciclo_id, fecha_evaluacion) VALUES (?, ?, ?)";
         $stmt_insert_eval = $conn->prepare($sql_insert_eval);
         $stmt_insert_eval->bind_param("sis", $nombre_evaluacion, $materia_ciclo_id, $fecha);
         $stmt_insert_eval->execute();
+        
+        // Obtener el ID del grupo de evaluación recién insertado
+        $grupo_eval_id = $conn->insert_id;
+        
+        // Insertar en unidad_evaluacion para relacionar la unidad específica con la evaluación
+        $sql_insert_unidad_eval = "INSERT INTO unidad_evaluacion (unidad_id, grupo_eval_id, porcentaje) VALUES (?, ?, 100.00)";
+        $stmt_insert_unidad_eval = $conn->prepare($sql_insert_unidad_eval);
+        $stmt_insert_unidad_eval->bind_param("ii", $unidad_id, $grupo_eval_id);
+        $stmt_insert_unidad_eval->execute();
     }
 }
 
