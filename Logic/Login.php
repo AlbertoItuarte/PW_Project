@@ -4,18 +4,16 @@ require_once '../Config/dbConection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener datos del formulario
-    $username = $conn->real_escape_string($_POST['nombre_usuario']);
+    $username = $_POST['nombre_usuario'];
     $password = $_POST['contrasena'];
     
     // Consulta para verificar las credenciales (incluyendo tipo_usuario y usuario)
     $sql = "SELECT usuario_id, nombre, usuario, contrasena, tipo FROM usuario WHERE usuario = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$username]);
     
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
+    if ($stmt->rowCount() == 1) {
+        $row = $stmt->fetch();
         
         // Verificar contraseña con password_verify 
         if (password_verify($password, $row['contrasena'])) {

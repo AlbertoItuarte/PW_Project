@@ -23,23 +23,23 @@ function formatDate($date) {
     return $dateObj ? $dateObj->format('d/m/Y') : $date;
 }
 
-// Consultar los detalles de la planificación con las relaciones correctas
+// Consulta para mostrar todas las unidades con sus temas
 $sql_planificacion = "SELECT DISTINCT m.nombre AS materia, u.nombre AS unidad, u.numero_unidad,
                              t.nombre AS tema, t.orden_tema, d.fecha_inicio, d.fecha_fin, t.horas_estimadas,
-                             ge.fecha_evaluacion
-                      FROM distribucion d
-                      INNER JOIN tema t ON d.tema_id = t.tema_id
-                      INNER JOIN unidad u ON t.unidad_id = u.unidad_id
+                             ge.fecha_evaluacion, u.unidad_id, t.tema_id
+                      FROM unidad u
                       INNER JOIN materia_ciclo mc ON u.materia_ciclo_id = mc.materia_ciclo_id
                       INNER JOIN materia m ON mc.materia_id = m.materia_id
+                      INNER JOIN tema t ON u.unidad_id = t.unidad_id
+                      LEFT JOIN distribucion d ON t.tema_id = d.tema_id
                       LEFT JOIN unidad_evaluacion ue ON u.unidad_id = ue.unidad_id
                       LEFT JOIN grupo_evaluacion ge ON ue.grupo_eval_id = ge.grupo_eval_id
                       WHERE u.materia_ciclo_id = ?
-                      ORDER BY u.numero_unidad, t.orden_tema, d.fecha_inicio";
-$stmt = $conn->prepare($sql_planificacion);
-$stmt->bind_param("i", $materia_ciclo_id);
-$stmt->execute();
-$result = $stmt->get_result();
+                      ORDER BY u.numero_unidad, t.orden_tema";
+
+$stmt = $pdo->prepare($sql_planificacion);
+$stmt->execute([$materia_ciclo_id]);
+$result = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -60,12 +60,12 @@ $result = $stmt->get_result();
     </nav>
 
     <h1>Planificación de la Materia</h1>
-    <?php if ($result->num_rows > 0): ?>
+    <?php if (count($result) > 0): ?>
         <?php
         $current_unidad = null;
         $current_materia = null;
         
-        while ($row = $result->fetch_assoc()):
+        foreach ($result as $row):
             $materia = htmlspecialchars($row['materia']);
             $unidad = htmlspecialchars($row['unidad']);
             $fecha_evaluacion = formatDate($row['fecha_evaluacion']);
@@ -112,7 +112,7 @@ $result = $stmt->get_result();
             echo "<td style='padding: 8px;'>{$fecha_fin}</td>";
             echo "<td style='padding: 8px;'>{$horas_estimadas} hrs</td>";
             echo "</tr>";
-        endwhile;
+        endforeach;
         
         // Cerrar la última tabla
         if ($current_unidad !== null) {

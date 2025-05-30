@@ -18,14 +18,14 @@ $user_id = $_SESSION['user_id'];
 
 // Preparar la consulta para asignar materias
 $sql = "INSERT INTO usuario_materia_ciclo (usuario_id, materia_ciclo_id) VALUES (?, ?)";
-$stmt = $conn->prepare($sql);
+$stmt = $pdo->prepare($sql);
 
 foreach ($_POST['materias'] as $materia_ciclo_id) {
     $materia_ciclo_id = intval($materia_ciclo_id);
-    $stmt->bind_param("ii", $user_id, $materia_ciclo_id);
-    $stmt->execute();
+    $stmt->execute([$user_id, $materia_ciclo_id]);
 }
 
 // Redirigir al usuario con un mensaje de éxito
-header("Location: ../Pages/PlanificarMateria.php?success=Materias asignadas correctamente");
+header("Location: ../Pages/HomeUser.php?success=Materias asignadas correctamente");
 exit();
+?>

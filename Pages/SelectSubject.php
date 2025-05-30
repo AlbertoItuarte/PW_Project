@@ -34,13 +34,11 @@ if (!isset($_SESSION['user_id'])) {
                     FROM usuario_materia_ciclo umc
                     WHERE umc.usuario_id = ?
                 )";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$user_id]);
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
+        if ($stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch()) {
                 echo "<div class='materia-item'>
                         <label>{$row['materia']}</label>
                         <input type='checkbox' name='materias[]' value='{$row['materia_ciclo_id']}'>

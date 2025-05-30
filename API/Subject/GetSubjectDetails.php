@@ -24,43 +24,40 @@ $sql = "SELECT m.nombre AS materia, mc.horas_teoricas, mc.horas_practicas, mc.fe
         FROM materia m
         INNER JOIN materia_ciclo mc ON m.materia_id = mc.materia_id
         WHERE mc.materia_id = ? AND mc.usuario_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ii", $materia_id, $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$materia_id, $user_id]);
+$result = $stmt->fetch();
 
-if ($result->num_rows == 0) {
+if (!$result) {
     http_response_code(404);
     echo json_encode(["error" => "Materia no encontrada"]);
     exit();
 }
 
-$materia = $result->fetch_assoc();
+$materia = $result;
 
 // Obtener todas las unidades y temas de la materia
 $sql = "SELECT u.unidad_id, u.nombre AS unidad, u.numero_unidad, u.descripcion
         FROM unidad u
         WHERE u.materia_ciclo_id = (SELECT mc.materia_ciclo_id FROM materia_ciclo mc WHERE mc.materia_id = ? AND mc.usuario_id = ?)
         ORDER BY u.numero_unidad";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ii", $materia_id, $user_id);
-$stmt->execute();
-$unidades_result = $stmt->get_result();
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$materia_id, $user_id]);
+$unidades_result = $stmt->fetchAll();
 
 $unidades = [];
-while ($unidad = $unidades_result->fetch_assoc()) {
+foreach ($unidades_result as $unidad) {
     // Obtener temas de la unidad
     $sql = "SELECT t.tema_id, t.nombre AS tema, t.orden_tema, t.horas_estimadas
             FROM tema t
             WHERE t.unidad_id = ?
             ORDER BY t.orden_tema";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $unidad['unidad_id']);
-    $stmt->execute();
-    $temas_result = $stmt->get_result();
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$unidad['unidad_id']]);
+    $temas_result = $stmt->fetchAll();
 
     $temas = [];
-    while ($tema = $temas_result->fetch_assoc()) {
+    foreach ($temas_result as $tema) {
         $temas[] = $tema;
     }
 
@@ -92,3 +89,4 @@ echo json_encode([
         "horas_temas" => $total_horas_temas
     ]
 ]);
+?>

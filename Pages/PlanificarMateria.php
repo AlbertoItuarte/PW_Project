@@ -22,44 +22,38 @@ $sql = "SELECT m.nombre AS materia
         INNER JOIN materia_ciclo mc ON umc.materia_ciclo_id = mc.materia_ciclo_id
         INNER JOIN materia m ON mc.materia_id = m.materia_id
         WHERE umc.usuario_id = ? AND umc.materia_ciclo_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ii", $user_id, $materia_ciclo_id);
-$stmt->execute();
-$result = $stmt->get_result();
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$user_id, $materia_ciclo_id]);
 
-if ($result->num_rows === 0) {
+if ($stmt->rowCount() === 0) {
     header("Location: HomeUser.php");
     exit();
 }
 
-$materia_info = $result->fetch_assoc();
+$materia_info = $stmt->fetch();
 
 // Obtener las unidades para la materia seleccionada
 $sql = "SELECT unidad_id, nombre, numero_unidad FROM unidad WHERE materia_ciclo_id = ? ORDER BY numero_unidad";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $materia_ciclo_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$unidades = $result->fetch_all(MYSQLI_ASSOC);
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$materia_ciclo_id]);
+$unidades = $stmt->fetchAll();
 
 // Obtener los días feriados y vacaciones
 $sql = "SELECT dia FROM feriados WHERE ciclo_id = (SELECT ciclo_id FROM materia_ciclo WHERE materia_ciclo_id = ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $materia_ciclo_id);
-$stmt->execute();
-$feriados_result = $stmt->get_result();
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$materia_ciclo_id]);
+$feriados_result = $stmt->fetchAll();
 $feriados = [];
-while ($row = $feriados_result->fetch_assoc()) {
+foreach ($feriados_result as $row) {
     $feriados[] = $row['dia'];
 }
 
 $sql = "SELECT fecha_inicio, fecha_fin FROM vacaciones WHERE ciclo_id = (SELECT ciclo_id FROM materia_ciclo WHERE materia_ciclo_id = ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $materia_ciclo_id);
-$stmt->execute();
-$vacaciones_result = $stmt->get_result();
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$materia_ciclo_id]);
+$vacaciones_result = $stmt->fetchAll();
 $vacaciones = [];
-while ($row = $vacaciones_result->fetch_assoc()) {
+foreach ($vacaciones_result as $row) {
     $vacaciones[] = ['inicio' => $row['fecha_inicio'], 'fin' => $row['fecha_fin']];
 }
 

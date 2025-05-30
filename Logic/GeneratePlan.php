@@ -55,78 +55,71 @@ foreach ($evaluaciones_input as $unidad_id => $fecha) {
 
 // Limpiar evaluaciones anteriores para esta materia
 $sql_delete_eval = "DELETE FROM grupo_evaluacion WHERE materia_ciclo_id = ?";
-$stmt_delete_eval = $conn->prepare($sql_delete_eval);
-$stmt_delete_eval->bind_param("i", $materia_ciclo_id);
-$stmt_delete_eval->execute();
+$stmt_delete_eval = $pdo->prepare($sql_delete_eval);
+$stmt_delete_eval->execute([$materia_ciclo_id]);
 
 // También limpiar las relaciones en unidad_evaluacion
-$sql_delete_unidad_eval = "DELETE ue FROM unidad_evaluacion ue 
-                          INNER JOIN grupo_evaluacion ge ON ue.grupo_eval_id = ge.grupo_eval_id 
-                          WHERE ge.materia_ciclo_id = ?";
-$stmt_delete_unidad_eval = $conn->prepare($sql_delete_unidad_eval);
-$stmt_delete_unidad_eval->bind_param("i", $materia_ciclo_id);
-$stmt_delete_unidad_eval->execute();
+$sql_delete_unidad_eval = "DELETE FROM unidad_evaluacion 
+                          WHERE grupo_eval_id IN (
+                              SELECT grupo_eval_id FROM grupo_evaluacion 
+                              WHERE materia_ciclo_id = ?
+                          )";
+$stmt_delete_unidad_eval = $pdo->prepare($sql_delete_unidad_eval);
+$stmt_delete_unidad_eval->execute([$materia_ciclo_id]);
 
 // Insertar nuevas evaluaciones con nombre descriptivo y relación con unidades
 foreach ($evaluaciones_input as $unidad_id => $fecha) {
     if (!empty($fecha)) {
         // Obtener el nombre de la unidad para crear un nombre descriptivo
         $sql_unidad_nombre = "SELECT nombre FROM unidad WHERE unidad_id = ?";
-        $stmt_unidad_nombre = $conn->prepare($sql_unidad_nombre);
-        $stmt_unidad_nombre->bind_param("i", $unidad_id);
-        $stmt_unidad_nombre->execute();
-        $result_unidad_nombre = $stmt_unidad_nombre->get_result();
+        $stmt_unidad_nombre = $pdo->prepare($sql_unidad_nombre);
+        $stmt_unidad_nombre->execute([$unidad_id]);
+        $result_unidad_nombre = $stmt_unidad_nombre->fetch();
         
-        if ($result_unidad_nombre->num_rows > 0) {
-            $unidad_data = $result_unidad_nombre->fetch_assoc();
-            $nombre_evaluacion = "Evaluación - " . $unidad_data['nombre'] . " (" . date('d/m/Y', strtotime($fecha)) . ")";
+        if ($result_unidad_nombre) {
+            $nombre_evaluacion = "Evaluación - " . $result_unidad_nombre['nombre'] . " (" . date('d/m/Y', strtotime($fecha)) . ")";
         } else {
             $nombre_evaluacion = "Evaluación " . date('d/m/Y', strtotime($fecha));
         }
         
         // Insertar en grupo_evaluacion
-        $sql_insert_eval = "INSERT INTO grupo_evaluacion (nombre, materia_ciclo_id, fecha_evaluacion) VALUES (?, ?, ?)";
-        $stmt_insert_eval = $conn->prepare($sql_insert_eval);
-        $stmt_insert_eval->bind_param("sis", $nombre_evaluacion, $materia_ciclo_id, $fecha);
-        $stmt_insert_eval->execute();
-        
-        // Obtener el ID del grupo de evaluación recién insertado
-        $grupo_eval_id = $conn->insert_id;
+        $sql_insert_eval = "INSERT INTO grupo_evaluacion (nombre, materia_ciclo_id, fecha_evaluacion) VALUES (?, ?, ?) RETURNING grupo_eval_id";
+        $stmt_insert_eval = $pdo->prepare($sql_insert_eval);
+        $stmt_insert_eval->execute([$nombre_evaluacion, $materia_ciclo_id, $fecha]);
+        $result = $stmt_insert_eval->fetch();
+        $grupo_eval_id = $result['grupo_eval_id'];
         
         // Insertar en unidad_evaluacion para relacionar la unidad específica con la evaluación
         $sql_insert_unidad_eval = "INSERT INTO unidad_evaluacion (unidad_id, grupo_eval_id, porcentaje) VALUES (?, ?, 100.00)";
-        $stmt_insert_unidad_eval = $conn->prepare($sql_insert_unidad_eval);
-        $stmt_insert_unidad_eval->bind_param("ii", $unidad_id, $grupo_eval_id);
-        $stmt_insert_unidad_eval->execute();
+        $stmt_insert_unidad_eval = $pdo->prepare($sql_insert_unidad_eval);
+        $stmt_insert_unidad_eval->execute([$unidad_id, $grupo_eval_id]);
     }
 }
 
 // Obtener las fechas de inicio y fin del semestre
 $sql = "SELECT fecha_inicio, fecha_fin FROM ciclo
         WHERE ciclo_id = (SELECT ciclo_id FROM materia_ciclo WHERE materia_ciclo_id = ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $materia_ciclo_id);
-$stmt->execute();
-$result = $stmt->get_result();
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$materia_ciclo_id]);
+$result = $stmt->fetch();
 
-if ($result->num_rows === 0) {
+if (!$result) {
     $_SESSION['error_message'] = "Error: No se encontraron fechas para el ciclo.";
     header("Location: ../Pages/PlanificarMateria.php");
     exit();
 }
 
-$ciclo = $result->fetch_assoc();
+$ciclo = $result;
 $fecha_inicio = new DateTime($ciclo['fecha_inicio']);
 $fecha_fin = new DateTime($ciclo['fecha_fin']);
 
 // Obtener los días feriados
 $sql = "SELECT dia FROM feriados WHERE ciclo_id = (SELECT ciclo_id FROM materia_ciclo WHERE materia_ciclo_id = ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $materia_ciclo_id);
-$stmt->execute();
-$result = $stmt->get_result();
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$materia_ciclo_id]);
+$result = $stmt->fetchAll();
 $feriados = [];
-while ($row = $result->fetch_assoc()) {
+foreach ($result as $row) {
     $feriados[] = $row['dia'];
 }
 
@@ -136,11 +129,9 @@ $sql = "SELECT t.tema_id, t.nombre AS tema, t.horas_estimadas, u.nombre AS unida
         INNER JOIN unidad u ON t.unidad_id = u.unidad_id
         WHERE u.materia_ciclo_id = ?
         ORDER BY u.numero_unidad, t.orden_tema";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $materia_ciclo_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$temas = $result->fetch_all(MYSQLI_ASSOC);
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$materia_ciclo_id]);
+$temas = $stmt->fetchAll();
 
 // Validar si se encontraron temas
 if (empty($temas)) {
@@ -161,13 +152,14 @@ $day_translation = [
 ];
 
 // Limpiar distribuciones anteriores para esta materia
-$sql_delete = "DELETE d FROM distribucion d 
-               INNER JOIN tema t ON d.tema_id = t.tema_id 
-               INNER JOIN unidad u ON t.unidad_id = u.unidad_id 
-               WHERE u.materia_ciclo_id = ?";
-$stmt_delete = $conn->prepare($sql_delete);
-$stmt_delete->bind_param("i", $materia_ciclo_id);
-$stmt_delete->execute();
+$sql_delete = "DELETE FROM distribucion 
+               WHERE tema_id IN (
+                   SELECT t.tema_id FROM tema t 
+                   INNER JOIN unidad u ON t.unidad_id = u.unidad_id 
+                   WHERE u.materia_ciclo_id = ?
+               )";
+$stmt_delete = $pdo->prepare($sql_delete);
+$stmt_delete->execute([$materia_ciclo_id]);
 
 // Array para almacenar los temas a insertar en la BD
 $temas_para_bd = [];
@@ -255,18 +247,12 @@ $temas_insertados = 0;
 foreach ($temas_para_bd as $tema_bd) {
     $sql_insert = "INSERT INTO distribucion (tema_id, horas_asignadas, tipo_clase, fecha_inicio, fecha_fin)
                    VALUES (?, ?, 'Teorica', ?, ?)";
-    $stmt_insert = $conn->prepare($sql_insert);
-    $stmt_insert->bind_param("idss", 
-        $tema_bd['tema_id'], 
-        $tema_bd['horas_estimadas'], 
-        $tema_bd['fecha_inicio'], 
-        $tema_bd['fecha_fin']
-    );
+    $stmt_insert = $pdo->prepare($sql_insert);
     
-    if ($stmt_insert->execute()) {
+    if ($stmt_insert->execute([$tema_bd['tema_id'], $tema_bd['horas_estimadas'], $tema_bd['fecha_inicio'], $tema_bd['fecha_fin']])) {
         $temas_insertados++;
     } else {
-        $_SESSION['error_message'] = "Error al insertar tema en la base de datos: " . $stmt_insert->error;
+        $_SESSION['error_message'] = "Error al insertar tema en la base de datos.";
         header("Location: ../Pages/PlanificarMateria.php");
         exit();
     }
@@ -299,4 +285,3 @@ $_SESSION['plan_generado'] = $plan;
 
 header("Location: ../Pages/PlanificarMateria.php");
 exit();
-?>

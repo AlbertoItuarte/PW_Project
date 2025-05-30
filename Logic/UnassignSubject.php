@@ -17,10 +17,10 @@ $materia_id = intval($_GET['id']);
 
 // Desasignar la materia del profesor
 $sql = "UPDATE materia_ciclo SET usuario_id = NULL WHERE materia_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $materia_id);
-$stmt->execute();
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$materia_id]);
 
 // Redirigir al administrador con un mensaje de éxito
 header("Location: ../Pages/Home.php?success=Materia desasignada correctamente");
 exit();
+?>

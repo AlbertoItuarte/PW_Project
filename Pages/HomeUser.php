@@ -42,19 +42,17 @@ if(isset($_POST["usuario_id"]) && $_SESSION["user_type"] != "Admin") {
                 INNER JOIN materia_ciclo mc ON umc.materia_ciclo_id = mc.materia_ciclo_id
                 INNER JOIN materia m ON mc.materia_id = m.materia_id
                 WHERE umc.usuario_id = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$user_id]);
 
-        if ($result->num_rows > 0) {
+        if ($stmt->rowCount() > 0) {
             echo "<table border='1'>
                     <tr>
                         <th>Materia</th>
                         <th>Acciones</th>
                     </tr>";
             
-            while ($row = $result->fetch_assoc()) {
+            while ($row = $stmt->fetch()) {
                 $materia = htmlspecialchars($row['materia']);
                 $materia_ciclo_id = $row['materia_ciclo_id'];
 
@@ -65,11 +63,9 @@ if(isset($_POST["usuario_id"]) && $_SESSION["user_type"] != "Admin") {
                                         INNER JOIN unidad u ON t.unidad_id = u.unidad_id
                                         WHERE u.materia_ciclo_id = ?
                                     )";
-                $stmt_planificacion = $conn->prepare($sql_planificacion);
-                $stmt_planificacion->bind_param("i", $materia_ciclo_id);
-                $stmt_planificacion->execute();
-                $result_planificacion = $stmt_planificacion->get_result();
-                $row_planificacion = $result_planificacion->fetch_assoc();
+                $stmt_planificacion = $pdo->prepare($sql_planificacion);
+                $stmt_planificacion->execute([$materia_ciclo_id]);
+                $row_planificacion = $stmt_planificacion->fetch();
                 $tiene_planificacion = $row_planificacion['total'] > 0;
 
                 echo "<tr>

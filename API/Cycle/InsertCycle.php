@@ -8,9 +8,9 @@ $fecha_fin = $_POST['fecha_fin'];
 $usuario_id = $_SESSION['user_id'];
 
 $sql = "INSERT INTO ciclo (nombre, fecha_inicio, fecha_fin, usuario_id) VALUES (?, ?, ?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("sssi", $nombre, $fecha_inicio, $fecha_fin, $usuario_id);
-$stmt->execute();
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$nombre, $fecha_inicio, $fecha_fin, $usuario_id]);
 
 header("Location: ../../Pages/ManageCycles.php");
 exit();
+?>
