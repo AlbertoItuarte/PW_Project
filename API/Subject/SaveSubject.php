@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->begin_transaction();
     
     try {
-        // 1. Insertar materia
+        // Insertar materia
         $sql = "INSERT INTO materia (nombre, codigo, descripcion) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sss", $nombreMateria, $codigoMateria, $descripcionMateria);
@@ -30,24 +30,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         $materiaId = $conn->insert_id;
 
-        // 2. Insertar relación con el ciclo
+        // Insertar relación con el ciclo
         $usuario_id = $_SESSION['user_id'];
         $fechaHoy = date('Y-m-d H:i:s');
 
-        $sql = "INSERT INTO materia_ciclo (materia_id, ciclo_id, horas_teoricas, horas_practicas, fecha_asignacion) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO materia_ciclo (materia_id, ciclo_id, usuario_id, horas_teoricas, horas_practicas, fecha_asignacion) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("iiidds", $materiaId, $ciclo,  $horasTeoricas, $horasPracticas, $fechaHoy);
+        $stmt->bind_param("iiidds", $materiaId, $ciclo, $usuario_id, $horasTeoricas, $horasPracticas, $fechaHoy);
         $stmt->execute();
 
         $materiaCicloId = $conn->insert_id;
 
-        // 3. Insertar relación usuario-materia-ciclo
-        $sql = "INSERT INTO usuario_materia_ciclo (usuario_id, materia_ciclo_id, fecha_asignacion) VALUES (?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("iis", $usuario_id, $materiaCicloId, $fechaHoy);
-        $stmt->execute();
 
-        // 4. Insertar unidades y temas
+        // Insertar unidades y temas
         if (isset($_POST['unidades']) && is_array($_POST['unidades'])) {
             foreach ($_POST['unidades'] as $unidadNumero => $unidadData) {
                 if (empty($unidadData['nombre'])) continue;
