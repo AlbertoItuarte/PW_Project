@@ -16,6 +16,16 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 4px;
 }
 
+nav ul li {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    flex: 0.15 0; /* Permite que los botones ocupen el mismo espacio */
+    
+}
+
 /* Etiquetas de formulario */
 label {
   font-weight: bold;

@@ -1,0 +1,226 @@
+nav {
+  width: 100vw;
+  min-width: 100vw;
+  left: 0;
+  right: 0;
+  background-color: #2e6e6e;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin: 0;
+  padding: 0;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  gap: 0;
+}
+
+nav ul li {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    flex: 0.15 0; /* Permite que los botones ocupen el mismo espacio */
+    
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 10px 22px;
+  border-radius: 8px;
+  background: transparent;
+  border: 2px solid transparent;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  display: inline-block;
+}
+
+nav ul li a:hover {
+  background: #114343;
+  color: #fff;
+  border-color: #114343;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 70px;
+  font-family: sans-serif;
+  background: #eaf7f7;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 70px;
+  font-family: sans-serif;
+  background: #eaf7f7;
+  /* Quita overflow: hidden para permitir scroll */
+}
+
+#unidadesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 100vw;
+  padding: 20px 0;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+.unidad-container {
+  flex: 1 1 350px;
+  min-width: 340px;
+  max-width: 400px;
+  border: 1px solid #b5d3d3;
+  border-radius: 8px;
+  background: #f8fdfd;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  margin-bottom: 0;
+  /* Elimina el scroll interno y el límite de altura */
+  max-height: none;
+  overflow-y: visible;
+  display: flex;
+  flex-direction: column;
+}
+
+.unidad-header {
+  background: #2e6e6e;
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 8px 8px 0 0;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  outline: none;
+  transition: background 0.2s;
+  user-select: none;
+}
+
+.unidad-header:focus, .unidad-header:hover {
+  background: #114343;
+}
+
+.unidad-toggle {
+  font-size: 1.2em;
+  margin-left: 10px;
+  transition: transform 0.2s;
+}
+
+.unidad-content {
+  display: none;
+  padding: 18px;
+  border-top: 1px solid #b5d3d3;
+  border-radius: 0 0 8px 8px;
+  background: #fff;
+}
+
+.unidad-container.active .unidad-content {
+  display: block;
+}
+
+.unidad-container.active .unidad-toggle {
+  transform: rotate(180deg);
+}
+
+.temas-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.tema-container {
+  background: #eaf7f7;
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+
+.tema-container h4 {
+  margin: 0 0 10px 0;
+  color: #2e6e6e;
+  font-size: 1.08em;
+}
+
+@media (max-width: 900px) {
+  #unidadesContainer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    overflow-x: visible;
+  }
+  .unidad-container {
+    max-width: 100vw;
+    min-width: 0;
+  }
+}
+
+label {
+  display: block;
+  margin-top: 12px;      /* Antes: 18px */
+  margin-bottom: 2px;    /* Añadido para juntar más el label y el input */
+  color: #043333;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 0;         /* Antes: 6px */
+  margin-bottom: 6px;    /* Añadido para juntar más los campos */
+  border: 1px solid #b5d3d3;
+  border-radius: 6px;
+  font-size: 1em;
+  background: #f3fafa;
+  box-sizing: border-box;
+}
+
+/* Agrupa los campos principales en una fila */
+.form-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 10px;
+}
+
+.form-row > div {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* Opcional: ajusta el label y el input para que se vean bien en fila */
+.form-row label {
+  margin-top: 0;
+  margin-bottom: 2px;
+}
+
+.form-row input[type="text"],
+.form-row input[type="number"] {
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+
+/* Responsive: en pantallas pequeñas, apila los campos */
+@media (max-width: 700px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}

@@ -133,6 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <title>Editar Materia</title>
   <link rel="stylesheet" href="../CSS/PlanSubject.css">
   <link rel="stylesheet" href="../CSS/Global.css">
+  <link rel="stylesheet" href="../CSS/EditSubject.css">
 </head>
 <body>
   <nav>
@@ -148,41 +149,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <form id="materiaForm" method="post" action="../API/Subject/UpdateSubject.php">
     <input type="hidden" name="materia_id" value="<?php echo $materiaId; ?>">
     <input type="hidden" name="materia_ciclo_id" value="<?php echo $materiaCicloId; ?>">
-    
-    <label>Nombre de la Materia:</label>
-    <input type="text" id="materiaNombre" name="materiaNombre" value="<?php echo htmlspecialchars($materia['nombre']); ?>" required />
 
-    <label>Horas teóricas:</label>
-    <input type="number" id="horasTeoricas" name="horasTeoricas" value="<?php echo $materia['horas_teoricas']; ?>" min="0" required />
-    
-    <label>Horas prácticas:</label>
-    <input type="number" id="horasPracticas" name="horasPracticas" value="<?php echo $materia['horas_practicas']; ?>" min="0" required />
+    <div class="form-row">
+      <div>
+        <label>Nombre de la Materia:</label>
+        <input type="text" id="materiaNombre" name="materiaNombre" value="<?php echo htmlspecialchars($materia['nombre']); ?>" required />
+      </div>
+      <div>
+        <label>Horas teóricas:</label>
+        <input type="number" id="horasTeoricas" name="horasTeoricas" value="<?php echo $materia['horas_teoricas']; ?>" min="0" required />
+      </div>
+      <div>
+        <label>Horas prácticas:</label>
+        <input type="number" id="horasPracticas" name="horasPracticas" value="<?php echo $materia['horas_practicas']; ?>" min="0" required />
+      </div>
+    </div>
 
     <div id="unidadesContainer">
       <?php foreach ($unidades as $index => $unidad): ?>
         <div class="unidad-container" data-id="<?php echo $unidad['unidad_id']; ?>">
           <input type="hidden" name="unidades[<?php echo $index; ?>][id]" value="<?php echo $unidad['unidad_id']; ?>">
           
-          <h3>Unidad <?php echo $index + 1; ?></h3>
-          <label>Número de Unidad:</label>
-          <input type="number" name="unidades[<?php echo $index; ?>][numero_unidad]" class="unidad-numero" value="<?php echo $unidad['numero_unidad']; ?>" min="1" required />
+          <div class="unidad-header" tabindex="0">
+            <span>Unidad <?php echo $index + 1; ?>: <?php echo htmlspecialchars($unidad['nombre']); ?></span>
+            <span class="unidad-toggle">▼</span>
+          </div>
+          <div class="unidad-content">
+            <label>Número de Unidad:</label>
+            <input type="number" name="unidades[<?php echo $index; ?>][numero_unidad]" class="unidad-numero" value="<?php echo $unidad['numero_unidad']; ?>" min="1" required />
 
-          <label>Nombre de la Unidad:</label>
-          <input type="text" name="unidades[<?php echo $index; ?>][nombre]" class="unidad-nombre" value="<?php echo htmlspecialchars($unidad['nombre']); ?>" required />
+            <label>Nombre de la Unidad:</label>
+            <input type="text" name="unidades[<?php echo $index; ?>][nombre]" class="unidad-nombre" value="<?php echo htmlspecialchars($unidad['nombre']); ?>" required />
 
-          <div class="temas-container" id="temas-container-<?php echo $index; ?>">
-            <?php foreach ($unidad['temas'] as $temaIndex => $tema): ?>
-              <div class="tema-container" data-id="<?php echo $tema['tema_id']; ?>">
-                <input type="hidden" name="unidades[<?php echo $index; ?>][temas][<?php echo $temaIndex; ?>][id]" value="<?php echo $tema['tema_id']; ?>">
-                
-                <h4>Tema <?php echo $temaIndex + 1; ?></h4>
-                <label>Nombre del Tema:</label>
-                <input type="text" name="unidades[<?php echo $index; ?>][temas][<?php echo $temaIndex; ?>][nombre]" class="tema-nombre" value="<?php echo htmlspecialchars($tema['nombre']); ?>" required />
+            <div class="temas-container" id="temas-container-<?php echo $index; ?>">
+              <?php foreach ($unidad['temas'] as $temaIndex => $tema): ?>
+                <div class="tema-container" data-id="<?php echo $tema['tema_id']; ?>">
+                  <input type="hidden" name="unidades[<?php echo $index; ?>][temas][<?php echo $temaIndex; ?>][id]" value="<?php echo $tema['tema_id']; ?>">
+                  
+                  <h4>Tema <?php echo $temaIndex + 1; ?></h4>
+                  <label>Nombre del Tema:</label>
+                  <input type="text" name="unidades[<?php echo $index; ?>][temas][<?php echo $temaIndex; ?>][nombre]" class="tema-nombre" value="<?php echo htmlspecialchars($tema['nombre']); ?>" required />
 
-                <label>Horas necesarias para cubrir el tema:</label>
-                <input type="number" name="unidades[<?php echo $index; ?>][temas][<?php echo $temaIndex; ?>][horas]" class="tema-horas" value="<?php echo $tema['horas_estimadas']; ?>" min="1" required />
-              </div>
-            <?php endforeach; ?>
+                  <label>Horas necesarias para cubrir el tema:</label>
+                  <input type="number" name="unidades[<?php echo $index; ?>][temas][<?php echo $temaIndex; ?>][horas]" class="tema-horas" value="<?php echo $tema['horas_estimadas']; ?>" min="1" required />
+                </div>
+              <?php endforeach; ?>
+            </div>
           </div>
         </div>
       <?php endforeach; ?>
@@ -190,5 +202,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <button type="submit" id="guardarTodo">💾 Guardar Cambios</button>
   </form>
+  <script>
+    document.querySelectorAll('.unidad-header').forEach(header => {
+      header.addEventListener('click', function() {
+        const container = this.parentElement;
+        container.classList.toggle('active');
+      });
+      header.addEventListener('keypress', function(e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          this.click();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
