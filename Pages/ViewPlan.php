@@ -47,6 +47,8 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/Global.css">
+    <link rel="stylesheet" href="../CSS/ViewPlan.css">
     <title>Planificación de Materia</title>
 </head>
 <body>
@@ -80,7 +82,7 @@ $result = $stmt->get_result();
 
             // Mostrar la unidad si cambia
             if ($unidad !== $current_unidad) {
-                echo "<h3>- Unidad: {$unidad} / Fecha de Evaluación: {$fecha_evaluacion}</h3>";
+                echo "<div class='unidad-bar'>- Unidad: {$unidad} / Fecha de Evaluación: {$fecha_evaluacion}</div>";
                 $current_unidad = $unidad;
             }
 
