@@ -43,7 +43,7 @@ form p {
 
 @font-face {
   font-family: "MiFuente";
-  src: url("/Boldyguard\ Demo.otf") format("opentype");
+  src: url("../Boldyguard\ Demo.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
