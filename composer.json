@@ -11,7 +11,10 @@
   },
   "extra": {
     "heroku": {
-      "document-root": "public"
+      "document-root": "/"
+    },
+    "railway": {
+      "document-root": "/"
     }
   }
 }
