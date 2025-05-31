@@ -4,4 +4,6 @@ builder = "NIXPACKS"
 [deploy]
 numReplicas = 1
 restartPolicyType = "ON_FAILURE"
-startCommand = "php -S 0.0.0.0:$PORT -t public"
+startCommand = "php -S 0.0.0.0:$PORT -t public -d display_errors=1"
+healthcheckPath = "/health.php"
+healthcheckTimeout = 300
