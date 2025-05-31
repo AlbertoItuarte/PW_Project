@@ -1,11 +1,11 @@
 <?php
 try {
-    // Usar variables de entorno en producción, valores por defecto en desarrollo
-    $host = $_ENV['DB_HOST'] ?? 'aws-0-us-east-2.pooler.supabase.com';
-    $port = $_ENV['DB_PORT'] ?? '5432';
-    $dbname = $_ENV['DB_NAME'] ?? 'postgres';
-    $username = $_ENV['DB_USER'] ?? 'postgres.nvpssgymlrutawwdjntd';
-    $password = $_ENV['DB_PASSWORD'] ?? 'Beto1702?12';
+    // Cargar variables de entorno
+    $host = getenv('DB_HOST') ?: $_ENV['DB_HOST'] ?? 'aws-0-us-east-2.pooler.supabase.com';
+    $port = getenv('DB_PORT') ?: $_ENV['DB_PORT'] ?? '5432';
+    $dbname = getenv('DB_NAME') ?: $_ENV['DB_NAME'] ?? 'postgres';
+    $username = getenv('DB_USER') ?: $_ENV['DB_USER'] ?? 'postgres.nvpssgymlrutawwdjntd';
+    $password = getenv('DB_PASSWORD') ?: $_ENV['DB_PASSWORD'] ?? 'Beto1702?12';
     
     // Crear la cadena DSN para PostgreSQL con SSL
     $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;sslmode=require";
@@ -18,6 +18,11 @@ try {
     ]);
     
 } catch (PDOException $e) {
-    die("Error de conexión: " . $e->getMessage());
+    error_log("Database connection error: " . $e->getMessage());
+    if (getenv('APP_ENV') === 'development') {
+        die("Error de conexión: " . $e->getMessage());
+    } else {
+        die("Error de conexión a la base de datos. Por favor contacte al administrador.");
+    }
 }
 ?>

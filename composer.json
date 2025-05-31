@@ -8,5 +8,10 @@
     "post-install-cmd": [
       "echo 'Dependencies installed successfully'"
     ]
+  },
+  "extra": {
+    "heroku": {
+      "document-root": "public"
+    }
   }
 }
