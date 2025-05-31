@@ -1,4 +1,4 @@
-DirectoryIndex index.php health.php
+DirectoryIndex index.php
 
 RewriteEngine On
 
@@ -6,32 +6,30 @@ RewriteEngine On
 
 RewriteRule ^health/?$ health.php [L]
 
-# Permitir acceso directo a archivos estáticos
+# Permitir acceso a archivos en public/
+
+RewriteRule ^public/(.\*)$ public/$1 [L]
+
+# Archivos estáticos
 
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule \.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|otf)$ - [L]
 
-# Permitir acceso directo a PHP files
+# PHP files existentes
 
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule \.php$ - [L]
 
-# Redirigir todo lo demás a index.php
+# Todo lo demás a index.php
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.\*)$ index.php [QSA,L]
 
-# Configuración MIME
+# MIME types
 
 AddType application/x-httpd-php .php
 AddType text/css .css
-AddType application/javascript .js
 AddType image/jpeg .jpg
 AddType image/png .png
 AddType font/otf .otf
-
-# Headers de seguridad
-
-Header always set X-Content-Type-Options nosniff
-Header always set X-Frame-Options DENY
