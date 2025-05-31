@@ -1,10 +1,20 @@
+DirectoryIndex index.php
+
 RewriteEngine On
+
+# Permitir acceso directo a archivos estáticos
+
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule \.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|otf)$ - [L]
+
+# Redirigir todo lo demás a index.php
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /index.php [QSA,L]
+RewriteRule ^(.\*)$ index.php [QSA,L]
 
-# Configuración de tipos de archivo
+# Configuración MIME
+
 AddType application/x-httpd-php .php
-
-# Configuración de directorio por defecto
-DirectoryIndex index.php index.html
+AddType text/css .css
+AddType application/javascript .js
