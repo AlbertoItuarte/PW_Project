@@ -5,5 +5,3 @@ builder = "NIXPACKS"
 numReplicas = 1
 restartPolicyType = "ON_FAILURE"
 startCommand = "php -S 0.0.0.0:$PORT -t public"
-healthcheckPath = "/health.php"
-healthcheckTimeout = 100
