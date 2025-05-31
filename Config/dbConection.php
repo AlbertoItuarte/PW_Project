@@ -1,14 +1,14 @@
 <?php
 try {
-    // Configuración de Supabase
-    $host = 'aws-0-us-east-2.pooler.supabase.com';
-    $port = '5432';
-    $dbname = 'postgres';
-    $username = 'postgres.nvpssgymlrutawwdjntd';
-    $password = 'Beto1702?12';  // Tu contraseña real
+    // Usar variables de entorno en producción, valores por defecto en desarrollo
+    $host = $_ENV['DB_HOST'] ?? 'aws-0-us-east-2.pooler.supabase.com';
+    $port = $_ENV['DB_PORT'] ?? '5432';
+    $dbname = $_ENV['DB_NAME'] ?? 'postgres';
+    $username = $_ENV['DB_USER'] ?? 'postgres.nvpssgymlrutawwdjntd';
+    $password = $_ENV['DB_PASSWORD'] ?? 'Beto1702?12';
     
-    // Crear la cadena DSN para PostgreSQL
-    $dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
+    // Crear la cadena DSN para PostgreSQL con SSL
+    $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;sslmode=require";
     
     // Crear la conexión PDO
     $pdo = new PDO($dsn, $username, $password, [
