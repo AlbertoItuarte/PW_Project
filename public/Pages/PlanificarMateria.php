@@ -75,78 +75,10 @@ unset($_SESSION['plan_generado']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planificar Materia</title>
     <link rel="stylesheet" href="../CSS/Global.css">
-    <style>
-        .message {
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-        }
-        .error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        .success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        .plan-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .plan-table th, .plan-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        .plan-table th {
-            background-color: #f2f2f2;
-        }
-        .evaluation-item {
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .evaluation-item label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .evaluation-item input[type="date"] {
-            width: 100%;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-        .materia-info {
-            background-color: #e9ecef;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        .materia-info h2 {
-            margin: 0 0 10px 0;
-            color: #495057;
-        }
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 15px;
-            background-color: #6c757d;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .back-button:hover {
-            background-color: #5a6268;
-        }
-    </style>
+    <link rel="stylesheet" href="../CSS/PlanificarMateria.css">
 </head>
 <body>
-    <a href="HomeUser.php" class="back-button">← Volver a Materias</a>
+    <?php include '../Common/Header.html'; ?>
     
     <div class="materia-info">
         <h2>Planificar: <?= htmlspecialchars($materia_info['materia']) ?></h2>

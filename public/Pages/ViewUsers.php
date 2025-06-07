@@ -11,66 +11,8 @@ if(!isset($_SESSION["user_id"]) || $_SESSION["user_type"] != "Admin") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver Usuarios</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .loading {
-            text-align: center;
-            color: #666;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #f8f9fa;
-            font-weight: bold;
-            color: #333;
-        }
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-        .user-type {
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        .admin { background-color: #dc3545; color: white; }
-        .user { background-color: #28a745; color: white; }
-        .error {
-            color: #dc3545;
-            text-align: center;
-            padding: 20px;
-        }
-        .no-users {
-            text-align: center;
-            color: #666;
-            padding: 40px;
-        }
-    </style>
+    <link rel="stylesheet" href="../CSS/ViewUsers.css">
+    <link rel="stylesheet" href="../CSS/Global.css">
 </head>
 <body>
     <div class="container">
@@ -81,12 +23,9 @@ if(!isset($_SESSION["user_id"]) || $_SESSION["user_type"] != "Admin") {
             <table id="users-table">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>Email</th>
                         <th>Tipo</th>
-                        <th>Fecha Creación</th>
                     </tr>
                 </thead>
                 <tbody id="users-tbody">
@@ -129,12 +68,9 @@ if(!isset($_SESSION["user_id"]) || $_SESSION["user_type"] != "Admin") {
                 const userTypeClass = user.tipo && user.tipo.toLowerCase() === 'admin' ? 'admin' : 'user';
                 
                 row.innerHTML = `
-                    <td>${user.id}</td>
                     <td>${user.nombre || 'N/A'}</td>
-                    <td>${user.apellido || 'N/A'}</td>
-                    <td>${user.email}</td>
+                    <td>${user.apellido_paterno || 'N/A'}</td>
                     <td><span class="user-type ${userTypeClass}">${user.tipo || 'Usuario'}</span></td>
-                    <td>${formatDate(user.fecha_creacion)}</td>
                 `;
                 
                 tbody.appendChild(row);
