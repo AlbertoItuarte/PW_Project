@@ -2,12 +2,6 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
 
-  /* Fondo */
-  background-image: url("../azul.jpg");
-  background-size: cover; /* La imagen se ajusta a toda la pantalla */
-  background-position: center; /* Centrada */
-  background-repeat: no-repeat; /* No se repite */
-
   /* Ajuste de layout */
   display: flex;
   justify-content: center;
@@ -15,12 +9,21 @@ body {
   height: 100vh;
   overflow: hidden;
   flex-direction: column;
+
+  /* Degradado entre #D1EDED (fondo) y #043333 (formulario) */
+  background: linear-gradient(180deg, #D1EDED 0%, #5A9999 100%);
 }
 form {
   border-radius: 4rem;
-  background: #043333;
+  background: rgba(4, 51, 51, 0.65); /* Fondo semitransparente, mucho menos transparente */
   align-content: center;
   padding: 1.6rem;
+  box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.10),
+              0 0 12px 2px #5A9999, /* Sombra neon azul-cyan */
+              0 0 24px 4px #5A9999; /* Sombra neon secundaria */
+  backdrop-filter: blur(6px);           /* Efecto de desenfoque más suave */
+  -webkit-backdrop-filter: blur(6px);   /* Soporte para Safari */
+  border: 1.5px solid #5A9999;          /* Borde neon cyan */
 }
 
 form h1 {
