@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Insertar el usuario con tipo_usuario por defecto como 'Usuario'
     $sql = "INSERT INTO usuario (nombre, apellido_paterno, usuario, contrasena, tipo) 
-            VALUES (?, ?, ?, ?, 'Admin')";
+            VALUES (?, ?, ?, ?, 'Usuario')";
     $stmt = $pdo->prepare($sql);
 
     try {

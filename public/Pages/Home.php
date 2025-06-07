@@ -47,6 +47,7 @@ if ($row['total'] == 0) {
                 <li><a href="CreateCycle.php" id="btn-create-ciclo">Crear Ciclo</a></li>
                 <li><a href="NewHoliday.php">Feriados +</a></li>
                 <li><a href="Register.php">Registrar usuarios</a></li>
+                <li><a href="ViewUsers.php">Ver usuarios</a></li>
                 <li><a href="../Logic/LogOut.php">Cerrar sesión</a></li>
 
             </ul>
