@@ -16,6 +16,7 @@ if (!isset($_SESSION['user_id'])) {
     <title>Seleccionar Materias</title>
 </head>
 <body>
+    <?php include '../Common/Header.html'; ?>
     <h1>Seleccionar Materias</h1>
     <form action="../Logic/AsignSubject.php" method="POST">
         <div class="materias-container">

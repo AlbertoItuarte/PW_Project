@@ -153,6 +153,7 @@ if ($row['total'] == 0) {
                                 <a href="ViewSubject.php?id=${materia.materia_id}">Ver</a>
                                 <a href="#" class="btn-eliminar" data-id="${materia.materia_id}" data-materia="${materia.materia}">Eliminar</a>
                                 <a href="EditSubject.php?id=${materia.materia_id}">Editar</a>
+                                <a href="ManageUsers.php?id=${materia.materia_id}">Usuarios</a>
                             </td>
                         </tr>
                     `;

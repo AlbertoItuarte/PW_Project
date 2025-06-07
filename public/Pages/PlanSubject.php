@@ -25,10 +25,9 @@ if (isset($_GET['error'])) {
   <link rel="stylesheet" href="../CSS/Global.css">
 </head>
 <body>
+  <?php include '../Common/Header.html'; ?>
   <h2>Crear Materia</h2>
-  
   <form id="programaForm" method="post" action="../API/Subject/SaveSubject.php">
-
     <label>Selecciona el Ciclo:</label>
     <select id="cicloSelect" name="ciclo" required>
       <?php
