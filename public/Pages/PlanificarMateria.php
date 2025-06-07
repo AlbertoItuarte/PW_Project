@@ -191,7 +191,8 @@ unset($_SESSION['plan_generado']);
             <label><input type="checkbox" name="dias[]" value="Viernes"> Viernes</label>
             <input type="number" name="horas[Viernes]" placeholder="Horas disponibles" min="1">
         </div>
-
+        
+<input type="hidden" name="usuario_materia_ciclo_id" value="<?php echo htmlspecialchars($_GET['usuario_materia_ciclo_id']); ?>">
         <h2>Fechas de Evaluación por Unidad</h2>
         <div id="evaluaciones">
             <?php if (!empty($unidades)): ?>

@@ -16,6 +16,13 @@ if (!isset($_POST['materia_ciclo_id']) || empty($_POST['materia_ciclo_id'])) { /
     exit();
 }
 
+// Validar que se haya enviado el usuario_materia_ciclo_id
+if (!isset($_POST['usuario_materia_ciclo_id']) || empty($_POST['usuario_materia_ciclo_id'])) { // Si no se envió el ID de la asignación
+    $_SESSION['error_message'] = "Error: No se proporcionó el ID de la asignación."; // Guarda mensaje de error en sesión
+    header("Location: ../Pages/PlanificarMateria.php"); // Redirige a la página de planificación
+    exit();
+}
+
 // Validar que se hayan seleccionado días
 if (!isset($_POST['dias']) || empty($_POST['dias'])) { // Si no se seleccionaron días
     $_SESSION['error_message'] = "Error: No se seleccionaron días.";
@@ -32,6 +39,7 @@ if (!isset($_POST['horas']) || empty($_POST['horas'])) { // Si no se proporciona
 
 // Recoge los datos del formulario
 $materia_ciclo_id = intval($_POST['materia_ciclo_id']); // Convierte el ID de la materia a entero
+$usuario_materia_ciclo_id = intval($_POST['usuario_materia_ciclo_id']); // NUEVO CAMPO
 $dias = $_POST['dias']; // Días seleccionados por el usuario
 $horas = $_POST['horas']; // Horas disponibles por día
 $evaluaciones_input = isset($_POST['evaluaciones']) ? $_POST['evaluaciones'] : []; // Fechas de evaluaciones (si existen)
@@ -159,15 +167,15 @@ $day_translation = [
     'Sunday' => 'Domingo'
 ];
 
-// Elimina distribuciones anteriores de la materia
+// Elimina distribuciones anteriores de ESTA ASIGNACIÓN ESPECÍFICA
 $sql_delete = "DELETE FROM distribucion 
                WHERE tema_id IN (
                    SELECT t.tema_id FROM tema t 
                    INNER JOIN unidad u ON t.unidad_id = u.unidad_id 
                    WHERE u.materia_ciclo_id = ?
-               )";
+               ) AND usuario_materia_ciclo_id = ?";
 $stmt_delete = $pdo->prepare($sql_delete);
-$stmt_delete->execute([$materia_ciclo_id]);
+$stmt_delete->execute([$materia_ciclo_id, $usuario_materia_ciclo_id]);
 
 // Prepara array para los temas a insertar en la BD
 $temas_para_bd = [];
@@ -250,14 +258,20 @@ while ($current_date <= $fecha_fin && $tema_index < count($temas)) {
     $current_date->modify('+1 day'); // Avanza al siguiente día
 }
 
-// Inserta los temas distribuidos en la base de datos
+// Inserta los temas distribuidos en la base de datos CON usuario_materia_ciclo_id
 $temas_insertados = 0;
 foreach ($temas_para_bd as $tema_bd) {
-    $sql_insert = "INSERT INTO distribucion (tema_id, horas_asignadas, tipo_clase, fecha_inicio, fecha_fin)
-                   VALUES (?, ?, 'Teorica', ?, ?)";
+    $sql_insert = "INSERT INTO distribucion (tema_id, horas_asignadas, tipo_clase, fecha_inicio, fecha_fin, usuario_materia_ciclo_id)
+                   VALUES (?, ?, 'Teorica', ?, ?, ?)";
     $stmt_insert = $pdo->prepare($sql_insert);
     
-    if ($stmt_insert->execute([$tema_bd['tema_id'], $tema_bd['horas_estimadas'], $tema_bd['fecha_inicio'], $tema_bd['fecha_fin']])) {
+    if ($stmt_insert->execute([
+        $tema_bd['tema_id'], 
+        $tema_bd['horas_estimadas'], 
+        $tema_bd['fecha_inicio'], 
+        $tema_bd['fecha_fin'],
+        $usuario_materia_ciclo_id  // AGREGAR ESTE CAMPO
+    ])) {
         $temas_insertados++;
     } else {
         $_SESSION['error_message'] = "Error al insertar tema en la base de datos.";
