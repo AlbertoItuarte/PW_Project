@@ -25,7 +25,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != "Admin") {
             <li><a href="../Logic/LogOut.php">Cerrar sesión</a></li>
         </ul>
     </nav>
-    <form class="form-ciclo" method="post" action="../API/Cycle/CreateCycle.php">
+    <form class="form-ciclo" method="post" action="../API/Cycle/NewyCycle.php">
         <h2>Crear Ciclo</h2>
         <?php if (!empty($error)): ?>
             <div class="error-msg"><?php echo htmlspecialchars($error); ?></div>
