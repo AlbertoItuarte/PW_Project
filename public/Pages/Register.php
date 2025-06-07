@@ -17,7 +17,6 @@
             <input type="password" name="contrasena" placeholder="Ingresa tu contraseña" required>
             <input type="password" name="confirma_contrasena" placeholder="Confirma contraseña" required>
             <input type="submit" value="Regístrate">
-            <p>Ya tienes cuenta? <a href="Login.php">Inicia sesión aquí</a></p>
         </form>
     </div>
 </body>
