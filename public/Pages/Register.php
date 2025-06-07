@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (!isset($_SESSION["user_id"]) )
+{
+    header("Location: Login.php");
+    exit();
+} elseif (isset($_SESSION["user_id"]) && isset($_SESSION["user_type"]) && $_SESSION["user_type"] == "Usuario") {
+    header("Location: HomeUser.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
