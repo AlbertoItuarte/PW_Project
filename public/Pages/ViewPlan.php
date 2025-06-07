@@ -7,12 +7,13 @@ if (!isset($_SESSION['user_id'])) {
 
 require_once '../Config/dbConection.php';
 
-// Verificar si se recibió el parámetro materia_ciclo_id
-if (!isset($_GET['materia_ciclo_id'])) {
-    die("Error: No se especificó una materia.");
+// Verificar si se recibieron los parámetros necesarios
+if (!isset($_GET['materia_ciclo_id']) || !isset($_GET['usuario_materia_ciclo_id'])) {
+    die("Error: No se especificaron los parámetros necesarios.");
 }
 
 $materia_ciclo_id = intval($_GET['materia_ciclo_id']);
+$usuario_materia_ciclo_id = intval($_GET['usuario_materia_ciclo_id']);
 
 // Función para formatear fecha de YYYY-MM-DD a DD/MM/YYYY
 function formatDate($date) {
@@ -23,7 +24,7 @@ function formatDate($date) {
     return $dateObj ? $dateObj->format('d/m/Y') : $date;
 }
 
-// Consulta para mostrar todas las unidades con sus temas
+// Consulta para mostrar SOLO la planificación de esta asignación específica
 $sql_planificacion = "SELECT DISTINCT m.nombre AS materia, u.nombre AS unidad, u.numero_unidad,
                              t.nombre AS tema, t.orden_tema, d.fecha_inicio, d.fecha_fin, t.horas_estimadas,
                              ge.fecha_evaluacion, u.unidad_id, t.tema_id
@@ -31,14 +32,14 @@ $sql_planificacion = "SELECT DISTINCT m.nombre AS materia, u.nombre AS unidad, u
                       INNER JOIN materia_ciclo mc ON u.materia_ciclo_id = mc.materia_ciclo_id
                       INNER JOIN materia m ON mc.materia_id = m.materia_id
                       INNER JOIN tema t ON u.unidad_id = t.unidad_id
-                      LEFT JOIN distribucion d ON t.tema_id = d.tema_id
+                      INNER JOIN distribucion d ON t.tema_id = d.tema_id AND d.usuario_materia_ciclo_id = ?
                       LEFT JOIN unidad_evaluacion ue ON u.unidad_id = ue.unidad_id
                       LEFT JOIN grupo_evaluacion ge ON ue.grupo_eval_id = ge.grupo_eval_id
                       WHERE u.materia_ciclo_id = ?
                       ORDER BY u.numero_unidad, t.orden_tema";
 
 $stmt = $pdo->prepare($sql_planificacion);
-$stmt->execute([$materia_ciclo_id]);
+$stmt->execute([$usuario_materia_ciclo_id, $materia_ciclo_id]);
 $result = $stmt->fetchAll();
 ?>
 
@@ -120,7 +121,8 @@ $result = $stmt->fetchAll();
         }
         ?>
     <?php else: ?>
-        <p>No hay planificación registrada para esta materia.</p>
+        <p>No hay planificación registrada para esta asignación específica.</p>
+        <p><a href="PlanificarMateria.php?materia_ciclo_id=<?php echo $materia_ciclo_id; ?>&usuario_materia_ciclo_id=<?php echo $usuario_materia_ciclo_id; ?>">Crear planificación</a></p>
     <?php endif; ?>
 
 </body>
