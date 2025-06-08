@@ -165,13 +165,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <link rel="stylesheet" href="../CSS/EditSubject.css">
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><a href="Home.php">Inicio</a></li>
-      <li><a href="./PlanSubject.php">Crear materia</a></li>
-      <li><a href="../Logic/LogOut.php">Cerrar sesión</a></li>
-    </ul>
-  </nav>
+   <div>
+        <nav>
+            <ul>
+                <li><a href="Home.php">Inicio</a></li>
+                <li><a href="PlanSubject.php" id="btn-create-materia">Crear materia</a></li>
+                <li><a href="CreateCycle.php" id="btn-create-ciclo">Gestionar Ciclo</a></li>
+                <li><a href="ViewUsers.php">Usuarios</a></li>
+                <li><a href="../Logic/LogOut.php">Cerrar sesión</a></li>
+
+            </ul>
+        </nav>
+    </div>
 
   <h2>Editar Materia</h2>
   

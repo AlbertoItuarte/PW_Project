@@ -29,7 +29,7 @@ try {
     }
     
     // Consulta para obtener todos los usuarios ordenados por nombre, apellido y tipo
-    $sql = "SELECT usuario_id, nombre, apellido_paterno, tipo 
+     $sql = "SELECT usuario_id, nombre, apellido_paterno, usuario, tipo, activo, fecha_creacion 
             FROM usuario
             ORDER BY nombre ASC, apellido_paterno ASC, tipo ASC";
     $stmt = $pdo->prepare($sql);
