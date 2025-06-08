@@ -13,8 +13,10 @@ if(!isset($_SESSION["user_id"]) || $_SESSION["user_type"] != "Admin") {
     <title>Ver Usuarios</title>
     <link rel="stylesheet" href="../CSS/ViewUsers.css">
     <link rel="stylesheet" href="../CSS/Global.css">
+
 </head>
 <body>
+    <?php include '../Common/Header.html'; ?>
     <div class="container">
         <h1>Gestión de Usuarios</h1>
         <div id="loading" class="loading">Cargando usuarios...</div>
@@ -34,6 +36,10 @@ if(!isset($_SESSION["user_id"]) || $_SESSION["user_type"] != "Admin") {
         </div>
         <div id="no-users" class="no-users" style="display: none;">
             No se encontraron usuarios registrados.
+        </div>
+        <!-- Botón para registrar usuarios -->
+        <div style="text-align:center; margin-top: 30px;">
+            <a href="Register.php" class="back-button">Registrar usuarios</a>
         </div>
     </div>
 

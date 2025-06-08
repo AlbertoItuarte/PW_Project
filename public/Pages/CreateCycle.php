@@ -13,18 +13,10 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != "Admin") {
     <meta charset="UTF-8">
     <title>Crear Ciclo</title>
     <link rel="stylesheet" href="../CSS/Global.css">
-    <link rel="stylesheet" href="../CSS/EditSubject.css">
     <link rel="stylesheet" href="../CSS/CreateCycle.css">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="Home.php">Inicio</a></li>
-            <li><a href="PlanSubject.php">Crear materia</a></li>
-            <li><a href="CreateCycle.php" id="btn-create-ciclo">Crear ciclo</a></li>
-            <li><a href="../Logic/LogOut.php">Cerrar sesión</a></li>
-        </ul>
-    </nav>
+    <?php include '../Common/Header.html'; ?>
     <form class="form-ciclo" method="post" action="../API/Cycle/NewyCycle.php">
         <h2>Crear Ciclo</h2>
         <?php if (!empty($error)): ?>
@@ -41,5 +33,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != "Admin") {
 
         <button type="submit">Crear ciclo</button>
     </form>
+    <div style="text-align:center; margin-top: 30px;">
+        <a href="NewHoliday.php" class="back-button">Agregar Feriado</a>
+    </div>
 </body>
 </html>
