@@ -1,10 +1,37 @@
-/* Botones tipo toggle para selección de tipo de feriado */
-.toggle-radio-group {
-  display: flex;
-  gap: 20px;
-  margin: 18px 0 10px 0;
+/* Centrar título */
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+  width: 100%;
 }
 
+/* Centrar todo el formulario, inputs y botones */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Centrar los grupos de radio toggle */
+.toggle-radio-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 18px 0 10px 0;
+  width: 100%;
+}
+
+/* Centrar todos los inputs y botones dentro del form */
+form input,
+form select,
+form button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 14px;
+}
+
+/* Botones tipo toggle para selección de tipo de feriado */
 .toggle-radio {
   position: relative;
   display: inline-block;
@@ -30,4 +57,43 @@
   background: #2e6e6e;
   color: #fff;
   border-color: #2e6e6e;
+}
+
+input[type="date"] {
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: 2px solid #5a9999;
+  background: #e0f2f2;
+  color: #2e6e6e;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(46, 110, 110, 0.06);
+  transition: border 0.2s, background 0.2s;
+  margin-bottom: 16px;
+  outline: none;
+}
+
+input[type="date"]:focus {
+  border: 2px solid #2e6e6e;
+  background: #d1eded;
+}
+
+#feriado-rango {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+#feriado-rango span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #2e6e6e;
+  min-width: 24px;
+  margin: 0 8px;
+  height: 40px;
 }

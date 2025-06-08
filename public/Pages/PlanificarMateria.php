@@ -85,6 +85,7 @@ unset($_SESSION['plan_generado']);
     <title>Planificar Materia</title>
     <link rel="stylesheet" href="../CSS/Global.css">
     <link rel="stylesheet" href="../CSS/PlanificarMateria.css">
+    
 </head>
 <body>
     <?php include '../Common/Header.html'; ?>
@@ -112,26 +113,26 @@ unset($_SESSION['plan_generado']);
         <!-- Campo oculto para enviar el ID de la materia -->
         <input type="hidden" name="materia_ciclo_id" value="<?= $materia_ciclo_id ?>">
 
-        <h2>Días y Horas Disponibles</h2>
-        <div>
+        <h2>Días y Horas</h2>
+        <div id="dias-horas-row">
             <label><input type="checkbox" name="dias[]" value="Lunes"> Lunes</label>
-            <input type="number" name="horas[Lunes]" placeholder="Horas disponibles" min="1">
+            <input type="number" name="horas[Lunes]" placeholder="Horas" min="1">
         </div>
-        <div>
+        <div id="dias-horas-row">
             <label><input type="checkbox" name="dias[]" value="Martes"> Martes</label>
-            <input type="number" name="horas[Martes]" placeholder="Horas disponibles" min="1">
+            <input type="number" name="horas[Martes]" placeholder="Horas" min="1">
         </div>
-        <div>
+        <div id="dias-horas-row">
             <label><input type="checkbox" name="dias[]" value="Miércoles"> Miércoles</label>
-            <input type="number" name="horas[Miércoles]" placeholder="Horas disponibles" min="1">
+            <input type="number" name="horas[Miércoles]" placeholder="Horas" min="1">
         </div>
-        <div>
+        <div id="dias-horas-row">
             <label><input type="checkbox" name="dias[]" value="Jueves"> Jueves</label>
-            <input type="number" name="horas[Jueves]" placeholder="Horas disponibles" min="1">
+            <input type="number" name="horas[Jueves]" placeholder="Horas" min="1">
         </div>
-        <div>
+        <div id="dias-horas-row">
             <label><input type="checkbox" name="dias[]" value="Viernes"> Viernes</label>
-            <input type="number" name="horas[Viernes]" placeholder="Horas disponibles" min="1">
+            <input type="number" name="horas[Viernes]" placeholder="Horas" min="1">
         </div>
         
 <input type="hidden" name="usuario_materia_ciclo_id" value="<?php echo htmlspecialchars($_GET['usuario_materia_ciclo_id']); ?>">
