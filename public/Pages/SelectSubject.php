@@ -19,17 +19,9 @@ if (!isset($_SESSION['user_id'])) {
     <?php include '../Common/Header.html'; ?>
     <h1>Seleccionar Materias</h1>
     
-    <?php
-    // Mostrar mensajes de éxito o error
-    if (isset($_GET['success'])) {
-        echo "<div class='alert alert-success'>Materias asignadas correctamente.</div>";
-    }
-    if (isset($_GET['error'])) {
-        echo "<div class='alert alert-error'>Error: " . htmlspecialchars($_GET['error']) . "</div>";
-    }
-    ?>
+    <div id="mensaje-resultado" style="display: none;"></div>
     
-    <form action="../Logic/AsignSubject.php" method="POST">
+    <form id="form-materias">
         <div class="materias-container">
         <?php
         require_once '../Config/dbConection.php';
@@ -69,6 +61,58 @@ if (!isset($_SESSION['user_id'])) {
         </div>
         <button type="submit">Cargar Materias</button>
     </form>
+
+    <script>
+        document.getElementById('form-materias').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const checkboxes = document.querySelectorAll('input[name="materias[]"]:checked');
+            const materias = Array.from(checkboxes).map(cb => cb.value);
+            
+            if (materias.length === 0) {
+                mostrarMensaje('Por favor selecciona al menos una materia.', 'error');
+                return;
+            }
+            
+            try {
+                const response = await fetch('../API/Subject/AsignSubject.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        usuario_id: <?php echo $_SESSION['user_id']; ?>,
+                        materias: materias
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    mostrarMensaje(data.message, 'success');
+                    // Recargar la página después de 2 segundos
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
+                } else {
+                    mostrarMensaje(data.message, 'error');
+                }
+                
+            } catch (error) {
+                mostrarMensaje('Error al procesar la solicitud: ' + error.message, 'error');
+            }
+        });
+        
+        function mostrarMensaje(mensaje, tipo) {
+            const div = document.getElementById('mensaje-resultado');
+            div.innerHTML = mensaje;
+            div.className = `alert alert-${tipo}`;
+            div.style.display = 'block';
+            
+            // Scroll al mensaje
+            div.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 
     <style>
         .alert {

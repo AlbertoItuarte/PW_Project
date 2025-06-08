@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) { // Si no hay usuario en sesión
     exit(); // Detiene la ejecución
 }
 
-require_once '../Config/dbConection.php'; // Incluye el archivo de conexión a la base de datos
+require_once '../../Config/dbConection.php';
 
 // Validar que se haya enviado el ID de la materia
 if (!isset($_POST['materia_ciclo_id']) || empty($_POST['materia_ciclo_id'])) { // Si no se envió el ID de la materia
@@ -305,5 +305,5 @@ if (empty($plan)) {
 $_SESSION['success_message'] = "Plan generado exitosamente. Se procesaron " . count($plan) . " temas y " . count($fechas_evaluacion) . " fechas de evaluación.";
 $_SESSION['plan_generado'] = $plan;
 
-header("Location: ../Pages/PlanificarMateria.php");
+header("Location: ../../Pages/PlanificarMateria.php");
 exit();
