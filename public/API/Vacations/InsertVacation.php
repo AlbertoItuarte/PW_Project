@@ -10,6 +10,6 @@ $sql = "INSERT INTO vacaciones (ciclo_id, fecha_inicio, fecha_fin, descripcion) 
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$ciclo_id, $fecha_inicio, $fecha_fin, $descripcion]);
 
-header("Location: ../../Pages/ManageCycles.php");
+header("Location: ../../Pages/Login.php");
 exit();
 ?>

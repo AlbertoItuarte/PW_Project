@@ -55,17 +55,20 @@
 
         <input type="text" name="causa" id="causa" placeholder="Causa del feriado" required>
         <input type="hidden" name="descripcion" id="descripcion">
-        <input type="submit" value="Crear Feriado">
+        <input type="submit" id="submit-btn" value="Crear Feriado">
     </form>
     <script>
         function toggleRange(showRange) {
             const form = document.getElementById('feriado-form');
             const causaField = document.getElementById('causa');
             const descripcionField = document.getElementById('descripcion');
+            const submitBtn = document.getElementById('submit-btn');
             
             if (showRange) {
+                // Configuración para vacaciones
                 form.action = '../API/Vacations/InsertVacation.php';
                 causaField.placeholder = 'Descripción de las vacaciones';
+                submitBtn.value = 'Crear Vacaciones';
                 
                 causaField.addEventListener('input', function() {
                     descripcionField.value = this.value;
@@ -77,8 +80,10 @@
                 document.getElementById('fecha_inicio').required = true;
                 document.getElementById('fecha_fin').required = true;
             } else {
+                // Configuración para feriado único
                 form.action = '../API/Holidays/InsertHoliday.php';
                 causaField.placeholder = 'Causa del feriado';
+                submitBtn.value = 'Crear Feriado';
                 
                 causaField.removeEventListener('input', function() {
                     descripcionField.value = this.value;
