@@ -25,6 +25,7 @@ require_once '../Config/dbConection.php';
     <link rel="stylesheet" href="../CSS/Global.css">
 </head>
 <body>
+    
     <h1>Gestionar Ciclos Escolares</h1>
     <form action="../API/Cycle/InsertCycle.php" method="POST">
         <h2>Agregar Ciclo Escolar</h2>
