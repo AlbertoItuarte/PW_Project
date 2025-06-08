@@ -10,17 +10,17 @@
 <body>
     <?php include '../Common/Header.html'; ?>
     <h1>Agregar un Feriado</h1>
-    <form action="../API/Holidays/InsertHoliday.php" method="POST">
+    <form id="feriado-form" action="../API/Holidays/InsertHoliday.php" method="POST">
         <select name="ciclo_id" id="ciclo">
             <option value="default">Selecciona una opción</option>
             <?php
             require_once '../Config/dbConection.php';
             try {
-                $query = "SELECT id, nombre FROM ciclos ORDER BY nombre";
+                $query = "SELECT ciclo_id, nombre FROM ciclo ORDER BY nombre";
                 $stmt = $pdo->prepare($query);
                 $stmt->execute();
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<option value='" . htmlspecialchars($row['id']) . "'>" . 
+                    echo "<option value='" . htmlspecialchars($row['ciclo_id']) . "'>" . 
                          htmlspecialchars($row['nombre']) . "</option>";
                 }
             } catch (PDOException $e) {
@@ -54,16 +54,43 @@
         </div>
 
         <input type="text" name="causa" id="causa" placeholder="Causa del feriado" required>
+        <input type="hidden" name="descripcion" id="descripcion">
         <input type="submit" value="Crear Feriado">
     </form>
     <script>
         function toggleRange(showRange) {
-            document.getElementById('feriado-unico').style.display = showRange ? 'none' : 'block';
-            document.getElementById('feriado-rango').style.display = showRange ? 'block' : 'none';
-            // Required attributes
-            document.getElementById('dia').required = !showRange;
-            document.getElementById('fecha_inicio').required = showRange;
-            document.getElementById('fecha_fin').required = showRange;
+            const form = document.getElementById('feriado-form');
+            const causaField = document.getElementById('causa');
+            const descripcionField = document.getElementById('descripcion');
+            
+            if (showRange) {
+                form.action = '../API/Vacations/InsertVacation.php';
+                causaField.placeholder = 'Descripción de las vacaciones';
+                
+                causaField.addEventListener('input', function() {
+                    descripcionField.value = this.value;
+                });
+                
+                document.getElementById('feriado-unico').style.display = 'none';
+                document.getElementById('feriado-rango').style.display = 'block';
+                document.getElementById('dia').required = false;
+                document.getElementById('fecha_inicio').required = true;
+                document.getElementById('fecha_fin').required = true;
+            } else {
+                form.action = '../API/Holidays/InsertHoliday.php';
+                causaField.placeholder = 'Causa del feriado';
+                
+                causaField.removeEventListener('input', function() {
+                    descripcionField.value = this.value;
+                });
+                descripcionField.value = '';
+                
+                document.getElementById('feriado-unico').style.display = 'block';
+                document.getElementById('feriado-rango').style.display = 'none';
+                document.getElementById('dia').required = true;
+                document.getElementById('fecha_inicio').required = false;
+                document.getElementById('fecha_fin').required = false;
+            }
         }
     </script>
 </body>
