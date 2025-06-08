@@ -32,6 +32,15 @@ if ($stmt->rowCount() === 0) {
 
 $materia_info = $stmt->fetch();
 
+// Obtener las fechas del ciclo
+$sql = "SELECT c.fecha_inicio, c.fecha_fin 
+        FROM ciclo c 
+        INNER JOIN materia_ciclo mc ON c.ciclo_id = mc.ciclo_id 
+        WHERE mc.materia_ciclo_id = ?";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$materia_ciclo_id]);
+$ciclo_info = $stmt->fetch();
+
 // Obtener las unidades para la materia seleccionada
 $sql = "SELECT unidad_id, nombre, numero_unidad FROM unidad WHERE materia_ciclo_id = ? ORDER BY numero_unidad";
 $stmt = $pdo->prepare($sql);
@@ -83,6 +92,7 @@ unset($_SESSION['plan_generado']);
     <div class="materia-info">
         <h2>Planificar: <?= htmlspecialchars($materia_info['materia']) ?></h2>
         <p>Configure los días disponibles, horas por día y fechas de evaluación para generar la planificación.</p>
+        <p><strong>Período del ciclo:</strong> <?= htmlspecialchars($ciclo_info['fecha_inicio']) ?> al <?= htmlspecialchars($ciclo_info['fecha_fin']) ?></p>
     </div>
     
     <!-- Mostrar mensajes -->
@@ -177,24 +187,45 @@ unset($_SESSION['plan_generado']);
     <script>
         const feriados = <?= json_encode($feriados) ?>;
         const vacaciones = <?= json_encode($vacaciones) ?>;
+        const fechaInicioCiclo = '<?= $ciclo_info['fecha_inicio'] ?>';
+        const fechaFinCiclo = '<?= $ciclo_info['fecha_fin'] ?>';
 
         // Función para activar validación de fechas
         function activarValidacionFechas() {
             document.querySelectorAll('.fecha-evaluacion').forEach(input => {
+                // Configurar min y max para el input date
+                input.setAttribute('min', fechaInicioCiclo);
+                input.setAttribute('max', fechaFinCiclo);
+                
                 input.addEventListener('change', function() {
                     const fecha = this.value;
+                    
+                    // Validar que la fecha esté dentro del ciclo
+                    if (fecha < fechaInicioCiclo || fecha > fechaFinCiclo) {
+                        alert(`La fecha debe estar entre ${fechaInicioCiclo} y ${fechaFinCiclo} (período del ciclo).`);
+                        this.value = '';
+                        return;
+                    }
+                    
+                    // Validar feriados
                     if (feriados.includes(fecha)) {
                         alert('La fecha seleccionada es un día feriado. Por favor, selecciona otra fecha.');
                         this.value = '';
                         return;
                     }
                     
+                    // Validar vacaciones
+                    let estaEnVacaciones = false;
                     vacaciones.forEach(vac => {
                         if (fecha >= vac.inicio && fecha <= vac.fin) {
-                            alert('La fecha seleccionada está dentro de un período de vacaciones. Por favor, selecciona otra fecha.');
-                            this.value = '';
+                            estaEnVacaciones = true;
                         }
                     });
+                    
+                    if (estaEnVacaciones) {
+                        alert('La fecha seleccionada está dentro de un período de vacaciones. Por favor, selecciona otra fecha.');
+                        this.value = '';
+                    }
                 });
             });
         }
