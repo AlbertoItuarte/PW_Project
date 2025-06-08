@@ -123,6 +123,10 @@ if(!isset($_SESSION["user_id"]) || $_SESSION["user_type"] != "Admin") {
         <div id="no-users" class="no-users" style="display: none;">
             No se encontraron usuarios registrados.
         </div>
+        <!-- Botón para registrar usuarios -->
+        <div style="text-align:center; margin-top: 30px;">
+            <a href="Register.php" class="back-button">Registrar usuarios</a>
+        </div>
     </div>
 
     <!-- Modal de confirmación para eliminar -->

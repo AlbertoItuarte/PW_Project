@@ -1,11 +1,4 @@
 body {
-  font-family: Arial, sans-serif;
-
-  /* Fondo */
-  background-image: url('/azul.jpg');
-  background-size: cover;         /* La imagen se ajusta a toda la pantalla */
-  background-position: center;    /* Centrada */
-  background-repeat: no-repeat;   /* No se repite */
 
   /* Ajuste de layout */
   display: flex;
@@ -41,7 +34,7 @@ form p{
 
 @font-face {
   font-family: 'MiFuente';
-  src: url('/Boldyguard\ Demo.otf') format('opentype');
+  src: url('Boldyguard Demo.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }

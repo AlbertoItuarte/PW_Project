@@ -19,6 +19,7 @@ if (!isset($_SESSION["user_id"]) )
     <link rel="stylesheet" href="../CSS/Register.css">
 </head>
 <body>
+    <?php include '../Common/Header.html'; ?>
     <div>
         <form action="../Logic/Register.php" id="formulario" method="post">
             <h2>SmartSchedule</h2>
