@@ -23,14 +23,14 @@ if($_SESSION['user_type'] != "Admin") {
     </style>
 </head>
 <body>
+    <?php include '../Common/Header.html'; ?>
     <div class="container">
         <div id="materia-header" class="header"></div>
         <div id="materia-info" class="info-section"></div>
         <h2>Programa de Estudio</h2>
         <div id="unidades-container"></div>
-        <div class="actions">
-            <a href="Home.php" class="btn btn-secondary">Volver al inicio</a>
-        </div>
+        <div class="back-button-container">
+            <a href="Home.php" class="back-button">← Volver al inicio</a>
     </div>
 
     <script>
