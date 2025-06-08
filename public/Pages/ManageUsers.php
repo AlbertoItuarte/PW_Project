@@ -42,121 +42,12 @@ if (!$materia) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestionar Usuarios - <?php echo htmlspecialchars($materia['nombre']); ?></title>
     <link rel="stylesheet" href="../CSS/Global.css">
-    <link rel="stylesheet" href="../CSS/Home.css">
+    <link rel="stylesheet" href="../CSS/ManageUsers.css">
     <link rel="stylesheet" href="../CSS/VentanaEmergente.css">
-    <style>
-        .manage-users-container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-        
-        .section {
-            background: white;
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .section h3 {
-            margin-top: 0;
-            color: #333;
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 10px;
-        }
-        
-        .user-form {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-        
-        .user-form select, .user-form button {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        .user-form button {
-            background: #007bff;
-            color: white;
-            cursor: pointer;
-            border: none;
-        }
-        
-        .user-form button:hover {
-            background: #0056b3;
-        }
-        
-        .users-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-        
-        .users-table th, .users-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .users-table th {
-            background: #f8f9fa;
-            font-weight: bold;
-        }
-        
-        .btn-remove {
-            background: #dc3545;
-            color: white;
-            padding: 6px 12px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 12px;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn-remove:hover {
-            background: #c82333;
-        }
-        
-        .no-users {
-            text-align: center;
-            color: #666;
-            font-style: italic;
-            padding: 20px;
-        }
-        
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #007bff;
-            text-decoration: none;
-        }
-        
-        .back-link:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
-    <div>
-        <nav>
-            <ul>
-                <li><a href="Home.php">Inicio</a></li>
-                <li><a href="PlanSubject.php" id="btn-create-materia">Crear materia</a></li>
-                <li><a href="CreateCycle.php" id="btn-create-ciclo">Gestionar Ciclo</a></li>
-                <li><a href="ViewUsers.php">Usuarios</a></li>
-                <li><a href="../Logic/LogOut.php">Cerrar sesión</a></li>
-            </ul>
-        </nav>
-    </div>
-
+    <?php include '../Common/Header.html'; ?>
     <div class="manage-users-container">
-        <a href="Home.php" class="back-link">← Volver al inicio</a>
         
         <h1>Gestionar Usuarios</h1>
         <h2>Materia: <?php echo htmlspecialchars($materia['nombre']); ?></h2>

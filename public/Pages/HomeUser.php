@@ -90,46 +90,5 @@ if(isset($_POST["usuario_id"]) && $_SESSION["user_type"] != "Admin") {
         }
         ?>
     </div>
-
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-        
-        th {
-            background-color: #f8f9fa;
-            font-weight: bold;
-        }
-        
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        
-        tr:hover {
-            background-color: #e8f4f8;
-        }
-        
-        a {
-            color: #007bff;
-            text-decoration: none;
-            padding: 5px 10px;
-            background-color: #e7f3ff;
-            border-radius: 3px;
-            display: inline-block;
-        }
-        
-        a:hover {
-            background-color: #007bff;
-            color: white;
-        }
-    </style>
 </body>
 </html>

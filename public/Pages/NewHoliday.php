@@ -12,7 +12,7 @@
     <h1>Agregar un Feriado</h1>
     <form id="feriado-form" action="../API/Holidays/InsertHoliday.php" method="POST">
         <select name="ciclo_id" id="ciclo">
-            <option value="default">Selecciona una opción</option>
+            <option value="default">Selecciona un ciclo</option>
             <?php
             require_once '../Config/dbConection.php';
             try {
@@ -40,7 +40,7 @@
             </div>
             <div class="toggle-radio">
                 <input type="radio" name="tipo_feriado" id="feriado_rango" value="rango" onclick="toggleRange(true)">
-                <label for="feriado_rango">Rango de fechas (vacaciones, etc)</label>
+                <label for="feriado_rango">Rango de fechas</label>
             </div>
         </div>
 
