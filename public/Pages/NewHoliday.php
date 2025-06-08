@@ -65,7 +65,6 @@
             const submitBtn = document.getElementById('submit-btn');
             
             if (showRange) {
-                // Configuración para vacaciones
                 form.action = '../API/Vacations/InsertVacation.php';
                 causaField.placeholder = 'Descripción de las vacaciones';
                 submitBtn.value = 'Crear Vacaciones';
@@ -80,7 +79,6 @@
                 document.getElementById('fecha_inicio').required = true;
                 document.getElementById('fecha_fin').required = true;
             } else {
-                // Configuración para feriado único
                 form.action = '../API/Holidays/InsertHoliday.php';
                 causaField.placeholder = 'Causa del feriado';
                 submitBtn.value = 'Crear Feriado';
