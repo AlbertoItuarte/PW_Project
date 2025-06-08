@@ -24,7 +24,7 @@ $row = $stmt->fetch();
 
 if ($row['total'] == 0) {
     // Redirigir al administrador a la página de gestión de ciclos
-    header("Location: ManageCycles.php");
+    header("Location: CreateCycle.php");
     exit();
 }
 ?>

@@ -40,7 +40,7 @@ if(!isset($_SESSION["user_id"]) || $_SESSION["user_type"] != "Admin") {
     <script>
         async function loadUsers() {
             try {
-                const response = await fetch('../API/Users/getusers.php');
+                const response = await fetch('../API/Users/GetUsers.php');
                 const data = await response.json();
                 
                 document.getElementById('loading').style.display = 'none';
