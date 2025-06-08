@@ -38,21 +38,43 @@ try {
     
     $materia_ciclo_id = $materia_ciclo['materia_ciclo_id'];
     
-    // Verificar que la asignación existe
-    $sql = "SELECT COUNT(*) FROM usuario_materia_ciclo WHERE usuario_id = ? AND materia_ciclo_id = ?";
+    // Obtener el usuario_materia_ciclo_id específico
+    $sql = "SELECT usuario_materia_ciclo_id FROM usuario_materia_ciclo WHERE usuario_id = ? AND materia_ciclo_id = ? LIMIT 1";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$usuario_id, $materia_ciclo_id]);
-    if ($stmt->fetchColumn() == 0) {
+    $usuario_materia_ciclo = $stmt->fetch();
+    
+    if (!$usuario_materia_ciclo) {
         echo json_encode(['success' => false, 'message' => 'La asignación no existe']);
         exit();
     }
     
-    // Desasignar usuario de la materia
-    $sql = "DELETE FROM usuario_materia_ciclo WHERE usuario_id = ? AND materia_ciclo_id = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$usuario_id, $materia_ciclo_id]);
+    $usuario_materia_ciclo_id = $usuario_materia_ciclo['usuario_materia_ciclo_id'];
     
-    echo json_encode(['success' => true, 'message' => 'Usuario desasignado correctamente']);
+    // Iniciar transacción
+    $pdo->beginTransaction();
+    
+    try {
+        // 1. Eliminar todas las distribuciones asociadas
+        $sql = "DELETE FROM distribucion WHERE usuario_materia_ciclo_id = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$usuario_materia_ciclo_id]);
+        
+        // 2. Eliminar la asignación usuario_materia_ciclo
+        $sql = "DELETE FROM usuario_materia_ciclo WHERE usuario_materia_ciclo_id = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$usuario_materia_ciclo_id]);
+        
+        // Confirmar transacción
+        $pdo->commit();
+        
+        echo json_encode(['success' => true, 'message' => 'Usuario desasignado correctamente. Se eliminaron las distribuciones asociadas.']);
+        
+    } catch (Exception $e) {
+        // Revertir transacción en caso de error
+        $pdo->rollback();
+        throw $e;
+    }
     
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'message' => 'Error del servidor: ' . $e->getMessage()]);

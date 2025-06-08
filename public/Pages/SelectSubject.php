@@ -70,46 +70,6 @@ if (!isset($_SESSION['user_id'])) {
         <button type="submit">Cargar Materias</button>
     </form>
 
-    <!-- Mostrar todas las asignaciones actuales -->
-    <div class="asignaciones-actuales">
-        <h2>Mis Asignaciones Actuales</h2>
-        <?php
-        $sql_asignaciones = "SELECT m.nombre AS materia, m.codigo, umc.fecha_asignacion,
-                            ROW_NUMBER() OVER (PARTITION BY m.materia_id ORDER BY umc.fecha_asignacion) as numero_asignacion
-                            FROM usuario_materia_ciclo umc
-                            INNER JOIN materia_ciclo mc ON umc.materia_ciclo_id = mc.materia_ciclo_id
-                            INNER JOIN materia m ON mc.materia_id = m.materia_id
-                            WHERE umc.usuario_id = ?
-                            ORDER BY m.nombre ASC, umc.fecha_asignacion ASC";
-        $stmt_asignaciones = $pdo->prepare($sql_asignaciones);
-        $stmt_asignaciones->execute([$user_id]);
-
-        if ($stmt_asignaciones->rowCount() > 0) {
-            echo "<table class='asignaciones-table'>
-                    <thead>
-                        <tr>
-                            <th>Materia</th>
-                            <th>Código</th>
-                            <th>Asignación #</th>
-                            <th>Fecha</th>
-                        </tr>
-                    </thead>
-                    <tbody>";
-            while ($asignacion = $stmt_asignaciones->fetch()) {
-                echo "<tr>
-                        <td>{$asignacion['materia']}</td>
-                        <td>{$asignacion['codigo']}</td>
-                        <td>#{$asignacion['numero_asignacion']}</td>
-                        <td>" . date('d/m/Y H:i', strtotime($asignacion['fecha_asignacion'])) . "</td>
-                      </tr>";
-            }
-            echo "</tbody></table>";
-        } else {
-            echo "<p>No tienes materias asignadas actualmente.</p>";
-        }
-        ?>
-    </div>
-
     <style>
         .alert {
             padding: 10px;
