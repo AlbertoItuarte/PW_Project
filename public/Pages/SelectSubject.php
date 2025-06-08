@@ -29,7 +29,7 @@ if (!isset($_SESSION['user_id'])) {
     }
     ?>
     
-    <form action="../Logic/AsignSubject.php" method="POST">
+    <form action="../API/Subject/AsignSubject.php" method="POST">
         <div class="materias-container">
         <?php
         require_once '../Config/dbConection.php';

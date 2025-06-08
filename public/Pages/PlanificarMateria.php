@@ -108,7 +108,7 @@ unset($_SESSION['plan_generado']);
         </div>
     <?php endif; ?>
 
-    <form action="../Logic/GeneratePlan.php" method="POST">
+    <form action="../API/Plan/GeneratePlan.php" method="POST">
         <!-- Campo oculto para enviar el ID de la materia -->
         <input type="hidden" name="materia_ciclo_id" value="<?= $materia_ciclo_id ?>">
 
