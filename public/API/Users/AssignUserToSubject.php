@@ -22,6 +22,15 @@ try {
     $usuario_id = $input['usuario_id'];
     $materia_id = $input['materia_id'];
     
+    // Verificar que el usuario existe y es de tipo Usuario
+    $sql = "SELECT COUNT(*) FROM usuario WHERE usuario_id = ? AND tipo = 'Usuario' AND activo = true";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$usuario_id]);
+    if ($stmt->fetchColumn() == 0) {
+        echo json_encode(['success' => false, 'message' => 'Usuario no encontrado']);
+        exit();
+    }
+    
     // Obtener el materia_ciclo_id del ciclo activo para esta materia
     $sql = "SELECT mc.materia_ciclo_id 
             FROM materia_ciclo mc 
@@ -38,21 +47,21 @@ try {
     
     $materia_ciclo_id = $materia_ciclo['materia_ciclo_id'];
     
-    // Verificar que la asignación existe
-    $sql = "SELECT COUNT(*) FROM usuario_materia_ciclo WHERE usuario_id = ? AND materia_ciclo_id = ?";
+    // Verificar que el usuario no está ya asignado
+    // $sql = "SELECT COUNT(*) FROM usuario_materia_ciclo WHERE usuario_id = ? AND materia_ciclo_id = ?";
+    // $stmt = $pdo->prepare($sql);
+    // $stmt->execute([$usuario_id, $materia_ciclo_id]);
+    // if ($stmt->fetchColumn() > 0) {
+    //     echo json_encode(['success' => false, 'message' => 'El usuario ya está asignado a esta materia']);
+    //     exit();
+    // }
+    
+    // Asignar usuario a la materia
+    $sql = "INSERT INTO usuario_materia_ciclo (usuario_id, materia_ciclo_id, fecha_asignacion) VALUES (?, ?, NOW())";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$usuario_id, $materia_ciclo_id]);
-    if ($stmt->fetchColumn() == 0) {
-        echo json_encode(['success' => false, 'message' => 'La asignación no existe']);
-        exit();
-    }
     
-    // Desasignar usuario de la materia
-    $sql = "DELETE FROM usuario_materia_ciclo WHERE usuario_id = ? AND materia_ciclo_id = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$usuario_id, $materia_ciclo_id]);
-    
-    echo json_encode(['success' => true, 'message' => 'Usuario desasignado correctamente']);
+    echo json_encode(['success' => true, 'message' => 'Usuario asignado correctamente']);
     
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'message' => 'Error del servidor: ' . $e->getMessage()]);
