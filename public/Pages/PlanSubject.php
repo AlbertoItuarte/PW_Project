@@ -44,22 +44,26 @@ if (isset($_GET['error'])) {
       }
       ?>
     </select>
-
-    <label>Nombre de la Materia:</label>
-    <input type="text" id="materiaNombre" name="nombreMateria" placeholder="Ej. Matemáticas" required />
-
-    <label>Código de la materia:</label>
-    <input type="text" id="codigoMateria" name="codigoMateria" placeholder="Ej. MAT101" required />
-
-    <label>Descripción de la materia:</label>
-    <textarea id="descripcionMateria" name="descripcionMateria" rows="4" placeholder="Descripción de la materia..." required></textarea>
-
-    <label>Horas Teóricas:</label>
-    <input type="number" id="horasTeoricas" name="horasTeoricas" placeholder="Ej. 3" min="0" required />
-
-    <label>Horas Prácticas:</label>
-    <input type="number" id="horasPracticas" name="horasPracticas" placeholder="Ej. 2" min="0" required />
-    
+    <div class="input-group">
+      <label>Nombre de la Materia:</label>
+      <input type="text" id="materiaNombre" name="nombreMateria" placeholder="Ej. Matemáticas" required />
+    </div>
+    <div class="input-group">
+      <label>Código de la materia:</label>
+      <input type="text" id="codigoMateria" name="codigoMateria" placeholder="Ej. MAT101" required />
+    </div>
+    <div class="input-group">
+      <label>Descripción de la materia:</label>
+      <textarea id="descripcionMateria" name="descripcionMateria" rows="4" placeholder="Descripción de la materia..." required></textarea>
+    </div>
+    <div class="input-group">
+      <label>Horas Teóricas:</label>
+      <input type="number" id="horasTeoricas" name="horasTeoricas" placeholder="Ej. 3" min="0" required />
+    </div>
+    <div class="input-group">
+      <label>Horas Prácticas:</label>
+      <input type="number" id="horasPracticas" name="horasPracticas" placeholder="Ej. 2" min="0" required />
+    </div>
     <div id="unidadesContainer"></div>
 
     <button type="button" id="btnAgregarUnidad">➕ Añadir Unidad</button> 
