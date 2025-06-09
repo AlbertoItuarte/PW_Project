@@ -96,5 +96,13 @@
             }
         }
     </script>
+    <script>
+    document.getElementById('feriado-form').addEventListener('submit', function(e) {
+        // Permite el envío normal del formulario
+        setTimeout(function() {
+            window.location.href = 'CreateCycle.php';
+        }, 500); // Espera medio segundo para que el backend procese antes de redirigir
+    });
+</script>
 </body>
 </html>
