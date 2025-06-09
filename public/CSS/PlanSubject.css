@@ -71,3 +71,65 @@
       align-items: center;
       margin-top: 10px;
     }
+    /* Fondo y borde para cada input con su label */
+form label {
+  display: block;
+  margin-top: 18px;
+  margin-bottom: 4px;
+  font-weight: bold;
+  text-align: left;
+  width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.input-group {
+  background: #eaf6f6;
+  border: 1.5px solid #b2d8d8;
+  border-radius: 8px;
+  padding: 14px 18px 10px 18px;
+  margin-bottom: 12px;
+  width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(46,110,110,0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+  background: #f8fdfd;
+  border: 1px solid #b2d8d8;
+  border-radius: 5px;
+  padding: 8px;
+  margin: 0;
+  font-size: 1em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-group textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* Opcional: mejora visual para los inputs dentro de unidades y temas */
+.unidad-container .input-group,
+.tema-container .input-group {
+  width: 95%;
+  margin-bottom: 10px;
+}
+form label {
+  display: block;
+  margin-top: 18px;
+  margin-bottom: 4px;
+  font-weight: bold;
+  text-align: center;      /* Centra el texto de todas las labels */
+  width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
